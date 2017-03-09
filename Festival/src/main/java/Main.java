@@ -1,5 +1,7 @@
 import Domain.Artist;
+import Domain.Show;
 import Repository.RepositoryArtistDB;
+import Repository.RepositoryShowDB;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,5 +21,9 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Can not find bd.config");
         }
+
+        RepositoryShowDB repositoryShowDB = new RepositoryShowDB(serverProperties);
+
+        repositoryShowDB.delete(1);
     }
 }

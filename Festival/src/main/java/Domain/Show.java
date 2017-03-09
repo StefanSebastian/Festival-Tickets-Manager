@@ -80,4 +80,9 @@ public class Show {
     public void setIdArtist(Integer idArtist) {
         this.idArtist = idArtist;
     }
+
+    @Override
+    public String toString(){
+        return idShow + " " + location + " " + date + " " + ticketsAvailable + " " + ticketsSold + " " + idArtist;
+    }
 }
