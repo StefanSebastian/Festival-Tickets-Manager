@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Festival.iml" filepath="$PROJECT_DIR$/.idea/modules/Festival.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Festival_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Festival_main.iml" group="Festival" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Festival_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Festival_test.iml" group="Festival" />
+    </modules>
+  </component>
+</project>
