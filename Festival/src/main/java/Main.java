@@ -1,7 +1,9 @@
 import Domain.Artist;
 import Domain.Show;
+import Domain.Transaction;
 import Repository.RepositoryArtistDB;
 import Repository.RepositoryShowDB;
+import Repository.RepositoryTransactionDB;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,8 +24,10 @@ public class Main {
             System.out.println("Can not find bd.config");
         }
 
-        RepositoryShowDB repositoryShowDB = new RepositoryShowDB(serverProperties);
+        RepositoryTransactionDB repositoryTransactionDB = new RepositoryTransactionDB(serverProperties);
 
-        repositoryShowDB.delete(1);
+        for (Transaction t : repositoryTransactionDB.getAll()){
+            System.out.println(t);
+        }
     }
 }

@@ -56,4 +56,9 @@ public class Transaction {
     public void setIdShow(Integer idShow) {
         this.idShow = idShow;
     }
+
+    @Override
+    public String toString(){
+        return idTransaction + " " + clientName + " " + numberOfTickets + " " + idShow;
+    }
 }
