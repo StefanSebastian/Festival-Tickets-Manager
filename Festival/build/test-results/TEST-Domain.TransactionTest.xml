@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Domain.TransactionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2017-03-09T16:41:26" hostname="DESKTOP-D3166J2" time="0.0">
+<testsuite name="Domain.TransactionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2017-03-09T19:45:29" hostname="DESKTOP-D3166J2" time="0.0">
   <properties/>
   <testcase name="getNumberOfTickets" classname="Domain.TransactionTest" time="0.0"/>
   <testcase name="setIdTransaction" classname="Domain.TransactionTest" time="0.0"/>
