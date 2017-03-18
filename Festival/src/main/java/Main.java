@@ -12,6 +12,7 @@ import Repository.RepositoryShowDB;
 import Repository.RepositoryTransactionDB;
 import Repository.RepositoryUserDB;
 import UI.LoginViewController;
+import UI.MainWindowViewController;
 import Validation.ValidatorArtist;
 import Validation.ValidatorShow;
 import Validation.ValidatorTransaction;
@@ -54,10 +55,10 @@ public class Main extends Application{
         IDatabaseRepository<User, Integer> repoUser = new RepositoryUserDB(serverProperties);
         ControllerUser controllerUser = new ControllerUser(repoUser, new ValidatorUser());
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/MainWindowView.fxml"));
         AnchorPane loginPane = loader.load();
-        LoginViewController controller = loader.getController();
-        controller.initialize(controllerUser);
+        MainWindowViewController controller = loader.getController();
+        controller.initialize(controllerArtist, controllerShow, controllerTransaction);
 
         Scene scene = new Scene(loginPane);
         primaryStage.setScene(scene);
