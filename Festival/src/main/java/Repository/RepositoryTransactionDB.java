@@ -1,7 +1,7 @@
 package Repository;
 
-import Domain.Show;
 import Domain.Transaction;
+import Repository.Interfaces.IRepositoryTransaction;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryTransactionDB implements IRepository<Transaction, Integer> {
+public class RepositoryTransactionDB implements IRepositoryTransaction {
     //used to get connection
     private JdbcUtils jdbcUtils;
 

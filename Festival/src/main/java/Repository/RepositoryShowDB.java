@@ -1,7 +1,7 @@
 package Repository;
 
-import Domain.Artist;
 import Domain.Show;
+import Repository.Interfaces.IRepositoryShow;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryShowDB implements IRepository<Show, Integer> {
+public class RepositoryShowDB implements IRepositoryShow {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
