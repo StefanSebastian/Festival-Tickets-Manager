@@ -1,7 +1,8 @@
 package Repository;
 
 import Domain.Artist;
-import Repository.Interfaces.IRepositoryArtist;
+import Repository.Interfaces.IDatabaseRepository;
+import Repository.Interfaces.IRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryArtistDB implements IRepositoryArtist {
+public class RepositoryArtistDB implements IDatabaseRepository<Artist, Integer> {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -94,5 +95,10 @@ public class RepositoryArtistDB implements IRepositoryArtist {
             System.out.println("Error DB "+e);
         }
         return artists;
+    }
+
+    @Override
+    public List<Artist> filter(List<String> filters, List<String> arguments) {
+        return null;
     }
 }

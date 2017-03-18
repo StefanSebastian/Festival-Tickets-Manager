@@ -1,10 +1,8 @@
 package Controller;
 
 import Domain.Show;
-import Repository.Interfaces.IRepositoryArtist;
-import Repository.Interfaces.IRepositoryShow;
+import Repository.Interfaces.IDatabaseRepository;
 import Validation.Exceptions.FormatException;
-import Validation.ValidatorArtist;
 import Validation.ValidatorShow;
 
 /**
@@ -14,7 +12,7 @@ public class ControllerShow extends AbstractController<Show,Integer> {
     /*
     Constructor
      */
-    public ControllerShow(IRepositoryShow repositoryShow, ValidatorShow validatorShow){
+    public ControllerShow(IDatabaseRepository<Show, Integer> repositoryShow, ValidatorShow validatorShow){
         super(repositoryShow, validatorShow);
     }
 

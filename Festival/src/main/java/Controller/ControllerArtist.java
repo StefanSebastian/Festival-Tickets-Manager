@@ -1,7 +1,7 @@
 package Controller;
 
 import Domain.Artist;
-import Repository.Interfaces.IRepositoryArtist;
+import Repository.Interfaces.IDatabaseRepository;
 import Validation.Exceptions.FormatException;
 import Validation.ValidatorArtist;
 
@@ -12,7 +12,8 @@ public class ControllerArtist extends AbstractController<Artist, Integer> {
     /*
     Constructor
      */
-    public ControllerArtist(IRepositoryArtist repositoryArtist, ValidatorArtist validatorArtist){
+    public ControllerArtist(IDatabaseRepository<Artist, Integer> repositoryArtist,
+                            ValidatorArtist validatorArtist){
         super(repositoryArtist, validatorArtist);
     }
 

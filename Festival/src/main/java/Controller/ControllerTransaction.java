@@ -1,10 +1,8 @@
 package Controller;
 
 import Domain.Transaction;
-import Repository.Interfaces.IRepositoryShow;
-import Repository.Interfaces.IRepositoryTransaction;
+import Repository.Interfaces.IDatabaseRepository;
 import Validation.Exceptions.FormatException;
-import Validation.ValidatorShow;
 import Validation.ValidatorTransaction;
 
 /**
@@ -14,7 +12,7 @@ public class ControllerTransaction extends AbstractController<Transaction, Integ
     /*
    Constructor
     */
-    public ControllerTransaction(IRepositoryTransaction repositoryTransaction,
+    public ControllerTransaction(IDatabaseRepository<Transaction, Integer> repositoryTransaction,
                                  ValidatorTransaction validatorTransaction){
         super(repositoryTransaction, validatorTransaction);
     }

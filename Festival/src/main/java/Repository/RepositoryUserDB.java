@@ -1,7 +1,8 @@
 package Repository;
 
 import Domain.User;
-import Repository.Interfaces.IRepositoryUser;
+import Repository.Interfaces.IDatabaseRepository;
+import Repository.Interfaces.IRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class RepositoryUserDB implements IRepositoryUser {
+public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -88,6 +89,36 @@ public class RepositoryUserDB implements IRepositoryUser {
         Connection con = jdbcUtils.getConnection();
         List<User> users = new ArrayList<>();
         try(PreparedStatement statement = con.prepareStatement("select * from users")) {
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Integer idUser = resultSet.getInt("idUser");
+                    String username = resultSet.getString("username");
+                    String password = resultSet.getString("password");
+                    users.add(new User(idUser, username, password));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error DB "+e);
+        }
+        return users;
+    }
+
+
+    @Override
+    public List<User> filter(List<String> filters, List<String> arguments) {
+        Connection con = jdbcUtils.getConnection();
+        List<User> users = new ArrayList<>();
+
+        String command = "select * from users where ";
+        for (String filter : filters){
+            command += filter + " AND ";
+        }
+        command = command.substring(0, command.length() - 5);
+
+        try(PreparedStatement statement = con.prepareStatement(command)) {
+            for (int i = 0; i < arguments.size(); i++){
+                statement.setString(i + 1, arguments.get(i));
+            }
             try(ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Integer idUser = resultSet.getInt("idUser");

@@ -1,7 +1,8 @@
 package Repository;
 
 import Domain.Show;
-import Repository.Interfaces.IRepositoryShow;
+import Repository.Interfaces.IDatabaseRepository;
+import Repository.Interfaces.IRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryShowDB implements IRepositoryShow {
+public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -113,5 +114,10 @@ public class RepositoryShowDB implements IRepositoryShow {
             System.out.println("Error DB "+e);
         }
         return shows;
+    }
+
+    @Override
+    public List<Show> filter(List<String> filters, List<String> arguments) {
+        return null;
     }
 }

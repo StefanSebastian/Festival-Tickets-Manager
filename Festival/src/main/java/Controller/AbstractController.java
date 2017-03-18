@@ -1,5 +1,6 @@
 package Controller;
 
+import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
 import Validation.Exceptions.FormatException;
 import Validation.Exceptions.ValidatorException;
@@ -13,13 +14,13 @@ import java.util.List;
  */
 public abstract class AbstractController<E, ID> {
     //Repository
-    private IRepository<E, ID> repository;
+    protected IDatabaseRepository<E, ID> repository;
 
     //Validator
     private IValidator<E> validator;
 
     //Constructor
-    public AbstractController(IRepository<E, ID> repository, IValidator<E> validator){
+    public AbstractController(IDatabaseRepository<E, ID> repository, IValidator<E> validator){
         this.repository = repository;
         this.validator = validator;
     }
