@@ -1,0 +1,52 @@
+package Controller;
+
+import Domain.Show;
+import Repository.Interfaces.IRepositoryArtist;
+import Repository.Interfaces.IRepositoryShow;
+import Validation.Exceptions.FormatException;
+import Validation.ValidatorArtist;
+import Validation.ValidatorShow;
+
+/**
+ * Created by Sebi on 18-Mar-17.
+ */
+public class ControllerShow extends AbstractController<Show,Integer> {
+    /*
+    Constructor
+     */
+    public ControllerShow(IRepositoryShow repositoryShow, ValidatorShow validatorShow){
+        super(repositoryShow, validatorShow);
+    }
+
+    @Override
+    public Show formatEntity(String... args) throws FormatException {
+        Integer id;
+        String location;
+        String date;
+        Integer ticketsAvailable;
+        Integer ticketsSold;
+        Integer idArtist;
+        try{
+            id = Integer.parseInt(args[0]);
+            location = args[1];
+            date = args[2];
+            ticketsAvailable = Integer.parseInt(args[3]);
+            ticketsSold = Integer.parseInt(args[4]);
+            idArtist = Integer.parseInt(args[5]);
+        } catch (NumberFormatException e){
+            throw new FormatException("Invalid format. Ids and number of tickets must be integers");
+        }
+        return new Show(id, location, date, ticketsAvailable, ticketsSold, idArtist);
+    }
+
+    @Override
+    public Integer formatId(String id) throws FormatException {
+        Integer idF;
+        try{
+            idF = Integer.parseInt(id);
+        } catch (NumberFormatException e){
+            throw new FormatException("Id must be a number");
+        }
+        return idF;
+    }
+}
