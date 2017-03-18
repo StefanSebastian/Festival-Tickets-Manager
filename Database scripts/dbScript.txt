@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS festival;
+CREATE DATABASE festival; 
+USE festival;
+
+CREATE TABLE artists(
+   idArtist int primary key auto_increment,
+   name nvarchar(100)
+);
+
+CREATE TABLE shows(
+   idShow int primary key auto_increment, 
+   location varchar(200) not null,
+   date datetime not null,
+   ticketsAvailable int not null,
+   ticketsSold int not null default 0,
+   idArtist int,
+   FOREIGN KEY(idArtist) REFERENCES artists(idArtist)
+);
+
+CREATE TABLE transactions(
+   idTransaction int primary key auto_increment,
+   clientName varchar(100),
+   numberOfTickets int not null, 
+   idShow int,
+   FOREIGN KEY(idShow) REFERENCES shows(idShow)
+);
+
+CREATE TABLE users(
+   idUser int primary key auto_increment,
+   username varchar(100),
+   password varchar(100)
+)
