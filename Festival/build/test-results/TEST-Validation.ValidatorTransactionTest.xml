@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Validation.ValidatorTransactionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-03-18T16:49:04" hostname="DESKTOP-D3166J2" time="0.002">
+  <properties/>
+  <testcase name="validateInvalidTransactionTickets" classname="Validation.ValidatorTransactionTest" time="0.001"/>
+  <testcase name="validateValidTransaction" classname="Validation.ValidatorTransactionTest" time="0.0"/>
+  <testcase name="validateInvalidTransactionClient" classname="Validation.ValidatorTransactionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
