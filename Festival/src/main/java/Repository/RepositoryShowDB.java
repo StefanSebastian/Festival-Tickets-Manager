@@ -118,6 +118,33 @@ public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
 
     @Override
     public List<Show> filter(List<String> filters, List<String> arguments) {
-        return null;
+        Connection con = jdbcUtils.getConnection();
+        List<Show> shows = new ArrayList<>();
+
+        String command = "select * from shows where ";
+        for (String filter : filters){
+            command += filter + " AND ";
+        }
+        command = command.substring(0, command.length() - 5);
+
+        try(PreparedStatement statement = con.prepareStatement(command)) {
+            for (int i = 0; i < arguments.size(); i++){
+                statement.setString(i + 1, arguments.get(i));
+            }
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Integer idShow = resultSet.getInt("idShow");
+                    String location = resultSet.getString("location");
+                    String date = resultSet.getString("date");
+                    Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
+                    Integer ticketsSold = resultSet.getInt("ticketsSold");
+                    Integer idArtist = resultSet.getInt("idArtist");
+                    shows.add(new Show(idShow, location, date, ticketsAvailable, ticketsSold, idArtist));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error DB "+e);
+        }
+        return shows;
     }
 }

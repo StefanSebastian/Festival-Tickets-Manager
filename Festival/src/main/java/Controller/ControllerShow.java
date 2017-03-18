@@ -5,6 +5,9 @@ import Repository.Interfaces.IDatabaseRepository;
 import Validation.Exceptions.FormatException;
 import Validation.ValidatorShow;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Sebi on 18-Mar-17.
  */
@@ -46,5 +49,18 @@ public class ControllerShow extends AbstractController<Show,Integer> {
             throw new FormatException("Id must be a number");
         }
         return idF;
+    }
+
+    /*
+    Gets all shows for an artist
+     */
+    public List<Show> getShowsForArtist(String idArtist){
+        List<String> filters = new ArrayList<>();
+        List<String> parameters = new ArrayList<>();
+
+        filters.add("idArtist = ?");
+        parameters.add(idArtist);
+
+        return repository.filter(filters, parameters);
     }
 }

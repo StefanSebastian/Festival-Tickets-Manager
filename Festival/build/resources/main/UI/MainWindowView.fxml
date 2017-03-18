@@ -9,10 +9,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.MainWindowViewController">
    <children>
-      <TableView layoutX="222.0" layoutY="52.0" prefHeight="200.0" prefWidth="453.0">
+      <TableView fx:id="tableViewShows" layoutX="222.0" layoutY="52.0" prefHeight="200.0" prefWidth="453.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="locationColumn" prefWidth="120.0" text="Location" />
+          <TableColumn fx:id="dateColumn" prefWidth="140.0" text="Date" />
+            <TableColumn fx:id="ticketsAvailableColumn" prefWidth="114.0" text="Tickets Available" />
+            <TableColumn fx:id="ticketsSoldColumn" prefWidth="78.0" text="Tickets Sold" />
         </columns>
       </TableView>
       <ListView fx:id="listViewArtists" layoutX="21.0" layoutY="52.0" prefHeight="200.0" prefWidth="169.0" />
