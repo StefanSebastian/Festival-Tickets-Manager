@@ -6,6 +6,7 @@ import Controller.ControllerTransaction;
 import Domain.Artist;
 import Domain.Show;
 import Domain.ShowArtist;
+import Utils.Observer;
 import Validation.Exceptions.FormatException;
 import Validation.Exceptions.UIException;
 import Validation.Exceptions.ValidatorException;
@@ -29,7 +30,7 @@ import java.util.List;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class MainWindowViewController {
+public class MainWindowViewController implements Observer {
     //controllers
     private ControllerArtist controllerArtist;
     private ControllerShow controllerShow;
@@ -49,6 +50,9 @@ public class MainWindowViewController {
         this.controllerArtist = controllerArtist;
         this.controllerShow = controllerShow;
         this.controllerTransaction = controllerTransaction;
+
+        //register observer
+        controllerShow.addObserver(this);
 
         //set items for the list of artists
         artists = FXCollections.observableArrayList(controllerArtist.getAll());
@@ -111,19 +115,26 @@ public class MainWindowViewController {
     private Button addTransactionButton;
 
     /*
-    When selection changes in artist list, the shows table is updated
+    Listener for list selection , in artists list
      */
     private ChangeListener<Artist> artistSelectionChanged(){
         return (observable, oldValue, newValue) -> {
-            Artist artist = listViewArtists.getSelectionModel().getSelectedItem();
-            if (artist == null){
-                return;
-            }
-
-            shows = FXCollections.observableArrayList(
-                    controllerShow.getShowsForArtist(artist.getIdArtist().toString()));
-            tableViewShows.setItems(shows);
+            loadArtistShows();
         };
+    }
+
+    /*
+    Load the shows of the selected artist
+     */
+    private void loadArtistShows(){
+        Artist artist = listViewArtists.getSelectionModel().getSelectedItem();
+        if (artist == null){
+            return;
+        }
+
+        shows = FXCollections.observableArrayList(
+                controllerShow.getShowsForArtist(artist.getIdArtist().toString()));
+        tableViewShows.setItems(shows);
     }
 
     /*
@@ -242,5 +253,14 @@ public class MainWindowViewController {
             alert.setContentText("Number of tickets must be a number");
             alert.show();
         }
+    }
+
+    /*
+    Called when the domain entities update
+     */
+    @Override
+    public void update() {
+        loadArtistShows(); //reloads shows for artist
+        getShowsForDate(); //reloads shows in search list
     }
 }

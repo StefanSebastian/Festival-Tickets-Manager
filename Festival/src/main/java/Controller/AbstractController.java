@@ -2,6 +2,7 @@ package Controller;
 
 import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
+import Utils.AbstractObservable;
 import Validation.Exceptions.FormatException;
 import Validation.Exceptions.ValidatorException;
 import Validation.IValidator;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public abstract class AbstractController<E, ID> {
+public abstract class AbstractController<E, ID> extends AbstractObservable {
     //Repository
     protected IDatabaseRepository<E, ID> repository;
 
@@ -34,6 +35,7 @@ public abstract class AbstractController<E, ID> {
         E entity = formatEntity(args);
         validator.validate(entity);
         repository.save(entity);
+        notifyObservers();
     }
 
     /*
@@ -41,6 +43,7 @@ public abstract class AbstractController<E, ID> {
      */
     public void delete(String id) throws FormatException{
         repository.delete(formatId(id));
+        notifyObservers();
     }
 
     /*
@@ -51,6 +54,7 @@ public abstract class AbstractController<E, ID> {
         E entity = formatEntity(args);
         validator.validate(entity);
         repository.update(formatId(id), entity);
+        notifyObservers();
     }
 
     /*
@@ -76,6 +80,7 @@ public abstract class AbstractController<E, ID> {
         E entity = formatEntity(args);
         validator.validate(entity);
         repository.saveWithoutId(entity);
+        notifyObservers();
     }
 
     //formats an entity
