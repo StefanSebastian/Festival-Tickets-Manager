@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="jdbcProps" location="classpath:bd.config" />
+
+    <bean id="validatorArtist" class="Validation.ValidatorArtist">
+    </bean>
+
+    <bean id="validatorShow" class="Validation.ValidatorShow">
+    </bean>
+
+    <bean id="validatorTransaction" class="Validation.ValidatorTransaction">
+    </bean>
+
+    <bean id="validatorUser" class="Validation.ValidatorUser">
+    </bean>
+
+    <bean id="repoArtist" class = "Repository.RepositoryArtistDB">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="controllerArtist" class="Controller.ControllerArtist">
+        <constructor-arg ref="repoArtist"/>
+        <constructor-arg ref="validatorArtist"/>
+    </bean>
+
+    <bean id="repoShow" class = "Repository.RepositoryShowDB">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="controllerShow" class="Controller.ControllerShow">
+        <constructor-arg ref="repoShow"/>
+        <constructor-arg ref="validatorShow"/>
+    </bean>
+
+    <bean id="repoTransaction" class = "Repository.RepositoryTransactionDB">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="controllerTransaction" class="Controller.ControllerTransaction">
+        <constructor-arg ref="repoTransaction"/>
+        <constructor-arg ref="validatorTransaction"/>
+    </bean>
+
+    <bean id="repoUser" class = "Repository.RepositoryUserDB">
+        <constructor-arg ref="jdbcProps"/>
+    </bean>
+
+    <bean id="controllerUser" class="Controller.ControllerUser">
+        <constructor-arg ref="repoUser"/>
+        <constructor-arg ref="validatorUser"/>
+    </bean>
+
+
+</beans>

@@ -60,13 +60,13 @@ public class LoginViewController {
             //open the main window
             try{
                 FXMLLoader loader = new FXMLLoader(LoginViewController.class.getResource("MainWindowView.fxml"));
-                AnchorPane loginPane = loader.load();
+                AnchorPane mainPane = loader.load();
                 MainWindowViewController controller = loader.getController();
                 controller.initialize(controllerUser,
                         controllerArtist, controllerShow,
                         controllerTransaction, primaryStage);
 
-                Scene scene = new Scene(loginPane);
+                Scene scene = new Scene(mainPane);
                 primaryStage.setScene(scene);
 
             } catch (IOException ex){

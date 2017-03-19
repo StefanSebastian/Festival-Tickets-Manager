@@ -11,6 +11,7 @@ import Utils.Observer;
 import Validation.Exceptions.FormatException;
 import Validation.Exceptions.UIException;
 import Validation.Exceptions.ValidatorException;
+import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -99,6 +100,7 @@ public class MainWindowViewController implements Observer {
         searchTableLocationColumn.setCellFactory(getLocationCellFactory());
         searchTableDateColumn.setCellFactory(getDateCellFactory());
         searchTableArtistColumn.setCellFactory(getArtistCellFactory());
+
     }
 
     @FXML
@@ -153,18 +155,22 @@ public class MainWindowViewController implements Observer {
 
                 if (item == null || empty) { //If the cell is empty
                     setText(null);
+                    setTextFill(null);
                     setStyle("");
-                } else { //If the cell is not empty
-                    setText(item.toString()); //Put the String data in the cell
+                    return;
+                }
+                setText(item.toString()); //Put the String data in the cell
 
-                    //We get here all the info of the show of this row
-                   ShowArtist showArtist = getTableView().getItems().get(getIndex());
+                //We get here all the info of the show of this row
+                ShowArtist showArtist = getTableView().getItems().get(getIndex());
 
-                    // Color all cells with 0 tickets available
-                    if (showArtist.getTicketsAvailable() == 0) {
-                        setTextFill(Color.WHITE);
-                        setStyle("-fx-background-color: red");
-                    }
+                // Color all cells with 0 tickets available
+                if (showArtist.getTicketsAvailable() == 0) {
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: red");
+                } else {
+                    setTextFill(Color.BLACK);
+                    setStyle("-fx-background-color: white");
                 }
             }
         };
@@ -182,19 +188,24 @@ public class MainWindowViewController implements Observer {
 
                 if (item == null || empty) { //If the cell is empty
                     setText(null);
+                    setTextFill(null);
                     setStyle("");
-                } else { //If the cell is not empty
-                    setText(item.toString()); //Put the String data in the cell
-
-                    //We get here all the info of the show of this row
-                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                    // Color all cells with 0 tickets available
-                    if (showArtist.getTicketsAvailable() == 0) {
-                        setTextFill(Color.WHITE);
-                        setStyle("-fx-background-color: red");
-                    }
+                    return;
                 }
+                setText(item.toString()); //Put the String data in the cell
+
+                //We get here all the info of the show of this row
+                ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                // Color all cells with 0 tickets available
+                if (showArtist.getTicketsAvailable() == 0) {
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: red");
+                } else {
+                    setTextFill(Color.BLACK);
+                    setStyle("-fx-background-color: white");
+                }
+
             }
         };
     }
@@ -211,19 +222,24 @@ public class MainWindowViewController implements Observer {
 
                 if (item == null || empty) { //If the cell is empty
                     setText(null);
+                    setTextFill(null);
                     setStyle("");
-                } else { //If the cell is not empty
-                    setText(item.toString()); //Put the String data in the cell
-
-                    //We get here all the info of the show of this row
-                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                    // Color all cells with 0 tickets available
-                    if (showArtist.getTicketsAvailable() == 0) {
-                        setTextFill(Color.WHITE);
-                        setStyle("-fx-background-color: red");
-                    }
+                    return;
                 }
+                setText(item.toString()); //Put the String data in the cell
+
+                //We get here all the info of the show of this row
+                ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                // Color all cells with 0 tickets available
+                if (showArtist.getTicketsAvailable() == 0) {
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: red");
+                } else {
+                    setTextFill(Color.BLACK);
+                    setStyle("-fx-background-color: white");
+                }
+
             }
         };
     }
@@ -240,19 +256,24 @@ public class MainWindowViewController implements Observer {
 
                 if (item == null || empty) { //If the cell is empty
                     setText(null);
+                    setTextFill(null);
                     setStyle("");
-                } else { //If the cell is not empty
-                    setText(item.toString()); //Put the String data in the cell
-
-                    //We get here all the info of the show of this row
-                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                    // Color all cells with 0 tickets available
-                    if (showArtist.getTicketsAvailable() == 0) {
-                        setTextFill(Color.WHITE);
-                        setStyle("-fx-background-color: red");
-                    }
+                    return;
                 }
+                setText(item.toString()); //Put the String data in the cell
+
+                //We get here all the info of the show of this row
+                ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                // Color all cells with 0 tickets available
+                if (showArtist.getTicketsAvailable() == 0) {
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: red");
+                } else {
+                    setTextFill(Color.BLACK);
+                    setStyle("-fx-background-color: white");
+                }
+
             }
         };
     }
@@ -269,19 +290,24 @@ public class MainWindowViewController implements Observer {
 
                 if (item == null || empty) { //If the cell is empty
                     setText(null);
+                    setTextFill(null);
                     setStyle("");
-                } else { //If the cell is not empty
-                    setText(item.toString()); //Put the String data in the cell
-
-                    //We get here all the info of the show of this row
-                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                    // Color all cells with 0 tickets available
-                    if (showArtist.getTicketsAvailable() == 0) {
-                        setTextFill(Color.WHITE);
-                        setStyle("-fx-background-color: red");
-                    }
+                    return;
                 }
+                setText(item.toString()); //Put the String data in the cell
+
+                //We get here all the info of the show of this row
+                ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                // Color all cells with 0 tickets available
+                if (showArtist.getTicketsAvailable() == 0) {
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: red");
+                } else {
+                    setTextFill(Color.BLACK);
+                    setStyle("-fx-background-color: white");
+                }
+
             }
         };
     }

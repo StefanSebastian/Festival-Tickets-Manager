@@ -27,6 +27,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  * Created by Sebi on 09-Mar-17.
  */
@@ -38,22 +42,15 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Properties serverProperties = new Properties();
-        try {
-            serverProperties.load(new FileReader("bd.config"));
-        } catch (IOException e) {
-            System.out.println("Can not find bd.config");
-        }
 
-        IDatabaseRepository<Transaction, Integer> repoTransaction = new RepositoryTransactionDB(serverProperties);
-        ControllerTransaction controllerTransaction =
-                new ControllerTransaction(repoTransaction, new ValidatorTransaction());
-        IDatabaseRepository<Artist, Integer> repoArtist = new RepositoryArtistDB(serverProperties);
-        ControllerArtist controllerArtist = new ControllerArtist(repoArtist, new ValidatorArtist());
-        IDatabaseRepository<Show, Integer> repoShow = new RepositoryShowDB(serverProperties);
-        ControllerShow controllerShow = new ControllerShow(repoShow, new ValidatorShow());
-        IDatabaseRepository<User, Integer> repoUser = new RepositoryUserDB(serverProperties);
-        ControllerUser controllerUser = new ControllerUser(repoUser, new ValidatorUser());
+        ApplicationContext factory =
+                new ClassPathXmlApplicationContext("classpath:festivalApp.xml");
+
+        ControllerArtist controllerArtist = factory.getBean(ControllerArtist.class);
+        ControllerShow controllerShow = factory.getBean(ControllerShow.class);
+        ControllerTransaction controllerTransaction = factory.getBean(ControllerTransaction.class);
+        ControllerUser controllerUser = factory.getBean(ControllerUser.class);
+
 
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/LoginView.fxml"));
         AnchorPane loginPane = loader.load();
@@ -66,14 +63,5 @@ public class Main extends Application{
         primaryStage.setTitle("Festival tickets");
         primaryStage.show();
 
-        /*FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/MainWindowView.fxml"));
-        AnchorPane loginPane = loader.load();
-        MainWindowViewController controller = loader.getController();
-        controller.initialize(controllerArtist, controllerShow, controllerTransaction);
-
-        Scene scene = new Scene(loginPane);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Festival tickets");
-        primaryStage.show(); */
     }
 }
