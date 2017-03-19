@@ -5,13 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.MainWindowViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.MainWindowViewController">
    <children>
       <TableView fx:id="tableViewShows" layoutX="221.0" layoutY="69.0" prefHeight="200.0" prefWidth="453.0">
         <columns>
@@ -33,14 +31,9 @@
             <TableColumn fx:id="searchTableTicketsSoldColumn" prefWidth="105.0" text="Tickets Sold" />
         </columns>
       </TableView>
-      <TextField fx:id="clientNameTextField" layoutX="190.0" layoutY="554.0" promptText="Client name" />
-      <Label layoutX="55.0" layoutY="558.0" text="Register a transaction" />
       <DatePicker fx:id="datePicker" layoutX="221.0" layoutY="299.0" onAction="#getShowsForDate" onKeyReleased="#getShowsForDate" prefHeight="25.0" prefWidth="171.0" promptText="yyyy-mm-dd" />
       <Separator layoutX="2.0" layoutY="269.0" prefHeight="17.0" prefWidth="734.0" />
-      <Slider fx:id="ticketsSlider" blockIncrement="1.0" layoutX="357.0" layoutY="590.0" max="10.0" min="1.0" />
-      <TextField fx:id="ticketsTextField" layoutX="352.0" layoutY="554.0" promptText="Nr of tickets" />
       <Label layoutX="38.0" layoutY="303.0" text="Search for shows in a given date" />
-      <Button fx:id="addTransactionButton" layoutX="540.0" layoutY="554.0" mnemonicParsing="false" onAction="#addTransactionButtonPressed" prefHeight="25.0" prefWidth="140.0" text="Add Transaction" />
       <Button fx:id="logoutButton" layoutX="569.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="82.0" text="Log-out" />
    </children>
 </AnchorPane>

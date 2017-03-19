@@ -90,10 +90,6 @@ public class MainWindowViewController implements Observer {
 
         datePicker.setConverter(getStringConverter());
 
-        //slider settings
-        ticketsSlider.valueProperty().addListener(ticketsSliderValueChanged());
-        ticketsSlider.setBlockIncrement(1);
-
         //row color settings
         searchTableTicketsAvailableColumn.setCellFactory(getTicketsAvailableCellFactory());
         searchTableTicketsSoldColumn.setCellFactory(getTicketsSoldCellFactory());
@@ -101,7 +97,7 @@ public class MainWindowViewController implements Observer {
         searchTableDateColumn.setCellFactory(getDateCellFactory());
         searchTableArtistColumn.setCellFactory(getArtistCellFactory());
 
-    }
+      }
 
     @FXML
     private ListView<Artist> listViewArtists;
@@ -132,15 +128,6 @@ public class MainWindowViewController implements Observer {
     private DatePicker datePicker;
 
     @FXML
-    private TextField clientNameTextField;
-    @FXML
-    private TextField ticketsTextField;
-    @FXML
-    private Slider ticketsSlider;
-    @FXML
-    private Button addTransactionButton;
-
-    @FXML
     private Button logoutButton;
 
     /*
@@ -148,31 +135,45 @@ public class MainWindowViewController implements Observer {
      */
     private Callback<TableColumn<ShowArtist, Integer>,
             TableCell<ShowArtist, Integer>> getTicketsAvailableCellFactory(){
-        return column -> new TableCell<ShowArtist, Integer>(){
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
+        return column -> {
+            TableCell<ShowArtist, Integer> cell = new TableCell<ShowArtist, Integer>(){
+                @Override
+                protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                if (item == null || empty) { //If the cell is empty
-                    setText(null);
-                    setTextFill(null);
-                    setStyle("");
-                    return;
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setTextFill(null);
+                        setStyle("");
+                        return;
+                    }
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: white");
+                    }
+
                 }
-                setText(item.toString()); //Put the String data in the cell
+            };
 
-                //We get here all the info of the show of this row
-                ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                // Color all cells with 0 tickets available
-                if (showArtist.getTicketsAvailable() == 0) {
-                    setTextFill(Color.WHITE);
-                    setStyle("-fx-background-color: red");
-                } else {
-                    setTextFill(Color.BLACK);
-                    setStyle("-fx-background-color: white");
+            /*
+            When a cell is clicked - we open the transaction add view
+             */
+            cell.setOnMouseClicked(e -> {
+                if (!cell.isEmpty()){
+                    tableCellClicked();
                 }
-            }
+            });
+
+            return cell;
         };
     }
 
@@ -181,32 +182,45 @@ public class MainWindowViewController implements Observer {
      */
     private Callback<TableColumn<ShowArtist, Integer>,
             TableCell<ShowArtist, Integer>> getTicketsSoldCellFactory(){
-        return column -> new TableCell<ShowArtist, Integer>(){
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
+        return column -> {
+            TableCell<ShowArtist, Integer> cell = new TableCell<ShowArtist, Integer>(){
+                @Override
+                protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                if (item == null || empty) { //If the cell is empty
-                    setText(null);
-                    setTextFill(null);
-                    setStyle("");
-                    return;
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setTextFill(null);
+                        setStyle("");
+                        return;
+                    }
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: white");
+                    }
+
                 }
-                setText(item.toString()); //Put the String data in the cell
+            };
 
-                //We get here all the info of the show of this row
-                ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                // Color all cells with 0 tickets available
-                if (showArtist.getTicketsAvailable() == 0) {
-                    setTextFill(Color.WHITE);
-                    setStyle("-fx-background-color: red");
-                } else {
-                    setTextFill(Color.BLACK);
-                    setStyle("-fx-background-color: white");
+            /*
+            When a cell is clicked - we open the transaction add view
+             */
+            cell.setOnMouseClicked(e -> {
+                if (!cell.isEmpty()){
+                    tableCellClicked();
                 }
+            });
 
-            }
+            return cell;
         };
     }
 
@@ -215,32 +229,45 @@ public class MainWindowViewController implements Observer {
      */
     private Callback<TableColumn<ShowArtist, String>,
             TableCell<ShowArtist, String>> getLocationCellFactory(){
-        return column -> new TableCell<ShowArtist, String>(){
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
+        return column -> {
+            TableCell<ShowArtist, String> cell = new TableCell<ShowArtist, String>(){
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                if (item == null || empty) { //If the cell is empty
-                    setText(null);
-                    setTextFill(null);
-                    setStyle("");
-                    return;
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setTextFill(null);
+                        setStyle("");
+                        return;
+                    }
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: white");
+                    }
+
                 }
-                setText(item.toString()); //Put the String data in the cell
+            };
 
-                //We get here all the info of the show of this row
-                ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                // Color all cells with 0 tickets available
-                if (showArtist.getTicketsAvailable() == 0) {
-                    setTextFill(Color.WHITE);
-                    setStyle("-fx-background-color: red");
-                } else {
-                    setTextFill(Color.BLACK);
-                    setStyle("-fx-background-color: white");
+            /*
+            When a cell is clicked - we open the transaction add view
+             */
+            cell.setOnMouseClicked(e -> {
+                if (!cell.isEmpty()){
+                    tableCellClicked();
                 }
+            });
 
-            }
+            return cell;
         };
     }
 
@@ -249,32 +276,45 @@ public class MainWindowViewController implements Observer {
      */
     private Callback<TableColumn<ShowArtist, String>,
             TableCell<ShowArtist, String>> getDateCellFactory(){
-        return column -> new TableCell<ShowArtist, String>(){
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
+        return column -> {
+            TableCell<ShowArtist, String> cell = new TableCell<ShowArtist, String>(){
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                if (item == null || empty) { //If the cell is empty
-                    setText(null);
-                    setTextFill(null);
-                    setStyle("");
-                    return;
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setTextFill(null);
+                        setStyle("");
+                        return;
+                    }
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: white");
+                    }
+
                 }
-                setText(item.toString()); //Put the String data in the cell
+            };
 
-                //We get here all the info of the show of this row
-                ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                // Color all cells with 0 tickets available
-                if (showArtist.getTicketsAvailable() == 0) {
-                    setTextFill(Color.WHITE);
-                    setStyle("-fx-background-color: red");
-                } else {
-                    setTextFill(Color.BLACK);
-                    setStyle("-fx-background-color: white");
+            /*
+            When a cell is clicked - we open the transaction add view
+             */
+            cell.setOnMouseClicked(e -> {
+                if (!cell.isEmpty()){
+                    tableCellClicked();
                 }
+            });
 
-            }
+            return cell;
         };
     }
 
@@ -283,32 +323,45 @@ public class MainWindowViewController implements Observer {
      */
     private Callback<TableColumn<ShowArtist, String>,
             TableCell<ShowArtist, String>> getArtistCellFactory(){
-        return column -> new TableCell<ShowArtist, String>(){
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
+        return column -> {
+            TableCell<ShowArtist, String> cell = new TableCell<ShowArtist, String>(){
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                if (item == null || empty) { //If the cell is empty
-                    setText(null);
-                    setTextFill(null);
-                    setStyle("");
-                    return;
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setTextFill(null);
+                        setStyle("");
+                        return;
+                    }
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: white");
+                    }
+
                 }
-                setText(item.toString()); //Put the String data in the cell
+            };
 
-                //We get here all the info of the show of this row
-                ShowArtist showArtist = getTableView().getItems().get(getIndex());
-
-                // Color all cells with 0 tickets available
-                if (showArtist.getTicketsAvailable() == 0) {
-                    setTextFill(Color.WHITE);
-                    setStyle("-fx-background-color: red");
-                } else {
-                    setTextFill(Color.BLACK);
-                    setStyle("-fx-background-color: white");
+            /*
+            When a cell is clicked - we open the transaction add view
+             */
+            cell.setOnMouseClicked(e -> {
+                if (!cell.isEmpty()){
+                    tableCellClicked();
                 }
+            });
 
-            }
+            return cell;
         };
     }
 
@@ -333,19 +386,6 @@ public class MainWindowViewController implements Observer {
         shows = FXCollections.observableArrayList(
                 controllerShow.getShowsForArtist(artist.getIdArtist().toString()));
         tableViewShows.setItems(shows);
-    }
-
-    /*
-    When the tickets slider value changes
-    Number is mapped to tickets number text fields
-    Converts value to integer first
-     */
-    private ChangeListener<Number> ticketsSliderValueChanged(){
-        return (observable, oldValue, newValue) -> {
-            Integer value = newValue.intValue();
-            ticketsSlider.setValue(value);
-            ticketsTextField.setText(value.toString());
-        };
     }
 
     /*
@@ -401,55 +441,31 @@ public class MainWindowViewController implements Observer {
         };
     }
 
+
+    /*
+    Table cell clicked
+    We open a window for adding transactions
+     */
     @FXML
-    private void addTransactionButtonPressed(){
-        try{
-            //get the selected show
-            ShowArtist selectedShow = searchTable.getSelectionModel().getSelectedItem();
+    private void tableCellClicked(){
+        ShowArtist selectedShow = searchTable.getSelectionModel().getSelectedItem();
+
+        try {
             if (selectedShow == null){
-                throw new UIException("You must select a show.");
+                throw new UIException("You must click on a non empty table row");
             }
 
-            //get name and tickets
-            String clientName = clientNameTextField.getText();
-            String numberOfTickets = ticketsTextField.getText();
+            FXMLLoader loader = new FXMLLoader(MainWindowViewController.class.getResource("AddTransactionView.fxml"));
+            AnchorPane addPane = loader.load();
+            AddTransactionViewController controller = loader.getController();
+            controller.initialize(controllerTransaction, controllerShow, selectedShow);
 
-            //check availability
-            if (selectedShow.getTicketsAvailable() < Integer.parseInt(numberOfTickets)){
-                throw new UIException("There aren't enough tickets");
-            }
-
-            //save transaction
-            controllerTransaction.saveWithoutId("1", clientName, numberOfTickets, selectedShow.getIdShow().toString());
-
-            //update available tickets
-            Integer newAvailable = selectedShow.getTicketsAvailable() - Integer.parseInt(numberOfTickets);
-            Integer newSold = selectedShow.getTicketsSold() + Integer.parseInt(numberOfTickets);
-            controllerShow.update(selectedShow.getIdShow().toString(),
-                    selectedShow.getIdShow().toString(), selectedShow.getLocation(),
-                    selectedShow.getDate(), newAvailable.toString(), newSold.toString(),
-                    selectedShow.getIdArtist().toString()
-                    );
-
-            //successful transaction
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Operation was successful");
-            alert.setContentText("The transaction was registered");
-            alert.show();
-
-        } catch (UIException | ValidatorException | FormatException exc){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Operation could not be done.");
-            alert.setContentText(exc.getMessage());
-            alert.show();
-        } catch (NumberFormatException exc){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Operation could not be done.");
-            alert.setContentText("Number of tickets must be a number");
-            alert.show();
+            Stage stage = new Stage();
+            Scene scene = new Scene(addPane);
+            stage.setScene(scene);
+            stage.setTitle("Add transaction");
+            stage.show();
+        } catch (IOException | UIException e){
         }
     }
 

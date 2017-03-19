@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
-Class-Path: mysql-connector-java-5.1.6.jar
+Class-Path: mysql-connector-java-5.1.6.jar spring-context-4.3.7.RELEAS
+ E.jar spring-aop-4.3.7.RELEASE.jar spring-beans-4.3.7.RELEASE.jar spr
+ ing-core-4.3.7.RELEASE.jar spring-expression-4.3.7.RELEASE.jar common
+ s-logging-1.2.jar
 Main-Class: Main
 
