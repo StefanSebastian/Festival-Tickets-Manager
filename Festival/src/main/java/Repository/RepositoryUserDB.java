@@ -132,4 +132,17 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
         }
         return users;
     }
+
+    @Override
+    public void saveWithoutId(User user) {
+        Connection con = jdbcUtils.getConnection();
+        try(PreparedStatement statement = con.prepareStatement("INSERT INTO " +
+                "users(username, password) values(?, ?)")){
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("Db error" + e);
+        }
+    }
 }

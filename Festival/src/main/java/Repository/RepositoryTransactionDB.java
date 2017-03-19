@@ -111,4 +111,19 @@ public class RepositoryTransactionDB implements IDatabaseRepository<Transaction,
     public List<Transaction> filter(List<String> filters, List<String> arguments) {
         return null;
     }
+
+    @Override
+    public void saveWithoutId(Transaction transaction) {
+        Connection con = jdbcUtils.getConnection();
+        try(PreparedStatement statement = con.prepareStatement("INSERT INTO " +
+                "transactions(clientName, numberOfTickets, idShow)" +
+                " values(?, ?, ?)")){
+            statement.setString(1, transaction.getClientName());
+            statement.setInt(2, transaction.getNumberOfTickets());
+            statement.setInt(3, transaction.getIdShow());
+            statement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("Db error" + e);
+        }
+    }
 }

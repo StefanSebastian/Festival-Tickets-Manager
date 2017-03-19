@@ -101,4 +101,15 @@ public class RepositoryArtistDB implements IDatabaseRepository<Artist, Integer> 
     public List<Artist> filter(List<String> filters, List<String> arguments) {
         return null;
     }
+
+    @Override
+    public void saveWithoutId(Artist artist) {
+        Connection con = jdbcUtils.getConnection();
+        try(PreparedStatement statement = con.prepareStatement("INSERT INTO artists(name) values(?)")){
+            statement.setString(1, artist.getName());
+            statement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("Db error" + e);
+        }
+    }
 }

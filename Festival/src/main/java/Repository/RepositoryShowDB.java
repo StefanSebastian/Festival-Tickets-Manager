@@ -147,4 +147,21 @@ public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
         }
         return shows;
     }
+
+    @Override
+    public void saveWithoutId(Show show) {
+        Connection con = jdbcUtils.getConnection();
+        try(PreparedStatement statement = con.prepareStatement("INSERT INTO " +
+                "shows(location, date, ticketsAvailable, ticketsSold, idArtist) " +
+                "values(?, ?, ?, ?, ?)")){
+            statement.setString(1, show.getLocation());
+            statement.setString(2, show.getDate());
+            statement.setInt(3, show.getTicketsAvailable());
+            statement.setInt(4, show.getTicketsSold());
+            statement.setInt(5, show.getIdArtist());
+            statement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("Db error" + e);
+        }
+    }
 }

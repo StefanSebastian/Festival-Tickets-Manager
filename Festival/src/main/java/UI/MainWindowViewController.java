@@ -7,6 +7,8 @@ import Domain.Artist;
 import Domain.Show;
 import Domain.ShowArtist;
 import Validation.Exceptions.FormatException;
+import Validation.Exceptions.UIException;
+import Validation.Exceptions.ValidatorException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -100,14 +102,16 @@ public class MainWindowViewController {
     private DatePicker datePicker;
 
     @FXML
-    private TextField clientNameField;
+    private TextField clientNameTextField;
     @FXML
     private TextField ticketsTextField;
     @FXML
     private Slider ticketsSlider;
+    @FXML
+    private Button addTransactionButton;
 
     /*
-    When selection changes
+    When selection changes in artist list, the shows table is updated
      */
     private ChangeListener<Artist> artistSelectionChanged(){
         return (observable, oldValue, newValue) -> {
@@ -125,7 +129,7 @@ public class MainWindowViewController {
     /*
     When the tickets slider value changes
     Number is mapped to tickets number text fields
-    Converts value to integer first 
+    Converts value to integer first
      */
     private ChangeListener<Number> ticketsSliderValueChanged(){
         return (observable, oldValue, newValue) -> {
@@ -186,5 +190,57 @@ public class MainWindowViewController {
                 }
             }
         };
+    }
+
+    @FXML
+    private void addTransactionButtonPressed(){
+        try{
+            //get the selected show
+            ShowArtist selectedShow = searchTable.getSelectionModel().getSelectedItem();
+            if (selectedShow == null){
+                throw new UIException("You must select a show.");
+            }
+
+            //get name and tickets
+            String clientName = clientNameTextField.getText();
+            String numberOfTickets = ticketsTextField.getText();
+
+            //check availability
+            if (selectedShow.getTicketsAvailable() < Integer.parseInt(numberOfTickets)){
+                throw new UIException("There aren't enough tickets");
+            }
+
+            //save transaction
+            controllerTransaction.saveWithoutId("1", clientName, numberOfTickets, selectedShow.getIdShow().toString());
+
+            //update available tickets
+            Integer newAvailable = selectedShow.getTicketsAvailable() - Integer.parseInt(numberOfTickets);
+            Integer newSold = selectedShow.getTicketsSold() + Integer.parseInt(numberOfTickets);
+            controllerShow.update(selectedShow.getIdShow().toString(),
+                    selectedShow.getIdShow().toString(), selectedShow.getLocation(),
+                    selectedShow.getDate(), newAvailable.toString(), newSold.toString(),
+                    selectedShow.getIdArtist().toString()
+                    );
+
+            //successful transaction
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Operation was successful");
+            alert.setContentText("The transaction was registered");
+            alert.show();
+
+        } catch (UIException | ValidatorException | FormatException exc){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Operation could not be done.");
+            alert.setContentText(exc.getMessage());
+            alert.show();
+        } catch (NumberFormatException exc){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Operation could not be done.");
+            alert.setContentText("Number of tickets must be a number");
+            alert.show();
+        }
     }
 }

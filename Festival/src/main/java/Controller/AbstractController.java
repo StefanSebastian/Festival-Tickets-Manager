@@ -67,6 +67,17 @@ public abstract class AbstractController<E, ID> {
         return repository.getAll();
     }
 
+    /*
+    Saves an entity to repo without saving its id
+    Id is auto incremented (depending on db table)
+    the given id is ignored but must be valid
+     */
+    public void saveWithoutId(String... args) throws ValidatorException, FormatException {
+        E entity = formatEntity(args);
+        validator.validate(entity);
+        repository.saveWithoutId(entity);
+    }
+
     //formats an entity
     public abstract E formatEntity(String... args) throws FormatException;
 
