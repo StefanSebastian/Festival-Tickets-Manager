@@ -3,6 +3,7 @@ package UI;
 import Controller.ControllerArtist;
 import Controller.ControllerShow;
 import Controller.ControllerTransaction;
+import Controller.ControllerUser;
 import Domain.Artist;
 import Domain.Show;
 import Domain.ShowArtist;
@@ -16,14 +17,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.DateStringConverter;
 
 import java.io.Console;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,21 +43,29 @@ public class MainWindowViewController implements Observer {
     private ControllerArtist controllerArtist;
     private ControllerShow controllerShow;
     private ControllerTransaction controllerTransaction;
+    private ControllerUser controllerUser;
 
     //data source
     private ObservableList<Artist> artists;
     private ObservableList<Show> shows;
     private ObservableList<ShowArtist> searchList;
 
+    //main stage
+    private Stage primaryStage;
+
     /*
     Init method
      */
-    public void initialize(ControllerArtist controllerArtist,
+    public void initialize(ControllerUser controllerUser,
+                           ControllerArtist controllerArtist,
                            ControllerShow controllerShow,
-                           ControllerTransaction controllerTransaction){
+                           ControllerTransaction controllerTransaction,
+                           Stage primaryStage){
+        this.controllerUser = controllerUser;
         this.controllerArtist = controllerArtist;
         this.controllerShow = controllerShow;
         this.controllerTransaction = controllerTransaction;
+        this.primaryStage = primaryStage;
 
         //register observer
         controllerShow.addObserver(this);
@@ -123,6 +137,9 @@ public class MainWindowViewController implements Observer {
     private Slider ticketsSlider;
     @FXML
     private Button addTransactionButton;
+
+    @FXML
+    private Button logoutButton;
 
     /*
     Cell factory, used to color the ticketsAvailable cell with red when the value is 0
@@ -418,4 +435,25 @@ public class MainWindowViewController implements Observer {
         loadArtistShows(); //reloads shows for artist
         getShowsForDate(); //reloads shows in search list
     }
+
+    /*
+    Log-out
+     */
+    @FXML
+    private void logOut(){
+        try {
+            FXMLLoader loader = new FXMLLoader(MainWindowViewController.class.getResource("LoginView.fxml"));
+            AnchorPane loginPane = loader.load();
+            LoginViewController controller = loader.getController();
+            controller.initialize(controllerUser,
+                    controllerArtist, controllerShow, controllerTransaction, primaryStage);
+
+            Scene scene = new Scene(loginPane);
+            primaryStage.setScene(scene);
+
+        } catch (IOException exc){
+            exc.printStackTrace();
+        }
+    }
+
 }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.LoginViewController">
    <children>
       <TextField fx:id="usernameTextField" focusTraversable="false" layoutX="226.0" layoutY="126.0" promptText="Username" />
-      <TextField fx:id="passwordTextField" focusTraversable="false" layoutX="226.0" layoutY="175.0" promptText="Password" />
       <Button fx:id="loginButton" layoutX="227.0" layoutY="222.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="25.0" prefWidth="149.0" text="Login" />
+      <PasswordField fx:id="passwordTextField" layoutX="226.0" layoutY="175.0" promptText="Password" />
    </children>
 </AnchorPane>

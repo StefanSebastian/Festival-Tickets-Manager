@@ -55,7 +55,18 @@ public class Main extends Application{
         IDatabaseRepository<User, Integer> repoUser = new RepositoryUserDB(serverProperties);
         ControllerUser controllerUser = new ControllerUser(repoUser, new ValidatorUser());
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/MainWindowView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/LoginView.fxml"));
+        AnchorPane loginPane = loader.load();
+        LoginViewController controller = loader.getController();
+        controller.initialize(controllerUser,
+                controllerArtist, controllerShow, controllerTransaction, primaryStage);
+
+        Scene scene = new Scene(loginPane);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Festival tickets");
+        primaryStage.show();
+
+        /*FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/MainWindowView.fxml"));
         AnchorPane loginPane = loader.load();
         MainWindowViewController controller = loader.getController();
         controller.initialize(controllerArtist, controllerShow, controllerTransaction);
@@ -63,6 +74,6 @@ public class Main extends Application{
         Scene scene = new Scene(loginPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Festival tickets");
-        primaryStage.show();
+        primaryStage.show(); */
     }
 }
