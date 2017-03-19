@@ -4,10 +4,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.MainWindowViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.MainWindowViewController">
    <children>
       <TableView fx:id="tableViewShows" layoutX="222.0" layoutY="52.0" prefHeight="200.0" prefWidth="453.0">
         <columns>
@@ -20,5 +20,15 @@
       <ListView fx:id="listViewArtists" layoutX="21.0" layoutY="52.0" prefHeight="200.0" prefWidth="169.0" />
       <Label layoutX="21.0" layoutY="23.0" text="Artists" />
       <Label layoutX="222.0" layoutY="23.0" text="Shows for selected artist" />
+      <TextField fx:id="searchField" layoutX="21.0" layoutY="299.0" onKeyReleased="#getShowsForDate" prefHeight="25.0" prefWidth="209.0" promptText="Search for shows in a given date" />
+      <TableView fx:id="searchTable" layoutX="21.0" layoutY="331.0" prefHeight="182.0" prefWidth="649.0">
+        <columns>
+          <TableColumn fx:id="searchTableArtistColumn" prefWidth="149.0" text="Artist" />
+          <TableColumn fx:id="searchTableLocationColumn" prefWidth="120.0" text="Location" />
+            <TableColumn fx:id="searchTableDateColumn" prefWidth="158.0" text="Date" />
+            <TableColumn fx:id="searchTableTicketsAvailableColumn" prefWidth="116.0" text="Tickets Available" />
+            <TableColumn fx:id="searchTableTicketsSoldColumn" prefWidth="105.0" text="Tickets Sold" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

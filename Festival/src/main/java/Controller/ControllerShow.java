@@ -63,4 +63,17 @@ public class ControllerShow extends AbstractController<Show,Integer> {
 
         return repository.filter(filters, parameters);
     }
+
+    /*
+    Get shows for a date
+     */
+    public List<Show> getShowsForDate(String date){
+        List<String> filters = new ArrayList<>();
+        List<String> parameters = new ArrayList<>();
+
+        filters.add("date = ?");
+        parameters.add(date);
+
+        return repository.filter(filters, parameters);
+    }
 }
