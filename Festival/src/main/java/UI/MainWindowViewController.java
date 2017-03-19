@@ -13,12 +13,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.StringConverter;
+import javafx.util.converter.DateStringConverter;
 
+import java.io.Console;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +64,11 @@ public class MainWindowViewController {
         searchTableDateColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, String>("date"));
         searchTableTicketsAvailableColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, Integer>("ticketsAvailable"));
         searchTableTicketsSoldColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, Integer>("ticketsSold"));
+
+        datePicker.setConverter(getStringConverter());
+
+        ticketsSlider.valueProperty().addListener(ticketsSliderValueChanged());
+        ticketsSlider.setBlockIncrement(1);
     }
 
     @FXML
@@ -78,8 +85,6 @@ public class MainWindowViewController {
     private TableColumn<Show, Integer> ticketsSoldColumn;
 
     @FXML
-    private TextField searchField;
-    @FXML
     private TableView<ShowArtist> searchTable;
     @FXML
     private TableColumn<ShowArtist, String> searchTableLocationColumn;
@@ -91,11 +96,20 @@ public class MainWindowViewController {
     private TableColumn<ShowArtist, Integer> searchTableTicketsSoldColumn;
     @FXML
     private TableColumn<ShowArtist, String> searchTableArtistColumn;
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private TextField clientNameField;
+    @FXML
+    private TextField ticketsTextField;
+    @FXML
+    private Slider ticketsSlider;
 
     /*
     When selection changes
      */
-    ChangeListener<Artist> artistSelectionChanged(){
+    private ChangeListener<Artist> artistSelectionChanged(){
         return (observable, oldValue, newValue) -> {
             Artist artist = listViewArtists.getSelectionModel().getSelectedItem();
             if (artist == null){
@@ -109,11 +123,24 @@ public class MainWindowViewController {
     }
 
     /*
+    When the tickets slider value changes
+    Number is mapped to tickets number text fields
+    Converts value to integer first 
+     */
+    private ChangeListener<Number> ticketsSliderValueChanged(){
+        return (observable, oldValue, newValue) -> {
+            Integer value = newValue.intValue();
+            ticketsSlider.setValue(value);
+            ticketsTextField.setText(value.toString());
+        };
+    }
+
+    /*
     Get all shows in a given date and display them in search table
      */
     @FXML
     private void getShowsForDate(){
-        List<Show> showList = controllerShow.getShowsForDate(searchField.getText());
+        List<Show> showList  =controllerShow.getShowsForDate(datePicker.getEditor().getText());
         List<ShowArtist> showsArtists = new ArrayList<>();
 
         //gets all shows for the given date
@@ -135,4 +162,29 @@ public class MainWindowViewController {
         searchTable.setItems(searchList);
     }
 
+    /*
+    A string converter used to change date picker format
+     */
+    StringConverter<LocalDate> getStringConverter(){
+        return new StringConverter<LocalDate>() {
+            DateTimeFormatter dateFormatter =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, dateFormatter);
+                } else {
+                    return null;
+                }
+            }
+        };
+    }
 }
