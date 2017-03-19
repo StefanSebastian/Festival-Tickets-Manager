@@ -18,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.DateStringConverter;
 
@@ -73,8 +75,16 @@ public class MainWindowViewController implements Observer {
 
         datePicker.setConverter(getStringConverter());
 
+        //slider settings
         ticketsSlider.valueProperty().addListener(ticketsSliderValueChanged());
         ticketsSlider.setBlockIncrement(1);
+
+        //row color settings
+        searchTableTicketsAvailableColumn.setCellFactory(getTicketsAvailableCellFactory());
+        searchTableTicketsSoldColumn.setCellFactory(getTicketsSoldCellFactory());
+        searchTableLocationColumn.setCellFactory(getLocationCellFactory());
+        searchTableDateColumn.setCellFactory(getDateCellFactory());
+        searchTableArtistColumn.setCellFactory(getArtistCellFactory());
     }
 
     @FXML
@@ -113,6 +123,151 @@ public class MainWindowViewController implements Observer {
     private Slider ticketsSlider;
     @FXML
     private Button addTransactionButton;
+
+    /*
+    Cell factory, used to color the ticketsAvailable cell with red when the value is 0
+     */
+    private Callback<TableColumn<ShowArtist, Integer>,
+            TableCell<ShowArtist, Integer>> getTicketsAvailableCellFactory(){
+        return column -> new TableCell<ShowArtist, Integer>(){
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) { //If the cell is empty
+                    setText(null);
+                    setStyle("");
+                } else { //If the cell is not empty
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                   ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    }
+                }
+            }
+        };
+    }
+
+    /*
+    Cell factory, used to color the ticketsSold cell with red when the value of ticketsAvailable is 0
+     */
+    private Callback<TableColumn<ShowArtist, Integer>,
+            TableCell<ShowArtist, Integer>> getTicketsSoldCellFactory(){
+        return column -> new TableCell<ShowArtist, Integer>(){
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) { //If the cell is empty
+                    setText(null);
+                    setStyle("");
+                } else { //If the cell is not empty
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    }
+                }
+            }
+        };
+    }
+
+    /*
+    Cell factory, used to color the location cell with red when the value of ticketsAvailable is 0
+     */
+    private Callback<TableColumn<ShowArtist, String>,
+            TableCell<ShowArtist, String>> getLocationCellFactory(){
+        return column -> new TableCell<ShowArtist, String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) { //If the cell is empty
+                    setText(null);
+                    setStyle("");
+                } else { //If the cell is not empty
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    }
+                }
+            }
+        };
+    }
+
+    /*
+    Cell factory, used to color the date cell with red when the value of ticketsAvailable is 0
+     */
+    private Callback<TableColumn<ShowArtist, String>,
+            TableCell<ShowArtist, String>> getDateCellFactory(){
+        return column -> new TableCell<ShowArtist, String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) { //If the cell is empty
+                    setText(null);
+                    setStyle("");
+                } else { //If the cell is not empty
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    }
+                }
+            }
+        };
+    }
+
+    /*
+    Cell factory, used to color the artist cell with red when the value of ticketsAvailable is 0
+     */
+    private Callback<TableColumn<ShowArtist, String>,
+            TableCell<ShowArtist, String>> getArtistCellFactory(){
+        return column -> new TableCell<ShowArtist, String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) { //If the cell is empty
+                    setText(null);
+                    setStyle("");
+                } else { //If the cell is not empty
+                    setText(item.toString()); //Put the String data in the cell
+
+                    //We get here all the info of the show of this row
+                    ShowArtist showArtist = getTableView().getItems().get(getIndex());
+
+                    // Color all cells with 0 tickets available
+                    if (showArtist.getTicketsAvailable() == 0) {
+                        setTextFill(Color.WHITE);
+                        setStyle("-fx-background-color: red");
+                    }
+                }
+            }
+        };
+    }
 
     /*
     Listener for list selection , in artists list
