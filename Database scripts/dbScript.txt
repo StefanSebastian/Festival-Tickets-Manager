@@ -26,7 +26,6 @@ CREATE TABLE transactions(
 );
 
 CREATE TABLE users(
-   idUser int primary key auto_increment,
-   username varchar(100),
+   username varchar(100) primary key,
    password varchar(100)
 )

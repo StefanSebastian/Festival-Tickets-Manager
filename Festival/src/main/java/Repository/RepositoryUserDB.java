@@ -15,7 +15,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
+public class RepositoryUserDB implements IDatabaseRepository<User, String> {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -27,10 +27,9 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
     @Override
     public void save(User user) {
         Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("INSERT INTO users values(?, ?, ?)")){
-            statement.setInt(1, user.getIdUser());
-            statement.setString(2, user.getUsername());
-            statement.setString(3, user.getPassword());
+        try(PreparedStatement statement = con.prepareStatement("INSERT INTO users values(?, ?)")){
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
             statement.executeUpdate();
         } catch (SQLException e){
             System.out.println("Db error" + e);
@@ -38,10 +37,10 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(String id) {
         Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("DELETE FROM users WHERE idUser = ?")){
-            statement.setInt(1, id);
+        try(PreparedStatement statement = con.prepareStatement("DELETE FROM users WHERE username = ?")){
+            statement.setString(1, id);
             statement.executeUpdate();
         } catch (SQLException e){
             System.out.println("Db error" + e);
@@ -50,15 +49,14 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
     }
 
     @Override
-    public void update(Integer id, User user) {
+    public void update(String id, User user) {
         Connection con = jdbcUtils.getConnection();
         try(PreparedStatement statement =
-                    con.prepareStatement("UPDATE users SET idUser = ?, " +
-                            "username = ?, password = ? WHERE idUser = ?")){
-            statement.setInt(1, user.getIdUser());
-            statement.setString(2, user.getUsername());
-            statement.setString(3, user.getPassword());
-            statement.setInt(4, id);
+                    con.prepareStatement("UPDATE users SET " +
+                            "username = ?, password = ? WHERE username = ?")){
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, id);
             statement.executeUpdate();
         } catch (SQLException e){
             System.out.println("Db error" + e);
@@ -66,16 +64,15 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
     }
 
     @Override
-    public User getById(Integer id) {
+    public User getById(String id) {
         Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("SELECT * FROM users WHERE idUser = ?")){
-            statement.setInt(1, id);
+        try(PreparedStatement statement = con.prepareStatement("SELECT * FROM users WHERE username = ?")){
+            statement.setString(1, id);
             try(ResultSet resultSet = statement.executeQuery()){
                 if (resultSet.next()){
-                    Integer idUser = resultSet.getInt("idUser");
                     String username = resultSet.getString("username");
                     String password = resultSet.getString("password");
-                    return new User(idUser, username, password);
+                    return new User(username, password);
                 }
             }
         } catch (SQLException e){
@@ -91,10 +88,9 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
         try(PreparedStatement statement = con.prepareStatement("select * from users")) {
             try(ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Integer idUser = resultSet.getInt("idUser");
                     String username = resultSet.getString("username");
                     String password = resultSet.getString("password");
-                    users.add(new User(idUser, username, password));
+                    users.add(new User(username, password));
                 }
             }
         } catch (SQLException e) {
@@ -121,10 +117,9 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
             }
             try(ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Integer idUser = resultSet.getInt("idUser");
                     String username = resultSet.getString("username");
                     String password = resultSet.getString("password");
-                    users.add(new User(idUser, username, password));
+                    users.add(new User(username, password));
                 }
             }
         } catch (SQLException e) {
@@ -135,14 +130,6 @@ public class RepositoryUserDB implements IDatabaseRepository<User, Integer> {
 
     @Override
     public void saveWithoutId(User user) {
-        Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("INSERT INTO " +
-                "users(username, password) values(?, ?)")){
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
-            statement.executeUpdate();
-        } catch (SQLException e){
-            System.out.println("Db error" + e);
-        }
+
     }
 }

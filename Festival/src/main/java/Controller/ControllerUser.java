@@ -11,38 +11,25 @@ import java.util.List;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class ControllerUser extends AbstractController<User, Integer> {
+public class ControllerUser extends AbstractController<User, String> {
     /*
     Constructor
      */
-    public ControllerUser(IDatabaseRepository<User, Integer> repositoryUser, ValidatorUser validatorUser){
+    public ControllerUser(IDatabaseRepository<User, String> repositoryUser, ValidatorUser validatorUser){
         super(repositoryUser, validatorUser);
     }
 
     @Override
     public User formatEntity(String... args) throws FormatException {
         Integer id;
-        String username;
-        String password;
-        try{
-            id = Integer.parseInt(args[0]);
-            username = args[1];
-            password = args[2];
-        } catch (NumberFormatException ex){
-            throw new FormatException("Id must be a number");
-        }
-        return new User(id, username, password);
+        String username = args[0];
+        String password = args[1];
+        return new User(username, password);
     }
 
     @Override
-    public Integer formatId(String id) throws FormatException {
-        Integer idF;
-        try{
-            idF = Integer.parseInt(id);
-        } catch (NumberFormatException e){
-            throw new FormatException("Id must be a number");
-        }
-        return idF;
+    public String formatId(String id) throws FormatException {
+        return id;
     }
 
     /*

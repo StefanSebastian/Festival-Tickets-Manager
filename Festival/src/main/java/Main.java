@@ -52,6 +52,8 @@ public class Main extends Application{
         ControllerUser controllerUser = factory.getBean(ControllerUser.class);
 
 
+        //window1
+
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("UI/LoginView.fxml"));
         AnchorPane loginPane = loader.load();
         LoginViewController controller = loader.getController();
@@ -62,6 +64,21 @@ public class Main extends Application{
         primaryStage.setScene(scene);
         primaryStage.setTitle("Festival tickets");
         primaryStage.show();
+
+
+
+        //window 2
+       /* Stage stage1 = new Stage();
+        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("UI/LoginView.fxml"));
+        AnchorPane loginPane1 = loader1.load();
+        LoginViewController controller1 = loader1.getController();
+        controller1.initialize(controllerUser,
+                controllerArtist, controllerShow, controllerTransaction, stage1);
+
+        Scene scene1 = new Scene(loginPane1);
+
+        stage1.setScene(scene1);
+        stage1.show(); */
 
     }
 }
