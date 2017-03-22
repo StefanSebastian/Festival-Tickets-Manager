@@ -119,10 +119,42 @@ namespace Festival.Repository
             }
         }
 
+        //gets an artist by id 
+        private Artist getArtistById(int idArtist)
+        {
+            var connection = DbUtils.getConnection();
+            using (var commandArt = connection.CreateCommand())
+            {
+                commandArt.CommandText = "select * from artists where idArtist=@idArt";
+                var paramIdArt = commandArt.CreateParameter();
+                paramIdArt.ParameterName = "@idArt";
+                paramIdArt.Value = idArtist;
+                commandArt.Parameters.Add(paramIdArt);
+
+                using (var dataReadArt = commandArt.ExecuteReader())
+                {
+                    if (dataReadArt.Read())
+                    {
+                        String nameArt = dataReadArt.GetString(1);
+                        return new Artist(idArtist, nameArt);
+                    }
+                }
+            }
+
+            return null;
+        }
+
         //get a show by id
         private Show getShowById(int id)
         {
             var connection = DbUtils.getConnection();
+
+            int idShow = 0;
+            String location = null;
+            String date = null;
+            int available = 0;
+            int sold = 0;
+            int idArtist = 0;
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "select * from shows where idShow=@id";
@@ -135,24 +167,33 @@ namespace Festival.Repository
                 {
                     if (dataR.Read())
                     {
-                        int idShow = dataR.GetInt32(0);
-                        String location = dataR.GetString(1);
-                        String date = dataR.GetString(2);
-                        int available = dataR.GetInt32(3);
-                        int sold = dataR.GetInt32(4);
-                        int idArtist = dataR.GetInt32(5);
-
-                        return new Show(idShow, location, date, available, sold, getArtist(idArtist));
+                        idShow = dataR.GetInt32(0);
+                        location = dataR.GetString(1);
+                        date = dataR.GetString(2);
+                        available = dataR.GetInt32(3);
+                        sold = dataR.GetInt32(4);
+                        idArtist = dataR.GetInt32(5);
                     }
                 }
+
+                if (idShow == 0 && location == null && date == null)
+                {
+                    return null; //show was not found 
+                }
             }
-            return null;
+
+            return new Show(idShow, location, date, available, sold, getArtistById(idArtist));
         }
 
         //get by id
         public Transaction getById(int id)
         {
             var connection = DbUtils.getConnection();
+
+            int idTr = 0;
+            String client = null;
+            int tick = 0;
+            int idShow = 0;
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "select * from transactions where idTransaction=@id";
@@ -165,21 +206,26 @@ namespace Festival.Repository
                 {
                     if (dataR.Read())
                     {
-                        int idTr = dataR.GetInt32(0);
-                        String client = dataR.GetString(1);
-                        int tick = dataR.GetInt32(2);
-                        int idShow = dataR.GetInt32(3);
-                        return new Transaction(idTr, client, tick, getShowById(idShow));
+                        idTr = dataR.GetInt32(0);
+                        client = dataR.GetString(1);
+                        tick = dataR.GetInt32(2);
+                        idShow = dataR.GetInt32(3);
                     }
                 }
+                if (idTr == 0 && client == null)
+                {
+                    return null; //transaction not found 
+                }
             }
-            return null;
+            return new Transaction(idTr, client, tick, getShowById(idShow));
         }
 
         //get all transactions
         public List<Transaction> getAll()
         {
             List<Transaction> transactions = new List<Transaction>();
+            List<int> idList = new List<int>();
+
             var connection = DbUtils.getConnection();
             using (var command = connection.CreateCommand())
             {
@@ -189,11 +235,17 @@ namespace Festival.Repository
                     while (dataR.Read())
                     {
                         int idTr = dataR.GetInt32(0);
-                        String client = dataR.GetString(1);
-                        int tick = dataR.GetInt32(2);
-                        int idShow = dataR.GetInt32(3);
-                        transactions.Add(new Transaction(idTr, client, tick, getShowById(idShow)));
+                        idList.Add(idTr);
                     }
+                }
+            }
+
+            foreach (int idTr in idList)
+            {
+                Transaction tr = getById(idTr);
+                if (tr != null)
+                {
+                    transactions.Add(tr);
                 }
             }
             return transactions;

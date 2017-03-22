@@ -12,7 +12,7 @@ namespace Festival.Repository.Interface
         /*
          * Gets all shows for a given artist 
          */
-        List<Show> getShowsForArtist(Artist artist);
+        List<Show> getShowsForArtist(Int32 idArtist);
 
         /*
          * Gets all shows for a given date 

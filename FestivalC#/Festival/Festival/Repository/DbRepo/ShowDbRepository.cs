@@ -139,8 +139,8 @@ namespace Festival.Repository
             }
         }
 
-        //read an artist for id 
-        private Artist getArtist(int idArt)
+        //gets an artist by id 
+        private Artist getArtistById(int idArtist)
         {
             var connection = DbUtils.getConnection();
             using (var commandArt = connection.CreateCommand())
@@ -148,7 +148,7 @@ namespace Festival.Repository
                 commandArt.CommandText = "select * from artists where idArtist=@idArt";
                 var paramIdArt = commandArt.CreateParameter();
                 paramIdArt.ParameterName = "@idArt";
-                paramIdArt.Value = idArt;
+                paramIdArt.Value = idArtist;
                 commandArt.Parameters.Add(paramIdArt);
 
                 using (var dataReadArt = commandArt.ExecuteReader())
@@ -156,10 +156,11 @@ namespace Festival.Repository
                     if (dataReadArt.Read())
                     {
                         String nameArt = dataReadArt.GetString(1);
-                        return new Artist(idArt, nameArt);
+                        return new Artist(idArtist, nameArt);
                     }
                 }
             }
+
             return null;
         }
 
@@ -167,6 +168,13 @@ namespace Festival.Repository
         public Show getById(int id)
         {
             var connection = DbUtils.getConnection();
+
+            int idShow = 0;
+            String location = null;
+            String date = null;
+            int available = 0;
+            int sold = 0;
+            int idArtist = 0;
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "select * from shows where idShow=@id";
@@ -179,24 +187,30 @@ namespace Festival.Repository
                 {
                     if (dataR.Read())
                     {
-                        int idShow = dataR.GetInt32(0);
-                        String location = dataR.GetString(1);
-                        String date = dataR.GetString(2);
-                        int available = dataR.GetInt32(3);
-                        int sold = dataR.GetInt32(4);
-                        int idArtist = dataR.GetInt32(5);
-
-                        return new Show(idShow, location, date, available, sold, getArtist(idArtist));
+                        idShow = dataR.GetInt32(0);
+                        location = dataR.GetString(1);
+                        date = dataR.GetString(2);
+                        available = dataR.GetInt32(3);
+                        sold = dataR.GetInt32(4);
+                        idArtist = dataR.GetInt32(5);
                     }
                 }
+
+                if (idShow == 0 && location == null && date == null)
+                {
+                    return null; //show was not found 
+                }
             }
-            return null;
+
+            return new Show(idShow, location, date, available, sold, getArtistById(idArtist));
         }
 
         //get all shows
         public List<Show> getAll()
         {
             List<Show> shows = new List<Show>();
+            List<int> idShows = new List<int>();
+
             var connection = DbUtils.getConnection();
             using (var command = connection.CreateCommand())
             {
@@ -206,28 +220,34 @@ namespace Festival.Repository
                     while (dataR.Read())
                     {
                         int idShow = dataR.GetInt32(0);
-                        String location = dataR.GetString(1);
-                        String date = dataR.GetString(2);
-                        int available = dataR.GetInt32(3);
-                        int sold = dataR.GetInt32(4);
-                        int idArtist = dataR.GetInt32(5);
-                        shows.Add(new Show(idShow, location, date, available, sold, getArtist(idArtist)));
+                        idShows.Add(idShow);
                     }
                 }
             }
+
+            foreach (int idShow in idShows)
+            {
+                Show s = getById(idShow);
+                if (s != null)
+                {
+                    shows.Add(getById(idShow));
+                }
+            }
+
             return shows;
         }
 
-        public List<Show> getShowsForArtist(Artist artist)
+        public List<Show> getShowsForArtist(Int32 idArtist)
         {
             List<Show> shows = new List<Show>();
+            List<int> idShows = new List<int>();
             var connection = DbUtils.getConnection();
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "select * from shows where idArtist=@idArt";
                 var paramId = command.CreateParameter();
                 paramId.ParameterName = "@idArt";
-                paramId.Value = artist.IdArtist;
+                paramId.Value = idArtist;
                 command.Parameters.Add(paramId);
 
                 using (var dataR = command.ExecuteReader())
@@ -235,21 +255,27 @@ namespace Festival.Repository
                     while (dataR.Read())
                     {
                         int idShow = dataR.GetInt32(0);
-                        String location = dataR.GetString(1);
-                        String date = dataR.GetString(2);
-                        int available = dataR.GetInt32(3);
-                        int sold = dataR.GetInt32(4);
-                        int idArtist = dataR.GetInt32(5);
-                        shows.Add(new Show(idShow, location, date, available, sold, getArtist(idArtist)));
+                        idShows.Add(idShow);
                     }
                 }
             }
+
+            foreach (int idShow in idShows)
+            {
+                Show s = getById(idShow);
+                if (s != null)
+                {
+                    shows.Add(getById(idShow));
+                }
+            }
+
             return shows;
         }
 
         public List<Show> getShowsForDate(string date)
         {
             List<Show> shows = new List<Show>();
+            List<int> idShows = new List<int>();
             var connection = DbUtils.getConnection();
             using (var command = connection.CreateCommand())
             {
@@ -264,13 +290,17 @@ namespace Festival.Repository
                     while (dataR.Read())
                     {
                         int idShow = dataR.GetInt32(0);
-                        String location = dataR.GetString(1);
-                        String date = dataR.GetString(2);
-                        int available = dataR.GetInt32(3);
-                        int sold = dataR.GetInt32(4);
-                        int idArtist = dataR.GetInt32(5);
-                        shows.Add(new Show(idShow, location, date, available, sold, getArtist(idArtist)));
+                        idShows.Add(idShow);
                     }
+                }
+            }
+
+            foreach (int idShow in idShows)
+            {
+                Show s = getById(idShow);
+                if (s != null)
+                {
+                    shows.Add(getById(idShow));
                 }
             }
             return shows;
