@@ -133,7 +133,7 @@ namespace Festival.Model
 
         public override string ToString()
         {
-            return idShow + " " + location + " " + date + " " + ticketsAvailable + " " + ticketsSold + " " + artist.IdArtist;
+            return idShow + " " + location + " " + date.ToString() + " " + ticketsAvailable + " " + ticketsSold + " " + artist.IdArtist;
         }
 
         public override int GetHashCode()
