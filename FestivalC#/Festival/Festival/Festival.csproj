@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ConnectionUtils\ConnectionFactory.cs" />
     <Compile Include="ConnectionUtils\MySQLConnectionFactory.cs" />
+    <Compile Include="Controller\Controller.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +75,17 @@
     <Compile Include="Repository\Interface\IShowRepository.cs" />
     <Compile Include="Repository\Interface\ITransactionRepository.cs" />
     <Compile Include="Repository\Interface\IUserRepository.cs" />
+    <Compile Include="Service\ServiceArtist.cs" />
+    <Compile Include="Service\ServiceShow.cs" />
+    <Compile Include="Service\ServiceTransaction.cs" />
+    <Compile Include="Service\ServiceUser.cs" />
+    <Compile Include="Validation\Exceptions\ControllerException.cs" />
+    <Compile Include="Validation\Exceptions\ValidatorException.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\ValidatorArtist.cs" />
+    <Compile Include="Validation\ValidatorShow.cs" />
+    <Compile Include="Validation\ValidatorTransaction.cs" />
+    <Compile Include="Validation\ValidatorUser.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

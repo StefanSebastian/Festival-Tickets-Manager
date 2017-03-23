@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Festival.Validation.Exceptions
 {
-    public class FormatException : Exception
+    public class ControllerException : Exception
     {
-        public FormatException(String msg) : base(msg) { }
+        public ControllerException(String msg) : base(msg) { }
     }
 }

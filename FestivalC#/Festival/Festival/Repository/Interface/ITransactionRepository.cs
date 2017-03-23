@@ -9,5 +9,9 @@ namespace Festival.Repository.Interface
 {
     public interface ITransactionRepository : IRepository<Transaction, int>
     {
+        /*
+         * Saves the transaction and generates a valid id 
+         */
+        void saveWithoutId(Transaction transaction);
     }
 }
