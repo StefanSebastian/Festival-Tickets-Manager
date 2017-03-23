@@ -1,5 +1,6 @@
 ﻿using Festival.Model;
 using Festival.Service;
+using Festival.Validation.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,12 +63,31 @@ namespace Festival.Controller
         }
 
         /*
-         * Saves the transaction and generates an id 
-         * the given id is ignored 
+         * Buy tickets for show 
+         * If not enough tickets -> throw exception
+         * Else we update show tickets number 
+         * And we save the transaction
          */
-         public void saveTransactionWithoutId(Transaction transaction)
+         public void buyTicketsForShow(int idShow, string clientName, int nrTickets)
         {
-            serviceTransaction.saveWithoutId(transaction);
+            Show show = serviceShow.getById(idShow);
+
+            if (nrTickets < 0)
+            {
+                throw new ControllerException("You must buy at least one ticket");
+            }
+
+            if (show.TicketsAvailable < nrTickets)
+            {
+                throw new ControllerException("Not enough tickets available");
+            }
+
+            show.TicketsAvailable -= nrTickets;
+            show.TicketsSold += nrTickets;
+
+            serviceShow.update(idShow, show);
+
+            serviceTransaction.saveWithoutId(new Transaction(clientName, nrTickets, show));
         }
     }
 }

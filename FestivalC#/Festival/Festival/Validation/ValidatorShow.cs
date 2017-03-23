@@ -17,10 +17,6 @@ namespace Festival.Validation
             {
                 errors += "Location must not be null";
             }
-            if (show.Date.Length == 0)
-            {
-                errors += "Date must not be null";
-            }
             if (show.TicketsAvailable < 0)
             {
                 errors += "Availbale tickets must be a positive number";

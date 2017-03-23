@@ -26,9 +26,9 @@ namespace Festival
             ServiceShow serviceShow = new ServiceShow(repoShow, new ValidatorShow());
             ServiceTransaction serviceTransaction = new ServiceTransaction(repoTransaction, new ValidatorTransaction());
 
-            ControllerApp controllerApp = new ControllerApp(serviceUser, serviceArtist, serviceShow, serviceTransaction); 
+            ControllerApp controllerApp = new ControllerApp(serviceUser, serviceArtist, serviceShow, serviceTransaction);
 
-            Application.Run(new MainWindow(controllerApp));            
+             Application.Run(new MainWindow(controllerApp));  
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Festival.Service
          */
         public void saveWithoutId(Transaction transaction)
         {
-            repository.save(transaction);
+            repository.saveWithoutId(transaction);
         }
     }
 }

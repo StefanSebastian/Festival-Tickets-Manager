@@ -15,7 +15,7 @@ namespace Festival.Model
         private String location;
 
         //date 
-        private String date;
+        private DateTime date;
 
         //number of available tickets
         private int ticketsAvailable;
@@ -27,7 +27,7 @@ namespace Festival.Model
         private Artist artist;
 
         //constructor
-        public Show(int idShow, String location, String date, int ticketsAvailable, int ticketsSold, Artist artist)
+        public Show(int idShow, String location, DateTime date, int ticketsAvailable, int ticketsSold, Artist artist)
         {
             this.idShow = idShow;
             this.location = location;
@@ -63,7 +63,7 @@ namespace Festival.Model
             }
         }
 
-        public string Date
+        public DateTime Date
         {
             get
             {

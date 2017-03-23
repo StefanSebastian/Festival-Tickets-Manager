@@ -151,7 +151,7 @@ namespace Festival.Repository
 
             int idShow = 0;
             String location = null;
-            String date = null;
+            DateTime date = DateTime.MinValue;
             int available = 0;
             int sold = 0;
             int idArtist = 0;
@@ -169,14 +169,14 @@ namespace Festival.Repository
                     {
                         idShow = dataR.GetInt32(0);
                         location = dataR.GetString(1);
-                        date = dataR.GetString(2);
+                        date = dataR.GetDateTime(2);
                         available = dataR.GetInt32(3);
                         sold = dataR.GetInt32(4);
                         idArtist = dataR.GetInt32(5);
                     }
                 }
 
-                if (idShow == 0 && location == null && date == null)
+                if (idShow == 0 && location == null)
                 {
                     return null; //show was not found 
                 }
@@ -257,7 +257,8 @@ namespace Festival.Repository
 
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "insert into transactions values(@client, @nrTick, @show)";
+                command.CommandText = "insert into transactions(clientName, numberOfTickets, idShow)" +
+                    " values(@client, @nrTick, @show)";
                 var paramClient = command.CreateParameter();
                 paramClient.ParameterName = "@client";
                 paramClient.Value = transaction.ClientName;

@@ -32,7 +32,7 @@ namespace Festival.Repository
 
                 var paramDate = command.CreateParameter();
                 paramDate.ParameterName = "@date";
-                paramDate.Value = show.Date;
+                paramDate.Value = show.Date.ToString("yyyy-MM-dd HH:mm:ss");//show.Date;
                 command.Parameters.Add(paramDate);
 
                 var paramAv = command.CreateParameter();
@@ -106,7 +106,8 @@ namespace Festival.Repository
 
                 var paramDate = command.CreateParameter();
                 paramDate.ParameterName = "@date";
-                paramDate.Value = newShow.Date;
+
+                paramDate.Value = newShow.Date.ToString("yyyy-MM-dd HH:mm:ss");//newShow.Date;
                 command.Parameters.Add(paramDate);
 
                 var paramAv = command.CreateParameter();
@@ -171,7 +172,7 @@ namespace Festival.Repository
 
             int idShow = 0;
             String location = null;
-            String date = null;
+            DateTime date = DateTime.MinValue;
             int available = 0;
             int sold = 0;
             int idArtist = 0;
@@ -189,14 +190,14 @@ namespace Festival.Repository
                     {
                         idShow = dataR.GetInt32(0);
                         location = dataR.GetString(1);
-                        date = dataR.GetString(2);
+                        date = dataR.GetDateTime(2);
                         available = dataR.GetInt32(3);
                         sold = dataR.GetInt32(4);
                         idArtist = dataR.GetInt32(5);
                     }
                 }
 
-                if (idShow == 0 && location == null && date == null)
+                if (idShow == 0 && location == null)
                 {
                     return null; //show was not found 
                 }

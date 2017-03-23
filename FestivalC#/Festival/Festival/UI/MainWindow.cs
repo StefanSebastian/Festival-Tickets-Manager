@@ -1,5 +1,6 @@
 ﻿using Festival.Controller;
 using Festival.Model;
+using Festival.Validation.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,6 +97,40 @@ namespace Festival
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             setSearchedShows(textBoxSearch.Text);
+        }
+
+        /*
+         * We want to add a transaction
+         */
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridViewSearch.SelectedRows.Count != 1)
+                {
+                    throw new UIException("Select one row");
+                }
+
+                int index = dataGridViewSearch.CurrentRow.Index;
+                Show selectedShow = searchList[index];
+
+                string clientName = textBoxClient.Text;
+                int numberOfTickets = Int32.Parse(textBoxNrTickets.Text);
+                
+                controllerApp.buyTicketsForShow(selectedShow.IdShow, clientName, numberOfTickets);
+
+                //updates UI 
+                listBoxArtists_SelectedIndexChanged(this, null);
+                textBoxSearch_TextChanged(this, null);
+            }
+            catch (Exception ex) when (ex is UIException || ex is ControllerException || ex is ValidatorException)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Number of tickets must be integer");
+            }
         }
     }
 }

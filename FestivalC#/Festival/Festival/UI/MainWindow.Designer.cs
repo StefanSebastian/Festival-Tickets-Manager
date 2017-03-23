@@ -34,6 +34,12 @@
             this.dataGridViewSearch = new System.Windows.Forms.DataGridView();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxClient = new System.Windows.Forms.TextBox();
+            this.textBoxNrTickets = new System.Windows.Forms.TextBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearch)).BeginInit();
             this.SuspendLayout();
@@ -89,11 +95,68 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Search shows by date";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 435);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(194, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Add a transaction for the selected show";
+            // 
+            // textBoxClient
+            // 
+            this.textBoxClient.Location = new System.Drawing.Point(115, 461);
+            this.textBoxClient.Name = "textBoxClient";
+            this.textBoxClient.Size = new System.Drawing.Size(100, 20);
+            this.textBoxClient.TabIndex = 8;
+            // 
+            // textBoxNrTickets
+            // 
+            this.textBoxNrTickets.Location = new System.Drawing.Point(115, 496);
+            this.textBoxNrTickets.Name = "textBoxNrTickets";
+            this.textBoxNrTickets.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNrTickets.TabIndex = 9;
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(236, 476);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(120, 23);
+            this.buttonAdd.TabIndex = 10;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 461);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Client name:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 499);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Number of tickets:";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 432);
+            this.ClientSize = new System.Drawing.Size(642, 531);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.textBoxNrTickets);
+            this.Controls.Add(this.textBoxClient);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.dataGridViewSearch);
@@ -116,5 +179,11 @@
         private System.Windows.Forms.DataGridView dataGridViewSearch;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxClient;
+        private System.Windows.Forms.TextBox textBoxNrTickets;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
