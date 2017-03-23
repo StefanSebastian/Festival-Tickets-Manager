@@ -20,6 +20,7 @@ namespace Festival
         //data source
         private BindingList<Artist> artistList;
         private BindingList<Show> showList;
+        private BindingList<Show> searchList;
 
         public MainWindow(ControllerApp controllerApp)
         {
@@ -70,6 +71,31 @@ namespace Festival
                 Artist selectedArtist = (Artist)listBoxArtists.SelectedItem;
                 setShows(selectedArtist.IdArtist);
             }
+        }
+
+        /*
+         * Sets the searched shows 
+         */
+        private void setSearchedShows(string date)
+        {
+            searchList = new BindingList<Show>(controllerApp.getShowsForDate(date));
+
+            dataGridViewSearch.DataSource = searchList.Select(show =>
+                    new {
+                        Artist = show.Artist.Name,
+                        Location = show.Location,
+                        Date = show.Date,
+                        TicketsAvailable = show.TicketsAvailable,
+                        TicketsSold = show.TicketsSold
+                    }).ToList();
+        }
+
+        /*
+         * When the user wants to search for a date 
+         */
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            setSearchedShows(textBoxSearch.Text);
         }
     }
 }

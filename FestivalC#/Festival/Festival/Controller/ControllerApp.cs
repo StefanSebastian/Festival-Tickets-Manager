@@ -45,7 +45,6 @@ namespace Festival.Controller
             return serviceArtist.getAll();
         } 
 
-
         /*
          * Gets all shows for a given artist
          */
