@@ -40,6 +40,7 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonLogout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearch)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +48,7 @@
             // lblArtist
             // 
             this.lblArtist.AutoSize = true;
-            this.lblArtist.Location = new System.Drawing.Point(13, 15);
+            this.lblArtist.Location = new System.Drawing.Point(9, 40);
             this.lblArtist.Name = "lblArtist";
             this.lblArtist.Size = new System.Drawing.Size(35, 13);
             this.lblArtist.TabIndex = 1;
@@ -56,7 +57,7 @@
             // listBoxArtists
             // 
             this.listBoxArtists.FormattingEnabled = true;
-            this.listBoxArtists.Location = new System.Drawing.Point(12, 40);
+            this.listBoxArtists.Location = new System.Drawing.Point(12, 69);
             this.listBoxArtists.Name = "listBoxArtists";
             this.listBoxArtists.Size = new System.Drawing.Size(133, 121);
             this.listBoxArtists.TabIndex = 2;
@@ -65,7 +66,7 @@
             // dataGridViewShows
             // 
             this.dataGridViewShows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewShows.Location = new System.Drawing.Point(162, 15);
+            this.dataGridViewShows.Location = new System.Drawing.Point(162, 40);
             this.dataGridViewShows.Name = "dataGridViewShows";
             this.dataGridViewShows.Size = new System.Drawing.Size(462, 150);
             this.dataGridViewShows.TabIndex = 3;
@@ -146,11 +147,22 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Number of tickets:";
             // 
+            // buttonLogout
+            // 
+            this.buttonLogout.Location = new System.Drawing.Point(518, 13);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogout.TabIndex = 13;
+            this.buttonLogout.Text = "Log-out";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 531);
+            this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonAdd);
@@ -165,6 +177,7 @@
             this.Controls.Add(this.lblArtist);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShows)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearch)).EndInit();
             this.ResumeLayout(false);
@@ -185,5 +198,6 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonLogout;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Festival.Controller;
 using Festival.Model;
+using Festival.UI;
 using Festival.Validation.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Festival
 {
     public partial class MainWindow : Form
     {
+
         //app controller
         private ControllerApp controllerApp;
 
@@ -131,6 +133,20 @@ namespace Festival
             {
                 MessageBox.Show("Number of tickets must be integer");
             }
+        }
+
+        //log out 
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            Login loginForm = new Login(controllerApp);
+            this.Hide();
+            loginForm.Show();
+        }
+
+        //if form is closed, we close the app
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

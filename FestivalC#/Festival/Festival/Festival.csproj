@@ -53,6 +53,12 @@
     <Compile Include="ConnectionUtils\ConnectionFactory.cs" />
     <Compile Include="ConnectionUtils\MySQLConnectionFactory.cs" />
     <Compile Include="Controller\ControllerApp.cs" />
+    <Compile Include="UI\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Validation\ValidatorShow.cs" />
     <Compile Include="Validation\ValidatorTransaction.cs" />
     <Compile Include="Validation\ValidatorUser.cs" />
+    <EmbeddedResource Include="UI\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

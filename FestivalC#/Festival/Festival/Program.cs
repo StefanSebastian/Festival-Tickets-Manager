@@ -9,6 +9,7 @@ using Festival.Repository.Interface;
 using Festival.Service;
 using Festival.Validation;
 using Festival.Controller;
+using Festival.UI;
 
 namespace Festival
 {
@@ -28,7 +29,7 @@ namespace Festival
 
             ControllerApp controllerApp = new ControllerApp(serviceUser, serviceArtist, serviceShow, serviceTransaction);
 
-             Application.Run(new MainWindow(controllerApp));  
+            Application.Run(new Login(controllerApp));
         }
     }
 }
