@@ -282,6 +282,9 @@ namespace Festival.Repository
                     Console.Out.WriteLine(e);
                 }
             }
+<<<<<<< HEAD
         }
+=======
+>>>>>>> d18c546d35275def2a6a5046ab4c8ecafd293a7e
     }
 }
