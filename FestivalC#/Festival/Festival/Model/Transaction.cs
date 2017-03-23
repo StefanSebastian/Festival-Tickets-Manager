@@ -29,6 +29,16 @@ namespace Festival.Model
             this.Show = show;
         }
 
+        //Constructor with default id 
+        public Transaction(String clientName, int numberOfTickets, Show show)
+        {
+            this.idTransaction = 1;
+            this.clientName = clientName;
+            this.numberOfTickets = numberOfTickets;
+            this.Show = show;
+        }
+        
+
         public int IdTransaction
         {
             get

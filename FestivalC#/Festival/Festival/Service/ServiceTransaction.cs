@@ -48,5 +48,13 @@ namespace Festival.Service
         {
             return repository.getAll();
         }
+
+        /*
+         * saves transaction and generates another id 
+         */
+        public void saveWithoutId(Transaction transaction)
+        {
+            repository.save(transaction);
+        }
     }
 }

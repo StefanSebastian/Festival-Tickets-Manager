@@ -251,5 +251,36 @@ namespace Festival.Repository
             return transactions;
         }
 
+        public void saveWithoutId(Transaction transaction)
+        {
+            var connection = DbUtils.getConnection();
+
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = "insert into transactions values(@client, @nrTick, @show)";
+                var paramClient = command.CreateParameter();
+                paramClient.ParameterName = "@client";
+                paramClient.Value = transaction.ClientName;
+                command.Parameters.Add(paramClient);
+
+                var paramTick = command.CreateParameter();
+                paramTick.ParameterName = "@nrTick";
+                paramTick.Value = transaction.NumberOfTickets;
+                command.Parameters.Add(paramTick);
+
+                var paramShow = command.CreateParameter();
+                paramShow.ParameterName = "@show";
+                paramShow.Value = transaction.Show.IdShow;
+                command.Parameters.Add(paramShow);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (MySqlException e)
+                {
+                    Console.Out.WriteLine(e);
+                }
+            }
     }
 }
