@@ -30,3 +30,4 @@ E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\
 E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Festival\obj\Debug\Festival.exe
 E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Festival\obj\Debug\Festival.pdb
 E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Festival\obj\Debug\Festival.csprojResolveAssemblyReference.cache
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Festival\obj\Debug\Festival.MainWindow.resources

@@ -52,12 +52,12 @@
   <ItemGroup>
     <Compile Include="ConnectionUtils\ConnectionFactory.cs" />
     <Compile Include="ConnectionUtils\MySQLConnectionFactory.cs" />
-    <Compile Include="Controller\Controller.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Controller\ControllerApp.cs" />
+    <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Artist.cs" />
     <Compile Include="Model\Show.cs" />
@@ -86,6 +86,9 @@
     <Compile Include="Validation\ValidatorShow.cs" />
     <Compile Include="Validation\ValidatorTransaction.cs" />
     <Compile Include="Validation\ValidatorUser.cs" />
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

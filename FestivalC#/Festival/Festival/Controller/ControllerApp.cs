@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Festival.Controller
 {
-    public class Controller
+    public class ControllerApp
     {
         private ServiceUser serviceUser;
         private ServiceArtist serviceArtist;
         private ServiceShow serviceShow;
         private ServiceTransaction serviceTransaction;
         
-        public Controller(
+        public ControllerApp(
             ServiceUser serviceUser,
             ServiceArtist serviceArtist,
             ServiceShow serviceShow,

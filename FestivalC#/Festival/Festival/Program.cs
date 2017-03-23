@@ -6,6 +6,9 @@ using System.Windows.Forms;
 using Festival.Repository;
 using Festival.Model;
 using Festival.Repository.Interface;
+using Festival.Service;
+using Festival.Validation;
+using Festival.Controller;
 
 namespace Festival
 {
@@ -13,28 +16,19 @@ namespace Festival
     {
         static void Main()
         {
-            /*IShowRepository repo = new ShowDbRepository();
-            List<Show> shows = repo.getAll();
+            IUserRepository repoUser = new UserDbRepository();
+            IArtistRepository repoArtist = new ArtistDbRepository();
+            IShowRepository repoShow = new ShowDbRepository();
+            ITransactionRepository repoTransaction = new TransactionDbRepository();
 
-            shows = repo.getShowsForDate("2017-04-15");
-            
-            foreach(Show s in shows)
-            {
-                Console.Out.WriteLine(s);
-                Console.Out.WriteLine(s.Artist);
-            }*/
-           
+            ServiceUser serviceUser = new ServiceUser(repoUser, new ValidatorUser());
+            ServiceArtist serviceArtist = new ServiceArtist(repoArtist, new ValidatorArtist());
+            ServiceShow serviceShow = new ServiceShow(repoShow, new ValidatorShow());
+            ServiceTransaction serviceTransaction = new ServiceTransaction(repoTransaction, new ValidatorTransaction());
 
-            ITransactionRepository repo = new TransactionDbRepository();
-             List<Transaction> trs = repo.getAll();
-             foreach(Transaction t in trs)
-             {
-                 Console.Out.WriteLine(t);
-                 Console.Out.WriteLine(t.Show);
-                 Console.Out.WriteLine(t.Show.Artist);
-             } 
+            ControllerApp controllerApp = new ControllerApp(serviceUser, serviceArtist, serviceShow, serviceTransaction); 
 
-            
+            Application.Run(new MainWindow(controllerApp));            
         }
     }
 }
