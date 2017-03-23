@@ -99,6 +99,7 @@ namespace Festival
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             setSearchedShows(textBoxSearch.Text);
+            colorRows();
         }
 
         /*
@@ -147,6 +148,25 @@ namespace Festival
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        /*
+         * Colors rows with no tickets in red
+         */
+        private void colorRows()
+        {
+            foreach (DataGridViewRow row in dataGridViewSearch.Rows)
+            {
+                int tickets = Convert.ToInt32(row.Cells[3].Value);
+                if (tickets == 0)
+                {
+                    row.Cells[0].Style.BackColor = Color.Red;
+                    row.Cells[1].Style.BackColor = Color.Red;
+                    row.Cells[2].Style.BackColor = Color.Red;
+                    row.Cells[3].Style.BackColor = Color.Red;
+                    row.Cells[4].Style.BackColor = Color.Red;
+                }
+            }
         }
     }
 }
