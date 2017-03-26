@@ -3,6 +3,7 @@ package Repository;
 import Domain.User;
 import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
+import Repository.Interfaces.IUserRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class RepositoryUserDB implements IDatabaseRepository<User, String> {
+public class RepositoryUserDB implements IUserRepository {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -101,35 +102,19 @@ public class RepositoryUserDB implements IDatabaseRepository<User, String> {
 
 
     @Override
-    public List<User> filter(List<String> filters, List<String> arguments) {
+    public User getUserForLogin(String username, String password) {
         Connection con = jdbcUtils.getConnection();
-        List<User> users = new ArrayList<>();
-
-        String command = "select * from users where ";
-        for (String filter : filters){
-            command += filter + " AND ";
-        }
-        command = command.substring(0, command.length() - 5);
-
-        try(PreparedStatement statement = con.prepareStatement(command)) {
-            for (int i = 0; i < arguments.size(); i++){
-                statement.setString(i + 1, arguments.get(i));
-            }
-            try(ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    String username = resultSet.getString("username");
-                    String password = resultSet.getString("password");
-                    users.add(new User(username, password));
+        try(PreparedStatement statement = con.prepareStatement("SELECT * FROM users WHERE username = ? and password = ?")){
+            statement.setString(1, username);
+            statement.setString(2, password);
+            try(ResultSet resultSet = statement.executeQuery()){
+                if (resultSet.next()){
+                    return new User(username, password);
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Error DB "+e);
+        } catch (SQLException e){
+            System.out.println("Db error" + e);
         }
-        return users;
-    }
-
-    @Override
-    public void saveWithoutId(User user) {
-
+        return null;
     }
 }

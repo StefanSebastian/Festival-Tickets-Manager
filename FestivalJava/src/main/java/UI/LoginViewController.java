@@ -1,9 +1,7 @@
 package UI;
 
-import Controller.ControllerArtist;
-import Controller.ControllerShow;
-import Controller.ControllerTransaction;
-import Controller.ControllerUser;
+import Controller.*;
+import Domain.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,24 +19,15 @@ import java.io.IOException;
  */
 public class LoginViewController {
     //controller
-    private ControllerUser controllerUser;
-    private ControllerArtist controllerArtist;
-    private ControllerTransaction controllerTransaction;
-    private ControllerShow controllerShow;
+    private AppController appController;
 
     //stage
     private Stage primaryStage;
 
     //initialize
-    public void initialize(ControllerUser controllerUser,
-                           ControllerArtist controllerArtist,
-                           ControllerShow controllerShow,
-                           ControllerTransaction controllerTransaction,
+    public void initialize(AppController appController,
                            Stage primaryStage){
-        this.controllerUser = controllerUser;
-        this.controllerArtist = controllerArtist;
-        this.controllerShow = controllerShow;
-        this.controllerTransaction = controllerTransaction;
+        this.appController = appController;
         this.primaryStage = primaryStage;
     }
 
@@ -54,17 +43,15 @@ public class LoginViewController {
      */
     @FXML
     private void loginButtonClicked(){
-        boolean succesful = controllerUser.login(usernameTextField.getText(),
+        User succesful = appController.tryLogin(usernameTextField.getText(),
                 passwordTextField.getText());
-        if (succesful){
+        if (succesful != null){
             //open the main window
             try{
                 FXMLLoader loader = new FXMLLoader(LoginViewController.class.getResource("MainWindowView.fxml"));
                 AnchorPane mainPane = loader.load();
                 MainWindowViewController controller = loader.getController();
-                controller.initialize(controllerUser,
-                        controllerArtist, controllerShow,
-                        controllerTransaction, primaryStage);
+                controller.initialize(appController, primaryStage);
 
                 Scene scene = new Scene(mainPane);
                 primaryStage.setScene(scene);

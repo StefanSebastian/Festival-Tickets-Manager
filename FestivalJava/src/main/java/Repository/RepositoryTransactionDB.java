@@ -3,6 +3,7 @@ package Repository;
 import Domain.Transaction;
 import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
+import Repository.Interfaces.ITransactionRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryTransactionDB implements IDatabaseRepository<Transaction, Integer> {
+public class RepositoryTransactionDB implements ITransactionRepository {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -105,11 +106,6 @@ public class RepositoryTransactionDB implements IDatabaseRepository<Transaction,
             System.out.println("Error DB "+e);
         }
         return transactions;
-    }
-
-    @Override
-    public List<Transaction> filter(List<String> filters, List<String> arguments) {
-        return null;
     }
 
     @Override

@@ -24,6 +24,15 @@ public class Transaction {
         this.idShow = idShow;
     }
 
+    //Constructor with default id
+    public Transaction(String clientName, Integer numberOfTickets, Integer idShow){
+        this.idTransaction = 0;
+        this.clientName = clientName;
+        this.numberOfTickets = numberOfTickets;
+        this.idShow = idShow;
+    }
+
+
     //getters and setters
     public Integer getIdTransaction() {
         return idTransaction;

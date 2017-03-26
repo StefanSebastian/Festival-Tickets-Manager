@@ -1,6 +1,7 @@
 package Repository;
 
 import Domain.Artist;
+import Repository.Interfaces.IArtistRepository;
 import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
 
@@ -15,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryArtistDB implements IDatabaseRepository<Artist, Integer> {
+public class RepositoryArtistDB implements IArtistRepository {
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -97,19 +98,4 @@ public class RepositoryArtistDB implements IDatabaseRepository<Artist, Integer> 
         return artists;
     }
 
-    @Override
-    public List<Artist> filter(List<String> filters, List<String> arguments) {
-        return null;
-    }
-
-    @Override
-    public void saveWithoutId(Artist artist) {
-        Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("INSERT INTO artists(name) values(?)")){
-            statement.setString(1, artist.getName());
-            statement.executeUpdate();
-        } catch (SQLException e){
-            System.out.println("Db error" + e);
-        }
-    }
 }

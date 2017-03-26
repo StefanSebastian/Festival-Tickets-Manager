@@ -1,9 +1,6 @@
 package UI;
 
-import Controller.ControllerArtist;
-import Controller.ControllerShow;
-import Controller.ControllerTransaction;
-import Controller.ControllerUser;
+import Controller.*;
 import Domain.Artist;
 import Domain.Show;
 import Domain.ShowArtist;
@@ -41,10 +38,7 @@ import java.util.List;
  */
 public class MainWindowViewController implements Observer {
     //controllers
-    private ControllerArtist controllerArtist;
-    private ControllerShow controllerShow;
-    private ControllerTransaction controllerTransaction;
-    private ControllerUser controllerUser;
+    private AppController appController;
 
     //data source
     private ObservableList<Artist> artists;
@@ -57,22 +51,16 @@ public class MainWindowViewController implements Observer {
     /*
     Init method
      */
-    public void initialize(ControllerUser controllerUser,
-                           ControllerArtist controllerArtist,
-                           ControllerShow controllerShow,
-                           ControllerTransaction controllerTransaction,
+    public void initialize(AppController appController,
                            Stage primaryStage){
-        this.controllerUser = controllerUser;
-        this.controllerArtist = controllerArtist;
-        this.controllerShow = controllerShow;
-        this.controllerTransaction = controllerTransaction;
+        this.appController = appController;
         this.primaryStage = primaryStage;
 
-        //register observer
-        controllerShow.addObserver(this);
+        //sets observer
+        appController.setTransactionObserver(this);
 
         //set items for the list of artists
-        artists = FXCollections.observableArrayList(controllerArtist.getAll());
+        artists = FXCollections.observableArrayList(appController.getAllArtists());
         listViewArtists.setItems(artists);
         listViewArtists.getSelectionModel().selectedItemProperty().addListener(artistSelectionChanged());
 
@@ -384,7 +372,7 @@ public class MainWindowViewController implements Observer {
         }
 
         shows = FXCollections.observableArrayList(
-                controllerShow.getShowsForArtist(artist.getIdArtist().toString()));
+                appController.getShowsForArtist(artist.getIdArtist()));
         tableViewShows.setItems(shows);
     }
 
@@ -393,18 +381,14 @@ public class MainWindowViewController implements Observer {
      */
     @FXML
     private void getShowsForDate(){
-        List<Show> showList  =controllerShow.getShowsForDate(datePicker.getEditor().getText());
+        List<Show> showList  = appController.getShowsForDate(datePicker.getEditor().getText());
         List<ShowArtist> showsArtists = new ArrayList<>();
 
         //gets all shows for the given date
         //gets all artists for those shows
         for (Show s : showList){
-            Artist artist = null;
-            try {
-                artist = controllerArtist.getById(s.getIdArtist().toString());
-            } catch (FormatException e) {
-                e.printStackTrace();
-            }
+            Artist artist = appController.getArtistById(s.getIdArtist());
+
             showsArtists.add(new ShowArtist(s.getIdShow(),
                     s.getLocation(), s.getDate(), s.getTicketsAvailable(),
                     s.getTicketsSold(), artist.getIdArtist(), artist.getName()));
@@ -458,7 +442,7 @@ public class MainWindowViewController implements Observer {
             FXMLLoader loader = new FXMLLoader(MainWindowViewController.class.getResource("AddTransactionView.fxml"));
             AnchorPane addPane = loader.load();
             AddTransactionViewController controller = loader.getController();
-            controller.initialize(controllerTransaction, controllerShow, selectedShow);
+            controller.initialize(appController, selectedShow);
 
             Stage stage = new Stage();
             Scene scene = new Scene(addPane);
@@ -487,8 +471,7 @@ public class MainWindowViewController implements Observer {
             FXMLLoader loader = new FXMLLoader(MainWindowViewController.class.getResource("LoginView.fxml"));
             AnchorPane loginPane = loader.load();
             LoginViewController controller = loader.getController();
-            controller.initialize(controllerUser,
-                    controllerArtist, controllerShow, controllerTransaction, primaryStage);
+            controller.initialize(appController, primaryStage);
 
             Scene scene = new Scene(loginPane);
             primaryStage.setScene(scene);

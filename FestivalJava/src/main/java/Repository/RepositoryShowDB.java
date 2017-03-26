@@ -3,6 +3,7 @@ package Repository;
 import Domain.Show;
 import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
+import Repository.Interfaces.IShowRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
+public class RepositoryShowDB implements IShowRepository{
     //used to get connection
     private JdbcUtils jdbcUtils;
 
@@ -116,21 +117,13 @@ public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
         return shows;
     }
 
+
     @Override
-    public List<Show> filter(List<String> filters, List<String> arguments) {
+    public List<Show> getShowsForArtist(Integer idArtist) {
         Connection con = jdbcUtils.getConnection();
         List<Show> shows = new ArrayList<>();
-
-        String command = "select * from shows where ";
-        for (String filter : filters){
-            command += filter + " AND ";
-        }
-        command = command.substring(0, command.length() - 5);
-
-        try(PreparedStatement statement = con.prepareStatement(command)) {
-            for (int i = 0; i < arguments.size(); i++){
-                statement.setString(i + 1, arguments.get(i));
-            }
+        try(PreparedStatement statement = con.prepareStatement("select * from shows where idArtist = ?")) {
+            statement.setInt(1, idArtist);
             try(ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Integer idShow = resultSet.getInt("idShow");
@@ -138,7 +131,7 @@ public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
                     String date = resultSet.getString("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
-                    Integer idArtist = resultSet.getInt("idArtist");
+                    Integer idArt = resultSet.getInt("idArtist");
                     shows.add(new Show(idShow, location, date, ticketsAvailable, ticketsSold, idArtist));
                 }
             }
@@ -149,19 +142,25 @@ public class RepositoryShowDB implements IDatabaseRepository<Show, Integer> {
     }
 
     @Override
-    public void saveWithoutId(Show show) {
+    public List<Show> getShowsForDate(String date) {
         Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("INSERT INTO " +
-                "shows(location, date, ticketsAvailable, ticketsSold, idArtist) " +
-                "values(?, ?, ?, ?, ?)")){
-            statement.setString(1, show.getLocation());
-            statement.setString(2, show.getDate());
-            statement.setInt(3, show.getTicketsAvailable());
-            statement.setInt(4, show.getTicketsSold());
-            statement.setInt(5, show.getIdArtist());
-            statement.executeUpdate();
-        } catch (SQLException e){
-            System.out.println("Db error" + e);
+        List<Show> shows = new ArrayList<>();
+        try(PreparedStatement statement = con.prepareStatement("select * from shows where date = ?")) {
+            statement.setString(1, date);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Integer idShow = resultSet.getInt("idShow");
+                    String location = resultSet.getString("location");
+                    String dateShow = resultSet.getString("date");
+                    Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
+                    Integer ticketsSold = resultSet.getInt("ticketsSold");
+                    Integer idArt = resultSet.getInt("idArtist");
+                    shows.add(new Show(idShow, location, date, ticketsAvailable, ticketsSold, idArt));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error DB "+e);
         }
+        return shows;
     }
 }
