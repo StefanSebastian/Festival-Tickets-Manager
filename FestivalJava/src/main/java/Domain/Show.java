@@ -19,17 +19,17 @@ public class Show {
     //how many tickets have been sold
     private Integer ticketsSold;
 
-    //id of the artist taking part in the show
-    private Integer idArtist;
+    //artist taking part in the show
+    private Artist artist;
 
     //Constructor
-    public Show(Integer idShow, String location, String date, Integer ticketsAvailable, Integer ticketsSold, Integer idArtist){
+    public Show(Integer idShow, String location, String date, Integer ticketsAvailable, Integer ticketsSold, Artist artist){
         this.idShow = idShow;
         this.location = location;
         this.date = date;
         this.ticketsAvailable = ticketsAvailable;
         this.ticketsSold = ticketsSold;
-        this.idArtist = idArtist;
+        this.artist = artist;
     }
 
     //getters and setters
@@ -73,16 +73,17 @@ public class Show {
         this.ticketsSold = ticketsSold;
     }
 
-    public Integer getIdArtist() {
-        return idArtist;
-    }
-
-    public void setIdArtist(Integer idArtist) {
-        this.idArtist = idArtist;
-    }
-
     @Override
     public String toString(){
-        return idShow + " " + location + " " + date + " " + ticketsAvailable + " " + ticketsSold + " " + idArtist;
+        return idShow + " " + location + " " + date + " " +
+                ticketsAvailable + " " + ticketsSold + " " + artist.getName();
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

@@ -15,7 +15,7 @@ public class ValidatorUserTest {
 
     @Test
     public void validateValidUser() throws Exception {
-        User a = new User(1, "name", "pass");
+        User a = new User("name", "pass");
         try{
             validator.validate(a);
             assertTrue(true);
@@ -26,7 +26,7 @@ public class ValidatorUserTest {
 
     @Test
     public void validateInvalidUser() throws Exception {
-        User a = new User(1, "", "");
+        User a = new User("", "");
         try{
             validator.validate(a);
             assertTrue(false);

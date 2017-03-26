@@ -1,5 +1,6 @@
 package Validation;
 
+import Domain.Artist;
 import Domain.Show;
 import Validation.Exceptions.ValidatorException;
 import org.junit.Test;
@@ -14,9 +15,10 @@ public class ValidatorShowTest {
 
     @Test
     public void validateValidShow() throws Exception {
-        Show s = new Show(1, "loc", "2016-03-22", 12, 0, 1);
+        Artist artist = new Artist(1, "aName");
+        Show show = new Show(1, "location", "2016-03-03 20:00", 100, 0, artist);
         try{
-            validator.validate(s);
+            validator.validate(show);
             assertTrue(true);
         } catch (ValidatorException e){
             assertTrue(false);
@@ -25,9 +27,10 @@ public class ValidatorShowTest {
 
     @Test
     public void validateInvalidShow() throws Exception {
-        Show s = new Show(1, "loc", "2016-03-22", -12, 0, 1);
+        Artist artist = new Artist(1, "aName");
+        Show show = new Show(1, "location", "2016-03-03 20:00", -10, 0, artist);
         try{
-            validator.validate(s);
+            validator.validate(show);
             assertTrue(false);
         } catch (ValidatorException e){
             assertTrue(true);

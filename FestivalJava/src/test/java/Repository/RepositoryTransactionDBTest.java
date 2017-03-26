@@ -51,9 +51,11 @@ public class RepositoryTransactionDBTest {
 
     @Test
     public void save() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
-        repoTrans.save(new Transaction(1, "nume", 2, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        repoShow.save(show);
+        repoTrans.save(new Transaction(1, "nume", 2, show));
 
         assertTrue(repoTrans.getById(1).getClientName().equals("nume"));
 
@@ -61,10 +63,12 @@ public class RepositoryTransactionDBTest {
 
     @Test
     public void delete() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        repoShow.save(show);
 
-        repoTrans.save(new Transaction(1, "nume", 2, 1));
+        repoTrans.save(new Transaction(1, "nume", 2, show));
 
         assertTrue(repoTrans.getAll().size() == 1);
 
@@ -76,19 +80,23 @@ public class RepositoryTransactionDBTest {
 
     @Test
     public void update() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
-        repoTrans.save(new Transaction(1, "nume", 2, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        repoShow.save(show);
+        repoTrans.save(new Transaction(1, "nume", 2, show));
 
-        repoTrans.update(1, new Transaction(1, "altnume", 2, 1));
+        repoTrans.update(1, new Transaction(1, "altnume", 2, show));
         assertTrue(repoTrans.getById(1).getClientName().equals("altnume"));
     }
 
     @Test
     public void getById() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
-        repoTrans.save(new Transaction(1, "nume", 2, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        repoShow.save(show);
+        repoTrans.save(new Transaction(1, "nume", 2, show));
 
         assertTrue(repoTrans.getById(1).getClientName().equals("nume"));
         assertTrue(repoTrans.getById(2) == null);
@@ -96,12 +104,14 @@ public class RepositoryTransactionDBTest {
 
     @Test
     public void getAll() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        repoShow.save(show);
 
         assertTrue(repoTrans.getAll().size() == 0);
 
-        repoTrans.save(new Transaction(1, "nume", 2, 1));
+        repoTrans.save(new Transaction(1, "nume", 2, show));
 
         assertTrue(repoTrans.getAll().size() == 1);
     }

@@ -1,5 +1,7 @@
 package Repository;
 
+import Domain.Artist;
+import Domain.Show;
 import Domain.Transaction;
 import Repository.Interfaces.IDatabaseRepository;
 import Repository.Interfaces.IRepository;
@@ -32,7 +34,7 @@ public class RepositoryTransactionDB implements ITransactionRepository {
             statement.setInt(1, transaction.getIdTransaction());
             statement.setString(2, transaction.getClientName());
             statement.setInt(3, transaction.getNumberOfTickets());
-            statement.setInt(4, transaction.getIdShow());
+            statement.setInt(4, transaction.getShow().getIdShow());
             statement.executeUpdate();
         } catch (SQLException e){
             System.out.println("Db error" + e);
@@ -60,7 +62,7 @@ public class RepositoryTransactionDB implements ITransactionRepository {
             statement.setInt(1, transaction.getIdTransaction());
             statement.setString(2, transaction.getClientName());
             statement.setInt(3, transaction.getNumberOfTickets());
-            statement.setInt(4, transaction.getIdShow());
+            statement.setInt(4, transaction.getShow().getIdShow());
             statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e){
@@ -71,7 +73,14 @@ public class RepositoryTransactionDB implements ITransactionRepository {
     @Override
     public Transaction getById(Integer id) {
         Connection con = jdbcUtils.getConnection();
-        try(PreparedStatement statement = con.prepareStatement("SELECT * FROM transactions WHERE idTransaction = ?")){
+        try(PreparedStatement statement = con.prepareStatement("SELECT " +
+                "idTransaction, clientName, numberOfTickets, " +
+                "shows.idShow, location, date, ticketsAvailable, ticketsSold, " +
+                "artists.idArtist, name " +
+                "from transactions " +
+                "INNER JOIN shows on transactions.idShow = shows.idShow " +
+                "INNER JOIN artists on shows.idArtist = artists.idArtist " +
+                "where idTransaction = ?")){
             statement.setInt(1, id);
             try(ResultSet resultSet = statement.executeQuery()){
                 if (resultSet.next()){
@@ -79,7 +88,15 @@ public class RepositoryTransactionDB implements ITransactionRepository {
                     String clientName = resultSet.getString("clientName");
                     Integer numberOfTickets = resultSet.getInt("numberOfTickets");
                     Integer idShow = resultSet.getInt("idShow");
-                    return new Transaction(idTransaction, clientName, numberOfTickets, idShow);
+                    String location = resultSet.getString("location");
+                    String date = resultSet.getString("date");
+                    Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
+                    Integer ticketsSold = resultSet.getInt("ticketsSold");
+                    Integer idArtist = resultSet.getInt("idArtist");
+                    String name = resultSet.getString("name");
+                    Artist artist = new Artist(idArtist, name);
+                    Show show = new Show(idShow, location, date, ticketsAvailable, ticketsSold, artist);
+                    return new Transaction(idTransaction, clientName, numberOfTickets, show);
                 }
             }
         } catch (SQLException e){
@@ -92,14 +109,28 @@ public class RepositoryTransactionDB implements ITransactionRepository {
     public List<Transaction> getAll() {
         Connection con = jdbcUtils.getConnection();
         List<Transaction> transactions = new ArrayList<>();
-        try(PreparedStatement statement = con.prepareStatement("select * from transactions")) {
+        try(PreparedStatement statement = con.prepareStatement("SELECT " +
+                "idTransaction, clientName, numberOfTickets, " +
+                "shows.idShow, location, date, ticketsAvailable, ticketsSold, " +
+                "artists.idArtist, name " +
+                "from transactions " +
+                "INNER JOIN shows on transactions.idShow = shows.idShow " +
+                "INNER JOIN artists on shows.idArtist = artists.idArtist")) {
             try(ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Integer idTransaction = resultSet.getInt("idTransaction");
                     String clientName = resultSet.getString("clientName");
                     Integer numberOfTickets = resultSet.getInt("numberOfTickets");
                     Integer idShow = resultSet.getInt("idShow");
-                    transactions.add(new Transaction(idTransaction, clientName, numberOfTickets, idShow));
+                    String location = resultSet.getString("location");
+                    String date = resultSet.getString("date");
+                    Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
+                    Integer ticketsSold = resultSet.getInt("ticketsSold");
+                    Integer idArtist = resultSet.getInt("idArtist");
+                    String name = resultSet.getString("name");
+                    Artist artist = new Artist(idArtist, name);
+                    Show show = new Show(idShow, location, date, ticketsAvailable, ticketsSold, artist);
+                    transactions.add(new Transaction(idTransaction, clientName, numberOfTickets, show));
                 }
             }
         } catch (SQLException e) {
@@ -116,7 +147,7 @@ public class RepositoryTransactionDB implements ITransactionRepository {
                 " values(?, ?, ?)")){
             statement.setString(1, transaction.getClientName());
             statement.setInt(2, transaction.getNumberOfTickets());
-            statement.setInt(3, transaction.getIdShow());
+            statement.setInt(3, transaction.getShow().getIdShow());
             statement.executeUpdate();
         } catch (SQLException e){
             System.out.println("Db error" + e);

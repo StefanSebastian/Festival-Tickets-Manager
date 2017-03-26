@@ -29,47 +29,45 @@ public class RepositoryUserDBTest {
     @After
     public void tearDown() throws Exception {
         for (User a : repo.getAll()){
-            repo.delete(a.getIdUser());
+            repo.delete(a.getUsername());
         }
         repo = null;
     }
 
     @Test
     public void save() throws Exception {
-        repo.save(new User(1, "nume", "pass"));
+        repo.save(new User("nume", "pass"));
         assertTrue(repo.getAll().size() == 1);
     }
 
     @Test
     public void delete() throws Exception {
-        repo.save(new User(1, "nume", "pass"));
+        repo.save(new User("nume", "pass"));
         assertTrue(repo.getAll().size() == 1);
-        repo.delete(1);
+        repo.delete("nume");
         assertTrue(repo.getAll().size() == 0);
     }
 
     @Test
     public void update() throws Exception {
-        repo.save(new User(1, "nume", "pass"));
-        repo.update(1, new User(2, "nume2", "pass2"));
-        User u = repo.getById(2);
-        assertTrue(u.getIdUser() == 2);
+        repo.save(new User("nume", "pass"));
+        repo.update("nume", new User("nume2", "pass2"));
+        User u = repo.getById("nume2");
         assertTrue(u.getUsername().equals("nume2"));
     }
 
     @Test
     public void getById() throws Exception {
-        repo.save(new User(1, "nume", "pass"));
-        User u = repo.getById(1);
-        assertTrue(u.getIdUser() == 1);
+        repo.save(new User("nume", "pass"));
+        User u = repo.getById("nume");
         assertTrue(u.getUsername().equals("nume"));
     }
 
     @Test
     public void getAll() throws Exception {
-        repo.save(new User(1, "nume", "pass"));
+        repo.save(new User("nume", "pass"));
         assertTrue(repo.getAll().size() == 1);
-        repo.save(new User(2, "nume2", "pass2"));
+        repo.save(new User("nume2", "pass2"));
         assertTrue(repo.getAll().size() == 2);
     }
 

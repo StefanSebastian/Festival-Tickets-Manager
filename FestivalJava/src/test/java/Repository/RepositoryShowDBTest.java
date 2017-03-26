@@ -43,18 +43,21 @@ public class RepositoryShowDBTest {
 
     @Test
     public void save() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
 
-        assertTrue(repoShow.getById(1).getIdArtist() == 1);
+        assertTrue(repoShow.getById(1).getArtist().getIdArtist() == 1);
         assertTrue(repoShow.getById(1).getLocation().equals("loc"));
 
     }
 
     @Test
     public void delete() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+
+        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
 
         assertTrue(repoShow.getAll().size() == 1);
         repoShow.delete(1);
@@ -63,18 +66,22 @@ public class RepositoryShowDBTest {
 
     @Test
     public void update() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
 
-        repoShow.update(1, new Show(1, "locul", "2016-03-03 21:00", 22, 0, 1));
+        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
+
+        repoShow.update(1, new Show(1, "locul", "2016-03-03 21:00", 22, 0, artist));
         assertTrue(repoShow.getById(1).getLocation().equals("locul"));
 
     }
 
     @Test
     public void getById() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+
+        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
 
         assertTrue(repoShow.getById(1).getLocation().equals("loc"));
         assertTrue(repoShow.getById(2) == null);
@@ -83,11 +90,13 @@ public class RepositoryShowDBTest {
 
     @Test
     public void getAll() throws Exception {
-        repoArtist.save(new Artist(1, "name"));
+        Artist artist = new Artist(1, "name");
+        repoArtist.save(artist);
+
 
         assertTrue(repoShow.getAll().size() == 0);
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, 1));
-        repoShow.save(new Show(2, "loc", "2016-03-03 21:00", 12, 0, 1));
+        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
+        repoShow.save(new Show(2, "loc", "2016-03-03 21:00", 12, 0, artist));
         assertTrue(repoShow.getAll().size() == 2);
 
     }

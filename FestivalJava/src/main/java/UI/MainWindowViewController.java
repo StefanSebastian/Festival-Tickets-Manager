@@ -387,7 +387,7 @@ public class MainWindowViewController implements Observer {
         //gets all shows for the given date
         //gets all artists for those shows
         for (Show s : showList){
-            Artist artist = appController.getArtistById(s.getIdArtist());
+            Artist artist = appController.getArtistById(s.getArtist().getIdArtist());
 
             showsArtists.add(new ShowArtist(s.getIdShow(),
                     s.getLocation(), s.getDate(), s.getTicketsAvailable(),

@@ -94,7 +94,7 @@ public class AppController {
 
         serviceShow.update(idShow, show);
 
-        serviceTransaction.saveWithoutId(new Transaction(clientName, nrTickets, show.getIdShow()));
+        serviceTransaction.saveWithoutId(new Transaction(clientName, nrTickets, show));
     }
 
     /*

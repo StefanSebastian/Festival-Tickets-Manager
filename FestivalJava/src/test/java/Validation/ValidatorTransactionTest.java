@@ -1,5 +1,7 @@
 package Validation;
 
+import Domain.Artist;
+import Domain.Show;
 import Domain.Transaction;
 import Validation.Exceptions.ValidatorException;
 import org.junit.Test;
@@ -14,7 +16,9 @@ public class ValidatorTransactionTest {
 
     @Test
     public void validateValidTransaction() throws Exception {
-        Transaction t = new Transaction(1, "client", 12, 1);
+        Artist artist = new Artist(1, "aName");
+        Show show = new Show(1, "location", "2016-03-03 20:00", 100, 0, artist);
+        Transaction t = new Transaction(1, "client", 12, show);
         try{
             validatorTransaction.validate(t);
             assertTrue(true);
@@ -25,7 +29,9 @@ public class ValidatorTransactionTest {
 
     @Test
     public void validateInvalidTransactionTickets() throws Exception {
-        Transaction t = new Transaction(1, "client", -3, 1);
+        Artist artist = new Artist(1, "aName");
+        Show show = new Show(1, "location", "2016-03-03 20:00", 100, 0, artist);
+        Transaction t = new Transaction(1, "client", -3, show);
         try{
             validatorTransaction.validate(t);
             assertTrue(false);
@@ -36,7 +42,9 @@ public class ValidatorTransactionTest {
 
     @Test
     public void validateInvalidTransactionClient() throws Exception {
-        Transaction t = new Transaction(1, "", 3, 1);
+        Artist artist = new Artist(1, "aName");
+        Show show = new Show(1, "location", "2016-03-03 20:00", 100, 0, artist);
+        Transaction t = new Transaction(1, "", 3, show);
         try{
             validatorTransaction.validate(t);
             assertTrue(false);

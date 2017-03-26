@@ -13,23 +13,23 @@ public class Transaction {
     //number of tickets bought
     private Integer numberOfTickets;
 
-    //id of the show for which the tickets were bought
-    private Integer idShow;
+    //show for which the tickets were bought
+    private Show show;
 
     //Constructor
-    public Transaction(Integer idTransaction, String clientName, Integer numberOfTickets, Integer idShow){
+    public Transaction(Integer idTransaction, String clientName, Integer numberOfTickets, Show show){
         this.idTransaction = idTransaction;
         this.clientName = clientName;
         this.numberOfTickets = numberOfTickets;
-        this.idShow = idShow;
+        this.show = show;
     }
 
     //Constructor with default id
-    public Transaction(String clientName, Integer numberOfTickets, Integer idShow){
+    public Transaction(String clientName, Integer numberOfTickets, Show show){
         this.idTransaction = 0;
         this.clientName = clientName;
         this.numberOfTickets = numberOfTickets;
-        this.idShow = idShow;
+        this.show = show;
     }
 
 
@@ -58,16 +58,18 @@ public class Transaction {
         this.numberOfTickets = numberOfTickets;
     }
 
-    public Integer getIdShow() {
-        return idShow;
-    }
-
-    public void setIdShow(Integer idShow) {
-        this.idShow = idShow;
-    }
 
     @Override
     public String toString(){
-        return idTransaction + " " + clientName + " " + numberOfTickets + " " + idShow;
+        return idTransaction + " " + clientName + " " +
+                numberOfTickets + " " + show.getIdShow();
+    }
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
     }
 }
