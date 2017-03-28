@@ -22,10 +22,10 @@ namespace Festival
             IShowRepository repoShow = new ShowDbRepository();
             ITransactionRepository repoTransaction = new TransactionDbRepository();
 
-            ServiceUser serviceUser = new ServiceUser(repoUser, new ValidatorUser());
-            ServiceArtist serviceArtist = new ServiceArtist(repoArtist, new ValidatorArtist());
-            ServiceShow serviceShow = new ServiceShow(repoShow, new ValidatorShow());
-            ServiceTransaction serviceTransaction = new ServiceTransaction(repoTransaction, new ValidatorTransaction());
+            IServiceUser serviceUser = new ServiceUser(repoUser, new ValidatorUser());
+            IServiceArtist serviceArtist = new ServiceArtist(repoArtist, new ValidatorArtist());
+            IServiceShow serviceShow = new ServiceShow(repoShow, new ValidatorShow());
+            IServiceTransaction serviceTransaction = new ServiceTransaction(repoTransaction, new ValidatorTransaction());
 
             ControllerApp controllerApp = new ControllerApp(serviceUser, serviceArtist, serviceShow, serviceTransaction);
 

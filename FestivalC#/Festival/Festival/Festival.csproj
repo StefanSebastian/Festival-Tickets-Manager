@@ -53,6 +53,10 @@
     <Compile Include="ConnectionUtils\ConnectionFactory.cs" />
     <Compile Include="ConnectionUtils\MySQLConnectionFactory.cs" />
     <Compile Include="Controller\ControllerApp.cs" />
+    <Compile Include="Service\IServiceArtist.cs" />
+    <Compile Include="Service\IServiceShow.cs" />
+    <Compile Include="Service\IServiceTransaction.cs" />
+    <Compile Include="Service\IServiceUser.cs" />
     <Compile Include="UI\Login.cs">
       <SubType>Form</SubType>
     </Compile>

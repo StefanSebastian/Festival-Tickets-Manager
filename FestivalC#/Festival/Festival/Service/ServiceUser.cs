@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Festival.Service
 {
-    public class ServiceUser
+    public class ServiceUser : IServiceUser
     {
         //repo
         private IUserRepository repository;

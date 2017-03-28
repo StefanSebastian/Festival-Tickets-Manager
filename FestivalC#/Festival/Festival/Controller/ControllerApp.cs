@@ -11,16 +11,16 @@ namespace Festival.Controller
 {
     public class ControllerApp
     {
-        private ServiceUser serviceUser;
-        private ServiceArtist serviceArtist;
-        private ServiceShow serviceShow;
-        private ServiceTransaction serviceTransaction;
+        private IServiceUser serviceUser;
+        private IServiceArtist serviceArtist;
+        private IServiceShow serviceShow;
+        private IServiceTransaction serviceTransaction;
         
         public ControllerApp(
-            ServiceUser serviceUser,
-            ServiceArtist serviceArtist,
-            ServiceShow serviceShow,
-            ServiceTransaction serviceTransaction
+            IServiceUser serviceUser,
+            IServiceArtist serviceArtist,
+            IServiceShow serviceShow,
+            IServiceTransaction serviceTransaction
             )
         {
             this.serviceUser = serviceUser;

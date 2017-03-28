@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Festival.Service
 {
-    public class ServiceShow
+    public class ServiceShow : IServiceShow
     {
         //repository
         private IShowRepository repository;
