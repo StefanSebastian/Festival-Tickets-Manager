@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: Model-1.0-SNAPSHOT.jar Repository-1.0-SNAPSHOT.jar Service
+ s-1.0-SNAPSHOT.jar Networking-1.0-SNAPSHOT.jar mysql-connector-java-5
+ .1.6.jar
+Main-Class: StartRpcServer
+

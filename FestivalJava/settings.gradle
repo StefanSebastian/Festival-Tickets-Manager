@@ -1,2 +1,8 @@
 rootProject.name = 'Festival'
+include 'Model'
+include 'Repository'
+include 'Services'
+include 'Server'
+include 'Client'
+include 'Networking'
 
