@@ -187,6 +187,7 @@ public class FestivalServerRpcProxy implements IFestivalServer {
                     }
                 } catch (IOException | ClassNotFoundException ex){
                     System.out.println("Client reader stopped");
+                    finished = true;
                 }
             }
         }

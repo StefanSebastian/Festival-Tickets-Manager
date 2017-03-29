@@ -488,7 +488,7 @@ public class MainWindowViewController {
             stage.show();
 
         } catch (IOException | ServiceException exc){
-            exc.printStackTrace();
+            currentStage.close();
         }
     }
 
