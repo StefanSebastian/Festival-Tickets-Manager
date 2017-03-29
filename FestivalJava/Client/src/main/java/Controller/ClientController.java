@@ -37,7 +37,7 @@ public class ClientController implements IFestivalClient {
 
     }
 
-    public List<Artist> getArtists(){
+    public List<Artist> getArtists() throws ServiceException{
         return server.getArtists();
     }
 

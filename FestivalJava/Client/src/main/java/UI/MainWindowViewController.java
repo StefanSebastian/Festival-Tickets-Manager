@@ -52,7 +52,12 @@ public class MainWindowViewController {
         this.currentStage = primaryStage;
 
         //set items for the list of artists
-        artists = FXCollections.observableArrayList(clientController.getArtists());
+        try {
+            artists = FXCollections.observableArrayList(clientController.getArtists());
+        } catch (ServiceException e) { //if we cant load the artist list 
+            showAlert(e.getMessage());
+            logOut();
+        }
         listViewArtists.setItems(artists);
         listViewArtists.getSelectionModel().selectedItemProperty().addListener(artistSelectionChanged());
 
@@ -490,6 +495,17 @@ public class MainWindowViewController {
         } catch (IOException | ServiceException exc){
             currentStage.close();
         }
+    }
+
+    /*
+    Displays an alert with the given message
+     */
+    private void showAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Application error");
+        alert.setContentText(message);
+        alert.show();
     }
 
 }

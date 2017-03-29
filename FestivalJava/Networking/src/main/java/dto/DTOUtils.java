@@ -5,6 +5,9 @@ import Domain.Show;
 import Domain.Transaction;
 import Domain.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Sebi on 29-Mar-17.
  */
@@ -69,5 +72,21 @@ public class DTOUtils {
         Integer numberOfTickets = transaction.getNumberOfTickets();
         Show show = transaction.getShow();
         return new TransactionDTO(id, clientName, numberOfTickets, show);
+    }
+
+    public static List<Artist> getListArtistFromDTO(List<ArtistDTO> artists){
+        List<Artist> artistList = new ArrayList<>();
+        for (ArtistDTO artistDTO : artists){
+            artistList.add(getArtistFromDTO(artistDTO));
+        }
+        return artistList;
+    }
+
+    public static List<ArtistDTO> getListArtistDTO(List<Artist> artists){
+        List<ArtistDTO> artistDTOList = new ArrayList<>();
+        for (Artist artist : artists){
+            artistDTOList.add(getArtistDTO(artist));
+        }
+        return artistDTOList;
     }
 }

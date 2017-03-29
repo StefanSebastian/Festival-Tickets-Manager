@@ -1,9 +1,11 @@
 package rpcprotocol;
 
+import Domain.Artist;
 import Domain.User;
 import AppServices.IFestivalClient;
 import AppServices.IFestivalServer;
 import Validation.Exceptions.ServiceException;
+import dto.ArtistDTO;
 import dto.DTOUtils;
 import dto.UserDTO;
 
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 /**
  * Created by Sebi on 29-Mar-17.
@@ -107,6 +110,18 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
                 connected = false;
                 return new Response.Builder().type(ResponseType.OK).build();
             } catch (ServiceException e){
+                return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            }
+        }
+
+        if (request.getType() == RequestType.GET_ARTISTS){
+            System.out.println("Get artists request");
+
+            try {
+                List<Artist> artists = server.getArtists();
+                List<ArtistDTO> artistDTOs = DTOUtils.getListArtistDTO(artists);
+                return new Response.Builder().type(ResponseType.GET_ARTISTS).data(artistDTOs).build();
+            } catch (ServiceException e) {
                 return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
             }
         }

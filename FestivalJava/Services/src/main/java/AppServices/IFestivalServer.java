@@ -15,7 +15,7 @@ public interface IFestivalServer {
     /*
     Gets all artists
      */
-    List<Artist> getArtists();
+    List<Artist> getArtists() throws ServiceException;
 
     /*
     Gets all shows for a given artist
