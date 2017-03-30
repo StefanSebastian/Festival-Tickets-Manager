@@ -20,7 +20,7 @@ public interface IFestivalServer {
     /*
     Gets all shows for a given artist
      */
-    List<Show> getShowsForArtist(Integer idArtist);
+    List<Show> getShowsForArtist(Integer idArtist) throws ServiceException;
 
     /*
     Gets all shows for a given date

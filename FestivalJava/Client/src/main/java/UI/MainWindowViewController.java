@@ -382,9 +382,13 @@ public class MainWindowViewController {
             return;
         }
 
-        shows = FXCollections.observableArrayList(
-                clientController.getShowsForArtist(artist.getIdArtist()));
-        tableViewShows.setItems(shows);
+        try {
+            shows = FXCollections.observableArrayList(
+                    clientController.getShowsForArtist(artist.getIdArtist()));
+            tableViewShows.setItems(shows);
+        } catch (ServiceException ex){
+            showAlert(ex.getMessage());
+        }
     }
 
     /*

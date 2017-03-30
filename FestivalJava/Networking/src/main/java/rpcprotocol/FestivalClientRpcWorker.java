@@ -1,12 +1,14 @@
 package rpcprotocol;
 
 import Domain.Artist;
+import Domain.Show;
 import Domain.User;
 import AppServices.IFestivalClient;
 import AppServices.IFestivalServer;
 import Validation.Exceptions.ServiceException;
 import dto.ArtistDTO;
 import dto.DTOUtils;
+import dto.ShowDTO;
 import dto.UserDTO;
 
 import java.io.IOException;
@@ -121,6 +123,21 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
                 List<Artist> artists = server.getArtists();
                 List<ArtistDTO> artistDTOs = DTOUtils.getListArtistDTO(artists);
                 return new Response.Builder().type(ResponseType.GET_ARTISTS).data(artistDTOs).build();
+            } catch (ServiceException e) {
+                return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            }
+        }
+
+        if (request.getType() == RequestType.GET_SHOWS_FOR_ARTIST){
+            System.out.println("Get shows for artists request");
+
+            try{
+                Integer idArtist = (Integer)request.getData();
+                List<Show> shows = server.getShowsForArtist(idArtist);
+                List<ShowDTO> showDTOs = DTOUtils.getListShowDTO(shows);
+                return new Response.Builder().type(ResponseType.GET_SHOWS).data(showDTOs).build();
+            } catch (NumberFormatException e){
+                return new Response.Builder().type(ResponseType.ERROR).data("Id must be integer").build();
             } catch (ServiceException e) {
                 return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
             }

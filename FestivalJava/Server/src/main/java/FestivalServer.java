@@ -46,12 +46,12 @@ public class FestivalServer implements IFestivalServer {
     }
 
     @Override
-    public synchronized List<Artist> getArtists() {
+    public synchronized List<Artist> getArtists() throws ServiceException {
         return serviceArtist.getAll();
     }
 
     @Override
-    public synchronized List<Show> getShowsForArtist(Integer idArtist) {
+    public synchronized List<Show> getShowsForArtist(Integer idArtist) throws ServiceException {
         return serviceShow.getShowsForArtist(idArtist);
     }
 

@@ -9,6 +9,7 @@ import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
 import dto.ArtistDTO;
 import dto.DTOUtils;
+import dto.ShowDTO;
 import dto.UserDTO;
 
 import java.io.IOException;
@@ -63,8 +64,17 @@ public class FestivalServerRpcProxy implements IFestivalServer {
     }
 
     @Override
-    public List<Show> getShowsForArtist(Integer idArtist) {
-        return new ArrayList<>();
+    public List<Show> getShowsForArtist(Integer idArtist) throws ServiceException {
+        Request request = new Request.Builder().type(RequestType.GET_SHOWS_FOR_ARTIST).build();
+        request.setData(idArtist);
+        sendRequest(request);
+        Response response = readResponse();
+        if (response.getType() == ResponseType.ERROR){
+            String msg = (String) response.getData();
+            throw new ServiceException(msg);
+        }
+        List<ShowDTO> showDTOs = (List<ShowDTO>) response.getData();
+        return DTOUtils.getListShowFromDTO(showDTOs);
     }
 
     @Override

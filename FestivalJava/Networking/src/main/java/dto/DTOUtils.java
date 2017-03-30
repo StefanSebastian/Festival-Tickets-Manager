@@ -42,7 +42,7 @@ public class DTOUtils {
         String date = showDTO.getDate();
         Integer ticketsAvailable = showDTO.getTicketsAvailable();
         Integer ticketsSold = showDTO.getTicketsSold();
-        Artist artist = showDTO.getArtist();
+        Artist artist = getArtistFromDTO(showDTO.getArtist());
         return new Show(id, location, date,
                 ticketsAvailable, ticketsSold, artist);
     }
@@ -53,7 +53,7 @@ public class DTOUtils {
         String date = show.getDate();
         Integer ticketsAvailable = show.getTicketsAvailable();
         Integer ticketsSold = show.getTicketsSold();
-        Artist artist = show.getArtist();
+        ArtistDTO artist = getArtistDTO(show.getArtist());
         return new ShowDTO(id, location, date,
                 ticketsAvailable, ticketsSold, artist);
     }
@@ -62,7 +62,7 @@ public class DTOUtils {
         Integer id = transactionDTO.getId();
         String clientName = transactionDTO.getClientName();
         Integer numberOfTickets = transactionDTO.getNumberOfTickets();
-        Show show = transactionDTO.getShow();
+        Show show = getShowFromDTO(transactionDTO.getShow());
         return new Transaction(id, clientName, numberOfTickets, show);
     }
 
@@ -70,7 +70,7 @@ public class DTOUtils {
         Integer id = transaction.getIdTransaction();
         String clientName = transaction.getClientName();
         Integer numberOfTickets = transaction.getNumberOfTickets();
-        Show show = transaction.getShow();
+        ShowDTO show = getShowDTO(transaction.getShow());
         return new TransactionDTO(id, clientName, numberOfTickets, show);
     }
 
@@ -88,5 +88,21 @@ public class DTOUtils {
             artistDTOList.add(getArtistDTO(artist));
         }
         return artistDTOList;
+    }
+
+    public static List<Show> getListShowFromDTO(List<ShowDTO> shows){
+        List<Show> showList = new ArrayList<>();
+        for (ShowDTO showDTO : shows){
+            showList.add(getShowFromDTO(showDTO));
+        }
+        return showList;
+    }
+
+    public static List<ShowDTO> getListShowDTO(List<Show> shows){
+        List<ShowDTO> showDTOList = new ArrayList<>();
+        for (Show show : shows){
+            showDTOList.add(getShowDTO(show));
+        }
+        return showDTOList;
     }
 }

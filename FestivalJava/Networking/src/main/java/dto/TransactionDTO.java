@@ -10,10 +10,10 @@ public class TransactionDTO {
     private Integer id;
     private String clientName;
     private Integer numberOfTickets;
-    private Show show;
+    private ShowDTO show;
 
     public TransactionDTO(Integer id, String clientName,
-                       Integer numberOfTickets, Show show){
+                       Integer numberOfTickets, ShowDTO show){
         this.id = id;
         this.clientName = clientName;
         this.numberOfTickets = numberOfTickets;
@@ -44,11 +44,11 @@ public class TransactionDTO {
         this.numberOfTickets = numberOfTickets;
     }
 
-    public Show getShow() {
+    public ShowDTO getShow() {
         return show;
     }
 
-    public void setShow(Show show) {
+    public void setShow(ShowDTO show) {
         this.show = show;
     }
 }

@@ -13,11 +13,11 @@ public class ShowDTO implements Serializable {
     private String date;
     private Integer ticketsAvailable;
     private Integer ticketsSold;
-    private Artist artist;
+    private ArtistDTO artist;
 
     public ShowDTO(Integer id, String location, String date,
                    Integer ticketsAvailable, Integer ticketsSold,
-                   Artist artist){
+                   ArtistDTO artist){
         this.id = id;
         this.location = location;
         this.date = date;
@@ -66,11 +66,11 @@ public class ShowDTO implements Serializable {
         this.ticketsSold = ticketsSold;
     }
 
-    public Artist getArtist() {
+    public ArtistDTO getArtist() {
         return artist;
     }
 
-    public void setArtist(Artist artist) {
+    public void setArtist(ArtistDTO artist) {
         this.artist = artist;
     }
 }
