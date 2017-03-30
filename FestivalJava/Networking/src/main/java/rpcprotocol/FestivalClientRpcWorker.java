@@ -68,7 +68,8 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
                 System.out.println("Sent response");
 
             } catch (IOException | ClassNotFoundException ex){
-                ex.printStackTrace();
+                System.out.println("Disconnected while trying to read");
+                break;
             }
         }
 
