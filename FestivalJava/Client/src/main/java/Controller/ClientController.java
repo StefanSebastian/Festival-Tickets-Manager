@@ -45,7 +45,7 @@ public class ClientController implements IFestivalClient {
         return server.getShowsForArtist(idArtist);
     }
 
-    public List<Show> getShowsForDate(String date){
+    public List<Show> getShowsForDate(String date) throws ServiceException{
         return server.getShowsForDate(date);
     }
 

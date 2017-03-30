@@ -396,7 +396,13 @@ public class MainWindowViewController {
      */
     @FXML
     private void getShowsForDate(){
-        List<Show> showList  = clientController.getShowsForDate(datePicker.getEditor().getText());
+        List<Show> showList  = null;
+        try {
+            showList = clientController.getShowsForDate(datePicker.getEditor().getText());
+        } catch (ServiceException e) { // we cant load shows
+            showAlert(e.getMessage());
+            logOut();
+        }
         List<ShowArtist> showsArtists = new ArrayList<>();
 
         //gets all shows for the given date

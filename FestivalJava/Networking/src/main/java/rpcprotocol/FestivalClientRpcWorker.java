@@ -144,6 +144,19 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
             }
         }
 
+        if (request.getType() == RequestType.GET_SHOWS_FOR_DATE){
+            System.out.println("Get shows for date request");
+
+            try{
+                String date = (String) request.getData();
+                List<Show> shows = server.getShowsForDate(date);
+                List<ShowDTO> showDTOs = DTOUtils.getListShowDTO(shows);
+                return new Response.Builder().type(ResponseType.GET_SHOWS).data(showDTOs).build();
+            } catch (ServiceException e) {
+                return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            }
+        }
+
         return response;
     }
 

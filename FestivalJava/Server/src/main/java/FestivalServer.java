@@ -56,7 +56,7 @@ public class FestivalServer implements IFestivalServer {
     }
 
     @Override
-    public synchronized List<Show> getShowsForDate(String date) {
+    public synchronized List<Show> getShowsForDate(String date) throws ServiceException {
         return serviceShow.getShowsForDate(date);
     }
 

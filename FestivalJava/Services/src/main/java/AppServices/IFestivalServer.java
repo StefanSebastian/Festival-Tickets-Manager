@@ -25,7 +25,7 @@ public interface IFestivalServer {
     /*
     Gets all shows for a given date
      */
-    List<Show> getShowsForDate(String date);
+    List<Show> getShowsForDate(String date) throws ServiceException;
 
     /*
     Attempts to buy tickets for a show

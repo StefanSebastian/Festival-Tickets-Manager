@@ -78,8 +78,17 @@ public class FestivalServerRpcProxy implements IFestivalServer {
     }
 
     @Override
-    public List<Show> getShowsForDate(String date) {
-        return new ArrayList<>();
+    public List<Show> getShowsForDate(String date) throws ServiceException{
+        Request request = new Request.Builder().type(RequestType.GET_SHOWS_FOR_DATE).build();
+        request.setData(date);
+        sendRequest(request);
+        Response response = readResponse();
+        if (response.getType() == ResponseType.ERROR){
+            String msg = (String) response.getData();
+            throw new ServiceException(msg);
+        }
+        List<ShowDTO> showDTOs = (List<ShowDTO>) response.getData();
+        return DTOUtils.getListShowFromDTO(showDTOs);
     }
 
     @Override
