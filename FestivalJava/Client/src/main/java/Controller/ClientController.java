@@ -5,6 +5,7 @@ import Domain.Show;
 import Domain.User;
 import AppServices.IFestivalClient;
 import AppServices.IFestivalServer;
+import ObserverPattern.AbstractObservable;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by Sebi on 28-Mar-17.
  */
-public class ClientController implements IFestivalClient {
+public class ClientController extends AbstractObservable<Show> implements IFestivalClient {
     private IFestivalServer server;
     private User user;
 
@@ -32,9 +33,11 @@ public class ClientController implements IFestivalClient {
         user = null;
     }
 
+    //notification from server recieved
     @Override
-    public void showsUpdated() {
-
+    public void showUpdated(Show show) throws ServiceException {
+        System.out.println("Update received!!!!");
+        notifyObservers(show);
     }
 
     public List<Artist> getArtists() throws ServiceException{

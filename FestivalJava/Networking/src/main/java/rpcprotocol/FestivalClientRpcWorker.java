@@ -6,10 +6,8 @@ import Domain.User;
 import AppServices.IFestivalClient;
 import AppServices.IFestivalServer;
 import Validation.Exceptions.ServiceException;
-import dto.ArtistDTO;
-import dto.DTOUtils;
-import dto.ShowDTO;
-import dto.UserDTO;
+import Validation.Exceptions.ValidatorException;
+import dto.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -64,8 +62,9 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
                 //send response if able
                 if (response != null){
                     sendResponse(response);
+                    System.out.println("Sent response");
                 }
-                System.out.println("Sent response");
+
 
             } catch (IOException | ClassNotFoundException ex){
                 System.out.println("Disconnected while trying to read");
@@ -157,6 +156,18 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
             }
         }
 
+        if (request.getType() == RequestType.BUY_TICKETS){
+            System.out.println("Buy tickets request");
+
+            BuyTicketsDTO buyTicketsDTO = (BuyTicketsDTO) request.getData();
+            try {
+                server.buyTicketsForShow(buyTicketsDTO.getIdShow(), buyTicketsDTO.getClientName(), buyTicketsDTO.getNumberOfTickets());
+                return new Response.Builder().type(ResponseType.OK).build();
+            } catch (ServiceException | ValidatorException e) {
+                return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            }
+        }
+
         return response;
     }
 
@@ -164,11 +175,18 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
     private void sendResponse(Response response) throws IOException{
         System.out.println("Sending response " + response);
         outputStream.writeObject(response);
+        System.out.println("flushing");
         outputStream.flush();
     }
 
     @Override
-    public void showsUpdated() {
-
+    public void showUpdated(Show show) throws ServiceException {
+        ShowDTO showDTO = DTOUtils.getShowDTO(show);
+        Response response = new Response.Builder().type(ResponseType.SHOWS_UPDATED).data(showDTO).build();
+        try {
+            sendResponse(response);
+        } catch (IOException e) {
+            throw new ServiceException("Update notify send response error");
+        }
     }
 }

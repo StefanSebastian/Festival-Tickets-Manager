@@ -73,11 +73,6 @@ public class Show {
         this.ticketsSold = ticketsSold;
     }
 
-    @Override
-    public String toString(){
-        return idShow + " " + location + " " + date + " " +
-                ticketsAvailable + " " + ticketsSold + " " + artist.getName();
-    }
 
     public Artist getArtist() {
         return artist;
@@ -85,5 +80,23 @@ public class Show {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    @Override
+    public String toString(){
+        return idShow + " " + location + " " + date + " " +
+                ticketsAvailable + " " + ticketsSold + " " + artist.getName();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null){
+            return false;
+        }
+        if (!(obj instanceof Show)){
+            return false;
+        }
+        Show show = (Show)obj;
+        return this.idShow == show.idShow;
     }
 }

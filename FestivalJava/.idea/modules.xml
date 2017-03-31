@@ -23,6 +23,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Services/Services.iml" filepath="$PROJECT_DIR$/.idea/modules/Services/Services.iml" group="Services" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Services/Services_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Services/Services_main.iml" group="Services" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Services/Services_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Services/Services_test.iml" group="Services" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils/Utils.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils/Utils.iml" group="Utils" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils/Utils_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils/Utils_main.iml" group="Utils" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils/Utils_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils/Utils_test.iml" group="Utils" />
     </modules>
   </component>
 </project>

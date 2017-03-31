@@ -13,6 +13,7 @@
     <orderEntry type="module" module-name="Repository_main" />
     <orderEntry type="module" module-name="Services_main" />
     <orderEntry type="module" module-name="Networking_main" />
+    <orderEntry type="module" module-name="Utils_main" />
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:5.1.6" level="project" />
   </component>
 </module>

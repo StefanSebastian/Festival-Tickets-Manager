@@ -4,6 +4,7 @@ import Controller.*;
 import Domain.Artist;
 import Domain.Show;
 import Domain.ShowArtist;
+import ObserverPattern.Observer;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.UIException;
 import javafx.beans.value.ChangeListener;
@@ -31,7 +32,7 @@ import java.util.List;
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class MainWindowViewController {
+public class MainWindowViewController implements Observer<Show> {
     //controllers
     private ClientController clientController;
 
@@ -50,6 +51,9 @@ public class MainWindowViewController {
                            Stage primaryStage){
         this.clientController = clientController;
         this.currentStage = primaryStage;
+
+        //observer for server notifications
+        clientController.addObserver(this);
 
         //set items for the list of artists
         try {
@@ -474,13 +478,7 @@ public class MainWindowViewController {
         }
     }
 
-    /*
-    Called when the domain entities update
-     */
-    public void update() {
-        loadArtistShows(); //reloads shows for artist
-        getShowsForDate(); //reloads shows in search list
-    }
+
 
     /*
     Log-out
@@ -518,4 +516,29 @@ public class MainWindowViewController {
         alert.show();
     }
 
+    /*
+    When data changes
+     */
+    @Override
+    public void update(Show show) {
+        System.out.println("Updating UI");
+
+        //updates shows table
+        if (shows.contains(show)){
+            shows.set(shows.indexOf(show), show); //updates the show
+            tableViewShows.setItems(shows);
+        }
+
+        //updates search table
+        for (int i = 0; i < searchList.size(); i++){
+            if (searchList.get(i).getIdShow() == show.getIdShow()){
+                ShowArtist showArtist = searchList.get(i);
+                showArtist.setTicketsAvailable(show.getTicketsAvailable());
+                showArtist.setTicketsSold(show.getTicketsSold());
+                searchList.set(i, showArtist);
+            }
+        }
+        searchTable.setItems(searchList);
+
+    }
 }

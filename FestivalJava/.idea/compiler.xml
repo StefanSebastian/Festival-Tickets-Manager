@@ -33,6 +33,8 @@
       <module name="Server_test" target="1.8" />
       <module name="Services_main" target="1.8" />
       <module name="Services_test" target="1.8" />
+      <module name="Utils_main" target="1.8" />
+      <module name="Utils_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

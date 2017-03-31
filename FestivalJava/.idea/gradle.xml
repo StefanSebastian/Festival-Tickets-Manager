@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/Repository" />
             <option value="$PROJECT_DIR$/Server" />
             <option value="$PROJECT_DIR$/Services" />
+            <option value="$PROJECT_DIR$/Utils" />
           </set>
         </option>
       </GradleProjectSettings>

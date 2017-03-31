@@ -7,10 +7,7 @@ import Domain.Show;
 import Domain.User;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
-import dto.ArtistDTO;
-import dto.DTOUtils;
-import dto.ShowDTO;
-import dto.UserDTO;
+import dto.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -94,6 +91,16 @@ public class FestivalServerRpcProxy implements IFestivalServer {
     @Override
     public void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets) throws ServiceException, ValidatorException {
 
+        BuyTicketsDTO buyTicketsDTO = new BuyTicketsDTO(idShow, clientName, numberOfTickets);
+        Request request = new Request.Builder().type(RequestType.BUY_TICKETS).data(buyTicketsDTO).build();
+
+        sendRequest(request);
+        Response response = readResponse();
+
+        if (response.getType() == ResponseType.ERROR){
+            String msg = (String) response.getData();
+            throw new ServiceException(msg);
+        }
     }
 
     @Override
@@ -130,6 +137,7 @@ public class FestivalServerRpcProxy implements IFestivalServer {
      */
     private void sendRequest(Request request) throws ServiceException{
         try{
+            System.out.println("Sending request " + request.getType());
             outputStream.writeObject(request);
             outputStream.flush();
         } catch (IOException e) {
@@ -192,6 +200,20 @@ public class FestivalServerRpcProxy implements IFestivalServer {
         return response.getType().equals(ResponseType.SHOWS_UPDATED);
     }
 
+    //handles updates from server
+    private void handleUpdate(Response response){
+        //show values updated after transaction
+        if (response.getType() == ResponseType.SHOWS_UPDATED){
+            try {
+                ShowDTO showDTO = (ShowDTO)response.getData();
+                Show show = DTOUtils.getShowFromDTO(showDTO);
+                client.showUpdated(show);
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /*
     Reader thread
     reads responses from server
@@ -202,10 +224,11 @@ public class FestivalServerRpcProxy implements IFestivalServer {
         public void run() {
             while (!finished){
                 try{
+                    System.out.println("Tries to read..");
                     Object response = inputStream.readObject();
-                    System.out.println("Response recieved ");
+                    System.out.println("Response received " + ((Response)response).getType());
                     if (isUpdate((Response) response)){
-
+                        handleUpdate((Response) response);
                     } else {
                         try{
                             queueResponses.put((Response) response);

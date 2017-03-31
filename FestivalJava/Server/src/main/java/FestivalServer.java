@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Sebi on 28-Mar-17.
@@ -27,6 +29,9 @@ public class FestivalServer implements IFestivalServer {
     private IServiceShow serviceShow;
     private IServiceTransaction serviceTransaction;
     private IServiceUser serviceUser;
+
+    //used for notifying users in different threads
+    private final int defaultThreadsNumber = 5;
 
     /*
     Logged in clients
@@ -76,7 +81,34 @@ public class FestivalServer implements IFestivalServer {
 
         //register transaction
         serviceTransaction.saveWithoutId(new Transaction(clientName, numberOfTickets, show));
+
+        //notify everyone
+        notifyUsersTransaction(show);
     }
+
+
+    /*
+    Notifies all logged in users that a transaction has been made for a show
+     */
+    private void notifyUsersTransaction(Show show) throws ServiceException{
+        //get all logged users
+        Iterable<IFestivalClient> loggedUsers = loggedClients.values();
+
+        //create executor service
+        ExecutorService executorService = Executors.newFixedThreadPool(defaultThreadsNumber);
+
+        //notifies all clients
+        for (IFestivalClient client : loggedUsers){
+            executorService.execute(() -> {
+                try {
+                    client.showUpdated(show);
+                } catch (ServiceException e) {
+                    System.err.println("Error notifying user");
+                }
+            });
+        }
+    }
+
 
     @Override
     public synchronized void login(User user, IFestivalClient client) throws ServiceException {

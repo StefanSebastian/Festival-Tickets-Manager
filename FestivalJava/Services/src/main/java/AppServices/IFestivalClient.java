@@ -1,11 +1,14 @@
 package AppServices;
 
+import Domain.Show;
+import Validation.Exceptions.ServiceException;
+
 /**
  * Created by Sebi on 28-Mar-17.
  */
 public interface IFestivalClient {
     /*
-    Shows updated after transaction
+    Show updated after transaction
      */
-    void showsUpdated();
+    void showUpdated(Show show) throws ServiceException;
 }
