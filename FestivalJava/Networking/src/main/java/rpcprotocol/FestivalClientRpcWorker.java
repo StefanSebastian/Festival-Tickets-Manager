@@ -161,7 +161,8 @@ public class FestivalClientRpcWorker implements Runnable, IFestivalClient {
 
             BuyTicketsDTO buyTicketsDTO = (BuyTicketsDTO) request.getData();
             try {
-                server.buyTicketsForShow(buyTicketsDTO.getIdShow(), buyTicketsDTO.getClientName(), buyTicketsDTO.getNumberOfTickets());
+                server.buyTicketsForShow(buyTicketsDTO.getIdShow(), buyTicketsDTO.getClientName(),
+                        buyTicketsDTO.getNumberOfTickets(), buyTicketsDTO.getUsername());
                 return new Response.Builder().type(ResponseType.OK).build();
             } catch (ServiceException | ValidatorException e) {
                 return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();

@@ -89,9 +89,9 @@ public class FestivalServerRpcProxy implements IFestivalServer {
     }
 
     @Override
-    public void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets) throws ServiceException, ValidatorException {
+    public void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets, String username) throws ServiceException, ValidatorException {
 
-        BuyTicketsDTO buyTicketsDTO = new BuyTicketsDTO(idShow, clientName, numberOfTickets);
+        BuyTicketsDTO buyTicketsDTO = new BuyTicketsDTO(idShow, clientName, numberOfTickets, username);
         Request request = new Request.Builder().type(RequestType.BUY_TICKETS).data(buyTicketsDTO).build();
 
         sendRequest(request);

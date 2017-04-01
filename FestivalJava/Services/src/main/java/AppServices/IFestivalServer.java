@@ -29,8 +29,12 @@ public interface IFestivalServer {
 
     /*
     Attempts to buy tickets for a show
+    idShow - for which we buy tickets
+    clientName - name of the buyer
+    numberOfTickets - number of tickets bought
+    username - user that buys the tickets
      */
-    void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets) throws ServiceException, ValidatorException;
+    void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets, String username) throws ServiceException, ValidatorException;
 
     /*
     Login functionality

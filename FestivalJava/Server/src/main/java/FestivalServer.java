@@ -14,6 +14,7 @@ import Validation.Exceptions.ValidatorException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -66,7 +67,7 @@ public class FestivalServer implements IFestivalServer {
     }
 
     @Override
-    public synchronized void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets) throws ServiceException, ValidatorException {
+    public synchronized void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets, String username) throws ServiceException, ValidatorException {
         Show show = serviceShow.getById(idShow);
 
         //check if there are enough tickets
@@ -83,25 +84,29 @@ public class FestivalServer implements IFestivalServer {
         serviceTransaction.saveWithoutId(new Transaction(clientName, numberOfTickets, show));
 
         //notify everyone
-        notifyUsersTransaction(show);
+        notifyUsersTransaction(username, show);
     }
 
 
     /*
     Notifies all logged in users that a transaction has been made for a show
+    does not notify the buyer
      */
-    private void notifyUsersTransaction(Show show) throws ServiceException{
+    private void notifyUsersTransaction(String buyer, Show show) throws ServiceException{
         //get all logged users
-        Iterable<IFestivalClient> loggedUsers = loggedClients.values();
+        Iterable<String> loggedUsers = loggedClients.keySet();
 
         //create executor service
         ExecutorService executorService = Executors.newFixedThreadPool(defaultThreadsNumber);
 
         //notifies all clients
-        for (IFestivalClient client : loggedUsers){
+        for (String username : loggedUsers){
             executorService.execute(() -> {
                 try {
-                    client.showUpdated(show);
+                    if (!username.equals(buyer)){
+                        IFestivalClient client = loggedClients.get(username);
+                        client.showUpdated(show);
+                    }
                 } catch (ServiceException e) {
                     System.err.println("Error notifying user");
                 }

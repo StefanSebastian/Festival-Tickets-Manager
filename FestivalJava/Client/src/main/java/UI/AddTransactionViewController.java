@@ -18,6 +18,7 @@ public class AddTransactionViewController {
     //selected show
     private ShowArtist selectedShow;
 
+
     public void initialize(ClientController clientController,
                            ShowArtist selectedShow){
         this.clientController = clientController;
@@ -70,7 +71,11 @@ public class AddTransactionViewController {
             String numberOfTickets = ticketsTextField.getText();
             Integer tickets = Integer.parseInt(numberOfTickets);
 
-            clientController.buyTicketsForShow(selectedShow.getIdShow(), clientName, tickets);
+            clientController.buyTicketsForShow(selectedShow.getIdShow(), clientName, tickets,
+                    clientController.getCurrentUser().getUsername());
+
+            //notify the other windows
+            clientController.localDataChanged();
 
             //successful transaction
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

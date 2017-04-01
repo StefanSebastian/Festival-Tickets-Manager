@@ -9,11 +9,13 @@ public class BuyTicketsDTO implements Serializable {
     private Integer idShow;
     private String clientName;
     private Integer numberOfTickets;
+    private String username;
 
-    public BuyTicketsDTO(Integer idShow, String clientName, Integer numberOfTickets) {
+    public BuyTicketsDTO(Integer idShow, String clientName, Integer numberOfTickets, String username) {
         this.idShow = idShow;
         this.clientName = clientName;
         this.numberOfTickets = numberOfTickets;
+        this.username = username;
     }
 
     public Integer getIdShow() {
@@ -40,4 +42,11 @@ public class BuyTicketsDTO implements Serializable {
         this.numberOfTickets = numberOfTickets;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

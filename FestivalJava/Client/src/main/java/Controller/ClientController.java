@@ -37,7 +37,15 @@ public class ClientController extends AbstractObservable<Show> implements IFesti
     @Override
     public void showUpdated(Show show) throws ServiceException {
         System.out.println("Update received!!!!");
-        notifyObservers(show);
+        notifyPushObservers(show);
+    }
+
+    /*
+    Notification from one of the windows that data has changed
+    updates the subscribed windows
+     */
+    public void localDataChanged(){
+        notifyObservers();
     }
 
     public List<Artist> getArtists() throws ServiceException{
@@ -52,8 +60,15 @@ public class ClientController extends AbstractObservable<Show> implements IFesti
         return server.getShowsForDate(date);
     }
 
-    public void buyTicketsForShow(Integer idShow, String client, Integer numberOfTickets) throws ServiceException, ValidatorException {
-        server.buyTicketsForShow(idShow, client, numberOfTickets);
+    public void buyTicketsForShow(Integer idShow, String client, Integer numberOfTickets, String username) throws ServiceException, ValidatorException {
+        server.buyTicketsForShow(idShow, client, numberOfTickets, username);
+    }
+
+    /*
+    Returns the currently logged in user
+     */
+    public User getCurrentUser(){
+        return this.user;
     }
 
 }
