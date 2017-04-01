@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -45,14 +46,14 @@ public class MainWindowViewController implements Observer<Show> {
     private Stage currentStage;
 
     /*
-    Init method
+    Initialize window method
      */
     public void initialize(ClientController clientController,
                            Stage primaryStage){
         this.clientController = clientController;
         this.currentStage = primaryStage;
 
-        //observer for server notifications
+        //observer for server and other UI components notifications
         clientController.addObserver(this);
 
         //set items for the list of artists
@@ -103,9 +104,9 @@ public class MainWindowViewController implements Observer<Show> {
       }
 
     @FXML
-    private ListView<Artist> listViewArtists;
+    private ListView<Artist> listViewArtists;  //displays all artists
     @FXML
-    private TableView<Show> tableViewShows;
+    private TableView<Show> tableViewShows; //displays shows for the selected artist
     @FXML
     private TableColumn<Show, String> locationColumn;
     @FXML
@@ -116,7 +117,7 @@ public class MainWindowViewController implements Observer<Show> {
     private TableColumn<Show, Integer> ticketsSoldColumn;
 
     @FXML
-    private TableView<ShowArtist> searchTable;
+    private TableView<ShowArtist> searchTable; // displays the searched shows
     @FXML
     private TableColumn<ShowArtist, String> searchTableLocationColumn;
     @FXML
@@ -128,10 +129,10 @@ public class MainWindowViewController implements Observer<Show> {
     @FXML
     private TableColumn<ShowArtist, String> searchTableArtistColumn;
     @FXML
-    private DatePicker datePicker;
+    private DatePicker datePicker; //date picker for searching by date
 
     @FXML
-    private Button logoutButton;
+    private Button logoutButton; //logout button
 
     /*
     Cell factory, used to color the ticketsAvailable cell with red when the value is 0
@@ -393,7 +394,8 @@ public class MainWindowViewController implements Observer<Show> {
     }
 
     /*
-    Listener for list selection , in artists list
+    Listener for list selection, in artists list
+    When an artist is selected, loads his shows in shows table
      */
     private ChangeListener<Artist> artistSelectionChanged(){
         return (observable, oldValue, newValue) -> {
@@ -405,11 +407,13 @@ public class MainWindowViewController implements Observer<Show> {
     Load the shows of the selected artist
      */
     private void loadArtistShows(){
+        //get selected artist in listView
         Artist artist = listViewArtists.getSelectionModel().getSelectedItem();
         if (artist == null){
             return;
         }
 
+        //update tableViewShows with the artist's shows
         try {
             shows = FXCollections.observableArrayList(
                     clientController.getShowsForArtist(artist.getIdArtist()));
@@ -426,12 +430,22 @@ public class MainWindowViewController implements Observer<Show> {
     @FXML
     private void getShowsForDate(){
         List<Show> showList  = null;
+
+        //gets all shows for the selected date
         try {
             showList = clientController.getShowsForDate(datePicker.getEditor().getText());
         } catch (ServiceException e) { // we cant load shows
             showAlert(e.getMessage());
             logOut();
         }
+
+        //if the returned value is null
+        if (showList == null){
+            return;
+        }
+
+        //list of showArtists - auxiliary class which contains details of show + it's artist
+        //used to map it to a table's columns
         List<ShowArtist> showsArtists = new ArrayList<>();
 
         //gets all shows for the given date
@@ -451,6 +465,7 @@ public class MainWindowViewController implements Observer<Show> {
 
     /*
     A string converter used to change date picker format
+    Matches format with the one displayed in tables
      */
     StringConverter<LocalDate> getStringConverter(){
         return new StringConverter<LocalDate>() {
@@ -489,34 +504,41 @@ public class MainWindowViewController implements Observer<Show> {
                 throw new UIException("You must click on a non empty table row");
             }
 
+            Stage stage = new Stage();
+
             FXMLLoader loader = new FXMLLoader(MainWindowViewController.class.getResource("AddTransactionView.fxml"));
             AnchorPane addPane = loader.load();
             AddTransactionViewController controller = loader.getController();
-            controller.initialize(clientController, selectedShow);
+            controller.initialize(clientController, selectedShow, stage);
 
-            Stage stage = new Stage();
             Scene scene = new Scene(addPane);
             stage.setScene(scene);
             stage.setTitle("Add transaction");
             stage.show();
         } catch (IOException | UIException e){
+            showAlert(e.getMessage());
         }
     }
 
 
 
     /*
-    Log-out
+    Log-out button clicked
      */
     @FXML
     private void logOut(){
         try {
+            //windows is no longer observer
             clientController.removeObserver(this);
 
+            //logout request to server
             clientController.logout();
 
-            Stage stage = new Stage();
+            //close the current stage
             currentStage.close();
+
+            //open a new stage, scene 
+            Stage stage = new Stage();
 
             FXMLLoader loader = new FXMLLoader(MainWindowViewController.class.getResource("LoginView.fxml"));
             AnchorPane loginPane = loader.load();

@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Created by Sebi on 29-Mar-17.
+ *
+ * Conversions between model objects and dto objects
  */
 public class DTOUtils {
     public static User getUserFromDTO(UserDTO userDTO){

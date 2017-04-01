@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by Sebi on 30-Mar-17.
+ *
+ * Used to transfer data for a transaction
  */
 public class BuyTicketsDTO implements Serializable {
     private Integer idShow;

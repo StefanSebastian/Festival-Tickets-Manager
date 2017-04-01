@@ -7,6 +7,8 @@ import Validation.Exceptions.ValidatorException;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * Created by Sebi on 19-Mar-17.
@@ -15,15 +17,25 @@ public class AddTransactionViewController {
     //controllers
     private ClientController clientController;
 
-    //selected show
+    //selected show - for which we buy tickets
     private ShowArtist selectedShow;
 
+    //stage for the current window
+    private Stage currentStage;
 
+
+    /*
+    Initialize window
+     */
     public void initialize(ClientController clientController,
-                           ShowArtist selectedShow){
+                           ShowArtist selectedShow,
+                           Stage currentStage){
         this.clientController = clientController;
 
         this.selectedShow = selectedShow;
+
+        this.currentStage = currentStage;
+
 
         //slider settings
         ticketsSlider.valueProperty().addListener(ticketsSliderValueChanged());
@@ -83,6 +95,9 @@ public class AddTransactionViewController {
             alert.setHeaderText("Operation was successful");
             alert.setContentText("The transaction was registered");
             alert.show();
+
+            //close the current stage
+            currentStage.close();
         } catch (ValidatorException | ServiceException exc){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
