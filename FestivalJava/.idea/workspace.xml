@@ -62,18 +62,7 @@
           <activation />
         </task>
         <projects_view>
-          <tree_state>
-            <PATH>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
-              </PATH_ELEMENT>
-              <PATH_ELEMENT>
-                <option name="myItemId" value="Festival" />
-                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
-              </PATH_ELEMENT>
-            </PATH>
-          </tree_state>
+          <tree_state />
         </projects_view>
       </state>
     </system>
@@ -102,15 +91,14 @@
       <file leaf-file-name="MainWindowViewController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client/src/main/java/UI/MainWindowViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="392" column="37" selection-start-line="392" selection-start-column="37" selection-end-line="392" selection-end-column="37" />
+            <state relative-caret-position="-120">
+              <caret line="377" column="21" selection-start-line="377" selection-start-column="21" selection-end-line="377" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getTicketsAvailableCellFactory#0;class#MainWindowViewController#0" expanded="false" />
                 <element signature="method#getTicketsSoldCellFactory#0;class#MainWindowViewController#0" expanded="false" />
                 <element signature="method#getLocationCellFactory#0;class#MainWindowViewController#0" expanded="false" />
                 <element signature="method#getDateCellFactory#0;class#MainWindowViewController#0" expanded="false" />
-                <element signature="method#getArtistCellFactory#0;class#MainWindowViewController#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -2749,7 +2737,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2764,7 +2752,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21633889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22012103" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22012103" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3075,8 +3063,8 @@
         <state relative-caret-position="594">
           <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
           <folding>
-            <element signature="e#1600#1601#0" expanded="true" />
-            <element signature="e#1636#1637#0" expanded="true" />
+            <element signature="e#1600#1601#0" expanded="false" />
+            <element signature="e#1636#1637#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3110,10 +3098,10 @@
         <state relative-caret-position="-147">
           <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
           <folding>
-            <element signature="e#1065#1066#0" expanded="true" />
-            <element signature="e#1096#1097#0" expanded="true" />
-            <element signature="e#1144#1145#0" expanded="true" />
-            <element signature="e#1184#1185#0" expanded="true" />
+            <element signature="e#1065#1066#0" expanded="false" />
+            <element signature="e#1096#1097#0" expanded="false" />
+            <element signature="e#1144#1145#0" expanded="false" />
+            <element signature="e#1184#1185#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3190,15 +3178,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/UI/MainWindowViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="392" column="37" selection-start-line="392" selection-start-column="37" selection-end-line="392" selection-end-column="37" />
+        <state relative-caret-position="-120">
+          <caret line="377" column="21" selection-start-line="377" selection-start-column="21" selection-end-line="377" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getTicketsAvailableCellFactory#0;class#MainWindowViewController#0" expanded="false" />
             <element signature="method#getTicketsSoldCellFactory#0;class#MainWindowViewController#0" expanded="false" />
             <element signature="method#getLocationCellFactory#0;class#MainWindowViewController#0" expanded="false" />
             <element signature="method#getDateCellFactory#0;class#MainWindowViewController#0" expanded="false" />
-            <element signature="method#getArtistCellFactory#0;class#MainWindowViewController#0" expanded="false" />
           </folding>
         </state>
       </provider>

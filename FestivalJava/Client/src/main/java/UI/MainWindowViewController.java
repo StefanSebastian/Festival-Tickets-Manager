@@ -135,6 +135,8 @@ public class MainWindowViewController implements Observer<Show> {
 
     /*
     Cell factory, used to color the ticketsAvailable cell with red when the value is 0
+    Also adds the cell clicked event - when a cell in search table is clicked the transaction
+    window is opened
      */
     private Callback<TableColumn<ShowArtist, Integer>,
             TableCell<ShowArtist, Integer>> getTicketsAvailableCellFactory(){
@@ -159,9 +161,12 @@ public class MainWindowViewController implements Observer<Show> {
                     if (showArtist.getTicketsAvailable() == 0) {
                         setTextFill(Color.WHITE);
                         setStyle("-fx-background-color: red");
-                    } else {
+                    } else if (getTableRow().getIndex() % 2 == 0) {
                         setTextFill(Color.BLACK);
                         setStyle("-fx-background-color: white");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: #F9F9F9");
                     }
 
                 }
@@ -182,6 +187,8 @@ public class MainWindowViewController implements Observer<Show> {
 
     /*
     Cell factory, used to color the ticketsSold cell with red when the value of ticketsAvailable is 0
+    Also adds the cell clicked event - when a cell in search table is clicked the transaction
+    window is opened
      */
     private Callback<TableColumn<ShowArtist, Integer>,
             TableCell<ShowArtist, Integer>> getTicketsSoldCellFactory(){
@@ -206,9 +213,12 @@ public class MainWindowViewController implements Observer<Show> {
                     if (showArtist.getTicketsAvailable() == 0) {
                         setTextFill(Color.WHITE);
                         setStyle("-fx-background-color: red");
-                    } else {
+                    } else if (getTableRow().getIndex() % 2 == 0) {
                         setTextFill(Color.BLACK);
                         setStyle("-fx-background-color: white");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: #F9F9F9");
                     }
 
                 }
@@ -229,6 +239,8 @@ public class MainWindowViewController implements Observer<Show> {
 
     /*
     Cell factory, used to color the location cell with red when the value of ticketsAvailable is 0
+    Also adds the cell clicked event - when a cell in search table is clicked the transaction
+    window is opened
      */
     private Callback<TableColumn<ShowArtist, String>,
             TableCell<ShowArtist, String>> getLocationCellFactory(){
@@ -253,9 +265,12 @@ public class MainWindowViewController implements Observer<Show> {
                     if (showArtist.getTicketsAvailable() == 0) {
                         setTextFill(Color.WHITE);
                         setStyle("-fx-background-color: red");
-                    } else {
+                    } else if (getTableRow().getIndex() % 2 == 0) {
                         setTextFill(Color.BLACK);
                         setStyle("-fx-background-color: white");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: #F9F9F9");
                     }
 
                 }
@@ -276,6 +291,8 @@ public class MainWindowViewController implements Observer<Show> {
 
     /*
     Cell factory, used to color the date cell with red when the value of ticketsAvailable is 0
+    Also adds the cell clicked event - when a cell in search table is clicked the transaction
+    window is opened
      */
     private Callback<TableColumn<ShowArtist, String>,
             TableCell<ShowArtist, String>> getDateCellFactory(){
@@ -300,9 +317,12 @@ public class MainWindowViewController implements Observer<Show> {
                     if (showArtist.getTicketsAvailable() == 0) {
                         setTextFill(Color.WHITE);
                         setStyle("-fx-background-color: red");
-                    } else {
+                    } else if (getTableRow().getIndex() % 2 == 0) {
                         setTextFill(Color.BLACK);
                         setStyle("-fx-background-color: white");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: #F9F9F9");
                     }
 
                 }
@@ -323,6 +343,8 @@ public class MainWindowViewController implements Observer<Show> {
 
     /*
     Cell factory, used to color the artist cell with red when the value of ticketsAvailable is 0
+    Also adds the cell clicked event - when a cell in search table is clicked the transaction
+    window is opened
      */
     private Callback<TableColumn<ShowArtist, String>,
             TableCell<ShowArtist, String>> getArtistCellFactory(){
@@ -347,11 +369,13 @@ public class MainWindowViewController implements Observer<Show> {
                     if (showArtist.getTicketsAvailable() == 0) {
                         setTextFill(Color.WHITE);
                         setStyle("-fx-background-color: red");
-                    } else {
+                    } else if (getTableRow().getIndex() % 2 == 0) {
                         setTextFill(Color.BLACK);
                         setStyle("-fx-background-color: white");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("-fx-background-color: #F9F9F9");
                     }
-
                 }
             };
 
