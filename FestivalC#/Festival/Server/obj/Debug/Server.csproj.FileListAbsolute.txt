@@ -1,0 +1,16 @@
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Server.exe.config
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Server.exe
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Server.pdb
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Model.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Networking.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Repository.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Services.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\MySql.Data.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Model.pdb
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Networking.pdb
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Repository.pdb
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\Services.pdb
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\bin\Debug\MySql.Data.xml
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\obj\Debug\Server.exe
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Server\obj\Debug\Server.pdb
