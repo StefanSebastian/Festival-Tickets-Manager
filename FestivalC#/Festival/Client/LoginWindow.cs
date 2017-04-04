@@ -23,8 +23,8 @@ namespace Client
 
                 MainWindow mainWindow = new MainWindow(controller);
 
-                this.Hide();
                 mainWindow.Show();
+                this.Hide();
             } catch (ServiceException ex)
             {
                 labelLogin.Text = ex.Message;
@@ -33,7 +33,7 @@ namespace Client
 
         private void LoginWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-           // Application.Exit();
+            Application.Exit();
         }
     }
 }

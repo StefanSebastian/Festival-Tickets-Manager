@@ -27,8 +27,11 @@ namespace Client
 
         public void logout() 
         {
-            server.logout(user, this);
-            user = null;
+            if (user != null)
+            {
+                server.logout(user, this);
+                user = null;
+            }
         }
 
         public void showUpdated(Show show) 

@@ -148,8 +148,8 @@ namespace Client
             controller.logout();
 
             LoginWindow loginForm = new LoginWindow(controller);
-            this.Hide();
             loginForm.Show();
+            this.Hide();
         }
 
         /*
@@ -171,9 +171,11 @@ namespace Client
             }
         }
 
+        //if the user clicks the X ; we logout then close the app
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            buttonLogout_Click(this, null);
+            controller.logout();
+            Application.Exit();
         }
 
         //updates ui
