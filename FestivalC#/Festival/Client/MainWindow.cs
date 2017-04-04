@@ -220,6 +220,7 @@ namespace Client
                 setShows(showsForArtist);
             }
 
+            colorRows();
         }
 
         //updates ui from another thread
