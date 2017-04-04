@@ -1,16 +1,19 @@
 ﻿using Client;
 using Festival.Model;
 using Festival.Validation.Exceptions;
+using Services.Validation.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Utils;
 
 namespace Client
 {
-    public partial class MainWindow : Form
+    public partial class MainWindow : Form, Observer<Show>
     {
 
         //app controller
@@ -26,6 +29,7 @@ namespace Client
             InitializeComponent();
 
             this.controller = controller;
+            controller.addObserver(this);
             initialize();
         }
 
@@ -49,9 +53,9 @@ namespace Client
         /*
          * Populates data grid depending on selected artist
          */
-        private void setShows(int idArtist)
+        private void setShows(List<Show> shows)
         {
-            showList = new BindingList<Show>(controller.getShowsForArtist(idArtist));
+            showList = new BindingList<Show>(shows);
             dataGridViewShows.DataSource = showList.Select(show => 
                     new {
                         Location = show.Location,
@@ -68,16 +72,16 @@ namespace Client
             if (listBoxArtists.SelectedItem != null)
             {
                 Artist selectedArtist = (Artist)listBoxArtists.SelectedItem;
-                setShows(selectedArtist.IdArtist);
+                setShows(controller.getShowsForArtist(selectedArtist.IdArtist));
             }
         }
 
         /*
          * Sets the searched shows 
          */
-        private void setSearchedShows(string date)
+        private void setSearchedShows(List<Show> searchedShows)
         {
-            searchList = new BindingList<Show>(controller.getShowsForDate(date));
+            searchList = new BindingList<Show>(searchedShows);
 
             dataGridViewSearch.DataSource = searchList.Select(show =>
                     new {
@@ -94,7 +98,7 @@ namespace Client
          */
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            setSearchedShows(textBoxSearch.Text);
+            setSearchedShows(controller.getShowsForDate(textBoxSearch.Text));
             colorRows();
         }
 
@@ -115,14 +119,18 @@ namespace Client
 
                 string clientName = textBoxClient.Text;
                 int numberOfTickets = Int32.Parse(textBoxNrTickets.Text);
-                
-               // controllerApp.buyTicketsForShow(selectedShow.IdShow, clientName, numberOfTickets);
+                if (clientName.Length == 0)
+                {
+                    throw new UIException("Client name must not be null");
+                }
+
+                controller.buyTicketsForShow(selectedShow.IdShow, clientName, numberOfTickets);
 
                 //updates UI 
                 listBoxArtists_SelectedIndexChanged(this, null);
                 textBoxSearch_TextChanged(this, null);
             }
-            catch (Exception ex) when (ex is UIException || ex is ValidatorException)
+            catch (Exception ex) when (ex is UIException || ex is ValidatorException || ex is ServiceException)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -142,12 +150,6 @@ namespace Client
             LoginWindow loginForm = new LoginWindow(controller);
             this.Hide();
             loginForm.Show();
-        }
-
-        //if form is closed
-        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           // Application.Exit();
         }
 
         /*
@@ -172,6 +174,58 @@ namespace Client
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             buttonLogout_Click(this, null);
+        }
+
+        //updates ui
+        private void updateUI(Show updatedShow)
+        {
+            if (searchList != null)
+            {
+                //update search table if able
+                List<Show> showsForDate = new List<Show>();
+
+                for (int i = 0; i < searchList.Count; i++)
+                {
+                    if (searchList[i].IdShow == updatedShow.IdShow)
+                    {
+                        showsForDate.Add(updatedShow);
+                    }
+                    else
+                    {
+                        showsForDate.Add(searchList[i]);
+                    }
+                }
+                setSearchedShows(showsForDate);
+            }
+
+            if (showList != null)
+            {
+
+                //update show table if able
+                List<Show> showsForArtist = new List<Show>();
+
+                for (int i = 0; i < showList.Count; i++)
+                {
+                    if (showList[i].IdShow == updatedShow.IdShow)
+                    {
+                        showsForArtist.Add(updatedShow);
+                    }
+                    else
+                    {
+                        showsForArtist.Add(showList[i]);
+                    }
+                }
+                setShows(showsForArtist);
+            }
+
+        }
+
+        //updates ui from another thread
+        public void pushUpdate(Show updatedShow)
+        {
+            this.Invoke((MethodInvoker)delegate {
+                updateUI(updatedShow);
+            });
         }
     }
 }

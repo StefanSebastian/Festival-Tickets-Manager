@@ -3,10 +3,11 @@ using Festival.Service;
 using Festival.Service.AppServices;
 using System;
 using System.Collections.Generic;
+using Utils;
 
 namespace Client
 {
-    public class ClientController : IFestivalClient
+    public class ClientController : AbstractObservable<Show>, IFestivalClient
     {
         private IFestivalServer server;
 
@@ -32,7 +33,7 @@ namespace Client
 
         public void showUpdated(Show show) 
         {
-            //notifyPushObservers(show);
+            notifyPushObservers(show);
         }
 
         public List<Artist> getArtists()
@@ -48,6 +49,11 @@ namespace Client
         public List<Show> getShowsForDate(string date)
         {
             return server.getShowsForDate(date);
+        }
+
+        public void buyTicketsForShow(int idShow, String clientName, int numberOfTickets)
+        {
+            server.buyTicketsForShow(idShow, clientName, numberOfTickets, user.Username);
         }
     }
 }

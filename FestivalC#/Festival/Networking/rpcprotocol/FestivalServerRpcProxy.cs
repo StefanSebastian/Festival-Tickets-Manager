@@ -132,7 +132,7 @@ namespace Networking.rpcprotocol
                     Console.WriteLine("Response received " + response);
                     if (isUpdate(response))
                     {
-
+                        handleUpdate(response);
                     } else
                     {
                         lock (responses)
@@ -148,6 +148,15 @@ namespace Networking.rpcprotocol
             }
         }
 
+        private void handleUpdate(Response response)
+        {
+            if (response.Type == ResponseType.SHOWS_UPDATED)
+            {
+                ShowDTO showDTO = (ShowDTO)response.Data;
+                Show show = DTOUtils.getShowFromDTO(showDTO);
+                client.showUpdated(show); 
+            }
+        }
 
 
         public List<Artist> getArtists()
@@ -191,7 +200,13 @@ namespace Networking.rpcprotocol
 
         public void buyTicketsForShow(int idShow, string clientName, int numberOfTickets, string username)
         {
-            throw new NotImplementedException();
+            BuyTicketsDTO buyTicketsDTO = new BuyTicketsDTO(idShow, clientName, numberOfTickets, username);
+            sendRequest(new Request(RequestType.BUY_TICKETS, buyTicketsDTO));
+            Response response = readResponse();
+            if (response.Type == ResponseType.ERROR)
+            {
+                throw new ServiceException((string)response.Data);
+            }
         }
 
         //login request

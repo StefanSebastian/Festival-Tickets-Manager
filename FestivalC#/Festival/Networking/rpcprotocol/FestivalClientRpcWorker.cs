@@ -83,7 +83,16 @@ namespace Networking.rpcprotocol
 
         public void showUpdated(Show show)
         {
-            throw new NotImplementedException();
+            ShowDTO showDTO = DTOUtils.getShowDTO(show);
+            Response response = new Response(ResponseType.SHOWS_UPDATED, showDTO);
+            try
+            {
+                sendResponse(response);
+            }
+            catch (Exception e)
+            {
+                throw new ServiceException("Update notify send response error");
+            }
         }
 
 
@@ -185,6 +194,29 @@ namespace Networking.rpcprotocol
                         shows = server.getShowsForDate(date);
                     }
                     return new Response(ResponseType.OK, DTOUtils.getListShowDTO(shows));
+                }
+                catch (ServiceException ex)
+                {
+                    return new Response(ResponseType.ERROR, ex.Message);
+                }
+            }
+
+            if (request.Type == RequestType.BUY_TICKETS)
+            {
+                Console.WriteLine("Buy tickets request");
+
+                try
+                {
+                    BuyTicketsDTO buyTicketsDTO = (BuyTicketsDTO)request.Data;
+
+                    lock (server)
+                    {
+                        server.buyTicketsForShow(buyTicketsDTO.IdShow,
+                            buyTicketsDTO.ClientName,
+                            buyTicketsDTO.NumberOfTickets,
+                            buyTicketsDTO.Username);
+                    }
+                    return new Response(ResponseType.OK, "ok");
                 }
                 catch (ServiceException ex)
                 {
