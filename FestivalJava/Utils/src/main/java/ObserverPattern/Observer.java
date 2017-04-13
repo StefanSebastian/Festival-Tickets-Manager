@@ -5,11 +5,6 @@ package ObserverPattern;
  */
 public interface Observer<E> {
     /*
-    Updates push observer
-     */
-    void updatePush(E e);
-
-    /*
     Updates observer
      */
     void update();

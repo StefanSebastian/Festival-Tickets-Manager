@@ -1,9 +1,11 @@
 package Domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Sebi on 09-Mar-17.
  */
-public class Transaction {
+public class Transaction implements Serializable {
     //id
     private Integer idTransaction;
 

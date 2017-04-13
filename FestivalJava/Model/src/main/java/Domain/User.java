@@ -1,9 +1,11 @@
 package Domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Sebi on 18-Mar-17.
  */
-public class User {
+public class User implements Serializable{
     //username
     private String username;
 

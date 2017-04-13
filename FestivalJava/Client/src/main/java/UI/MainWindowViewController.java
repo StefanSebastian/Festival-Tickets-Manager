@@ -566,40 +566,6 @@ public class MainWindowViewController implements Observer<Show> {
     }
 
     /*
-    When a transaction for a show has been made
-    We update the values in UI
-     */
-    @Override
-    public void updatePush(Show show) {
-        System.out.println("Updating UI");
-
-        //updates shows table
-        if (shows != null) {
-            if (shows.contains(show)) {
-                shows.set(shows.indexOf(show), show); //updates the show
-                tableViewShows.setItems(shows);
-            }
-        }
-
-        //updates search table
-        if (searchList != null) {
-
-            for (int i = 0; i < searchList.size(); i++) {
-                if (searchList.get(i).getIdShow() == show.getIdShow()) {
-                    ShowArtist showArtist = searchList.get(i);
-                    showArtist.setTicketsAvailable(show.getTicketsAvailable());
-                    showArtist.setTicketsSold(show.getTicketsSold());
-                    searchList.set(i, showArtist);
-                }
-            }
-            searchTable.setItems(searchList);
-        }
-
-        System.out.println("Finished updating ui");
-
-    }
-
-    /*
     Update all data in UI
      */
     @Override

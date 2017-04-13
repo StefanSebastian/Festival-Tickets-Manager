@@ -15,11 +15,6 @@ public interface Observable<E> {
     void removeObserver(Observer<E> o);
 
     /*
-    Notifies push observers
-     */
-    void notifyPushObservers(E e);
-
-    /*
     Notifies observers
      */
     void notifyObservers();

@@ -11,6 +11,7 @@ import ModelServices.Interfaces.IServiceUser;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,11 +104,9 @@ public class FestivalServer implements IFestivalServer {
         for (String username : loggedUsers){
             executorService.execute(() -> {
                 try {
-                    if (!username.equals(buyer)){
-                        IFestivalClient client = loggedClients.get(username);
-                        client.showUpdated(show);
-                    }
-                } catch (ServiceException e) {
+                    IFestivalClient client = loggedClients.get(username);
+                    client.showUpdated(show);
+                } catch (ServiceException | RemoteException e) {
                     System.err.println("Error notifying user");
                 }
             });

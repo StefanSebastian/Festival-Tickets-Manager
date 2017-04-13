@@ -6,16 +6,23 @@ import Domain.User;
 import AppServices.IFestivalClient;
 import AppServices.IFestivalServer;
 import ObserverPattern.AbstractObservable;
+import ObserverPattern.Observable;
+import ObserverPattern.Observer;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by Sebi on 28-Mar-17.
  * Client controller, communicates with server, serves the UI
  */
-public class ClientController extends AbstractObservable<Show> implements IFestivalClient {
+public class ClientController extends UnicastRemoteObject implements IFestivalClient, Serializable, Observable<Show> {
     //server
     private IFestivalServer server;
 
@@ -25,7 +32,7 @@ public class ClientController extends AbstractObservable<Show> implements IFesti
     /*
     Constructor - gets reference to server
      */
-    public ClientController(IFestivalServer server){
+    public ClientController(IFestivalServer server) throws RemoteException{
         this.server = server;
     }
 
@@ -55,7 +62,7 @@ public class ClientController extends AbstractObservable<Show> implements IFesti
      */
     @Override
     public void showUpdated(Show show) throws ServiceException {
-        notifyPushObservers(show);
+        notifyObservers();
     }
 
     /*
@@ -104,4 +111,23 @@ public class ClientController extends AbstractObservable<Show> implements IFesti
         return this.user;
     }
 
+
+    List<Observer<Show>> observers = new LinkedList<>();
+
+    @Override
+    public void addObserver(Observer<Show> o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer<Show> o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer<Show> o : observers){
+            o.update();
+        }
+    }
 }

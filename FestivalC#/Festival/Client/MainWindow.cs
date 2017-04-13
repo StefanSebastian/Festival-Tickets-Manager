@@ -226,7 +226,7 @@ namespace Client
         //updates ui from another thread
         public void pushUpdate(Show updatedShow)
         {
-            this.Invoke((MethodInvoker)delegate {
+            this.BeginInvoke((MethodInvoker)delegate {
                 updateUI(updatedShow);
             });
         }

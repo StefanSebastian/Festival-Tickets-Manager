@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+   <util:properties id="serverProperties" location="classpath:server.properties" />
+
+   <bean id="validatorArtist" class="Validation.ValidatorArtist"/>
+
+   <bean id="validatorShow" class="Validation.ValidatorShow"/>
+
+   <bean id="validatorTransaction" class="Validation.ValidatorTransaction"/>
+
+   <bean id="validatorUser" class="Validation.ValidatorUser"/>
+
+    <bean id="repoArtist" class="Repository.RepositoryArtistDB">
+        <constructor-arg ref="serverProperties" />
+    </bean>
+
+    <bean id="repoShow" class="Repository.RepositoryShowDB">
+        <constructor-arg ref="serverProperties" />
+    </bean>
+
+    <bean id="repoTransaction" class="Repository.RepositoryTransactionDB">
+        <constructor-arg ref="serverProperties" />
+    </bean>
+
+    <bean id="repoUser" class="Repository.RepositoryUserDB">
+        <constructor-arg ref="serverProperties" />
+    </bean>
+
+    <bean id="serviceArtist" class="ModelServices.ServiceArtist">
+        <constructor-arg ref="repoArtist" />
+        <constructor-arg ref="validatorArtist"/>
+    </bean>
+
+    <bean id="serviceShow" class="ModelServices.ServiceShow">
+        <constructor-arg ref="repoShow" />
+        <constructor-arg ref="validatorShow"/>
+    </bean>
+
+    <bean id="serviceTransaction" class="ModelServices.ServiceTransaction">
+        <constructor-arg ref="repoTransaction" />
+        <constructor-arg ref="validatorTransaction"/>
+    </bean>
+
+    <bean id="serviceUser" class="ModelServices.ServiceUser">
+        <constructor-arg ref="repoUser" />
+        <constructor-arg ref="validatorUser"/>
+    </bean>
+
+    <bean id="festivalServer" class="FestivalServer" >
+        <constructor-arg ref="serviceArtist" />
+        <constructor-arg ref="serviceShow" />
+        <constructor-arg ref="serviceTransaction" />
+        <constructor-arg ref="serviceUser" />
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="Festival"/>
+        <property name="service" ref="festivalServer"/>
+        <property name="serviceInterface" value="AppServices.IFestivalServer"/>
+        <property name="servicePort" value="1099"/>
+    </bean>
+
+
+</beans>
