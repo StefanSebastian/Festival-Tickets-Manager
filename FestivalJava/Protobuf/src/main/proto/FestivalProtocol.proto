@@ -67,6 +67,6 @@ message FestivalResponse {
     Type type = 1;
 
     string error = 2;
-    Artist artists = 3;
-    Show shows = 4;
+    repeated Artist artists = 3;
+    repeated Show shows = 4;
 }

@@ -4485,30 +4485,52 @@ public final class FestivalProtobufs {
         getErrorBytes();
 
     /**
-     * <code>.protobuf.Artist artists = 3;</code>
+     * <code>repeated .protobuf.Artist artists = 3;</code>
      */
-    boolean hasArtists();
+    java.util.List<protobuf.FestivalProtobufs.Artist> 
+        getArtistsList();
     /**
-     * <code>.protobuf.Artist artists = 3;</code>
+     * <code>repeated .protobuf.Artist artists = 3;</code>
      */
-    protobuf.FestivalProtobufs.Artist getArtists();
+    protobuf.FestivalProtobufs.Artist getArtists(int index);
     /**
-     * <code>.protobuf.Artist artists = 3;</code>
+     * <code>repeated .protobuf.Artist artists = 3;</code>
      */
-    protobuf.FestivalProtobufs.ArtistOrBuilder getArtistsOrBuilder();
+    int getArtistsCount();
+    /**
+     * <code>repeated .protobuf.Artist artists = 3;</code>
+     */
+    java.util.List<? extends protobuf.FestivalProtobufs.ArtistOrBuilder> 
+        getArtistsOrBuilderList();
+    /**
+     * <code>repeated .protobuf.Artist artists = 3;</code>
+     */
+    protobuf.FestivalProtobufs.ArtistOrBuilder getArtistsOrBuilder(
+        int index);
 
     /**
-     * <code>.protobuf.Show shows = 4;</code>
+     * <code>repeated .protobuf.Show shows = 4;</code>
      */
-    boolean hasShows();
+    java.util.List<protobuf.FestivalProtobufs.Show> 
+        getShowsList();
     /**
-     * <code>.protobuf.Show shows = 4;</code>
+     * <code>repeated .protobuf.Show shows = 4;</code>
      */
-    protobuf.FestivalProtobufs.Show getShows();
+    protobuf.FestivalProtobufs.Show getShows(int index);
     /**
-     * <code>.protobuf.Show shows = 4;</code>
+     * <code>repeated .protobuf.Show shows = 4;</code>
      */
-    protobuf.FestivalProtobufs.ShowOrBuilder getShowsOrBuilder();
+    int getShowsCount();
+    /**
+     * <code>repeated .protobuf.Show shows = 4;</code>
+     */
+    java.util.List<? extends protobuf.FestivalProtobufs.ShowOrBuilder> 
+        getShowsOrBuilderList();
+    /**
+     * <code>repeated .protobuf.Show shows = 4;</code>
+     */
+    protobuf.FestivalProtobufs.ShowOrBuilder getShowsOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code protobuf.FestivalResponse}
@@ -4524,6 +4546,8 @@ public final class FestivalProtobufs {
     private FestivalResponse() {
       type_ = 0;
       error_ = "";
+      artists_ = java.util.Collections.emptyList();
+      shows_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -4564,29 +4588,21 @@ public final class FestivalProtobufs {
               break;
             }
             case 26: {
-              protobuf.FestivalProtobufs.Artist.Builder subBuilder = null;
-              if (artists_ != null) {
-                subBuilder = artists_.toBuilder();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                artists_ = new java.util.ArrayList<protobuf.FestivalProtobufs.Artist>();
+                mutable_bitField0_ |= 0x00000004;
               }
-              artists_ = input.readMessage(protobuf.FestivalProtobufs.Artist.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(artists_);
-                artists_ = subBuilder.buildPartial();
-              }
-
+              artists_.add(
+                  input.readMessage(protobuf.FestivalProtobufs.Artist.parser(), extensionRegistry));
               break;
             }
             case 34: {
-              protobuf.FestivalProtobufs.Show.Builder subBuilder = null;
-              if (shows_ != null) {
-                subBuilder = shows_.toBuilder();
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                shows_ = new java.util.ArrayList<protobuf.FestivalProtobufs.Show>();
+                mutable_bitField0_ |= 0x00000008;
               }
-              shows_ = input.readMessage(protobuf.FestivalProtobufs.Show.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(shows_);
-                shows_ = subBuilder.buildPartial();
-              }
-
+              shows_.add(
+                  input.readMessage(protobuf.FestivalProtobufs.Show.parser(), extensionRegistry));
               break;
             }
           }
@@ -4597,6 +4613,12 @@ public final class FestivalProtobufs {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          artists_ = java.util.Collections.unmodifiableList(artists_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          shows_ = java.util.Collections.unmodifiableList(shows_);
+        }
         makeExtensionsImmutable();
       }
     }
@@ -4728,6 +4750,7 @@ public final class FestivalProtobufs {
       // @@protoc_insertion_point(enum_scope:protobuf.FestivalResponse.Type)
     }
 
+    private int bitField0_;
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
@@ -4779,45 +4802,73 @@ public final class FestivalProtobufs {
     }
 
     public static final int ARTISTS_FIELD_NUMBER = 3;
-    private protobuf.FestivalProtobufs.Artist artists_;
+    private java.util.List<protobuf.FestivalProtobufs.Artist> artists_;
     /**
-     * <code>.protobuf.Artist artists = 3;</code>
+     * <code>repeated .protobuf.Artist artists = 3;</code>
      */
-    public boolean hasArtists() {
-      return artists_ != null;
+    public java.util.List<protobuf.FestivalProtobufs.Artist> getArtistsList() {
+      return artists_;
     }
     /**
-     * <code>.protobuf.Artist artists = 3;</code>
+     * <code>repeated .protobuf.Artist artists = 3;</code>
      */
-    public protobuf.FestivalProtobufs.Artist getArtists() {
-      return artists_ == null ? protobuf.FestivalProtobufs.Artist.getDefaultInstance() : artists_;
+    public java.util.List<? extends protobuf.FestivalProtobufs.ArtistOrBuilder> 
+        getArtistsOrBuilderList() {
+      return artists_;
     }
     /**
-     * <code>.protobuf.Artist artists = 3;</code>
+     * <code>repeated .protobuf.Artist artists = 3;</code>
      */
-    public protobuf.FestivalProtobufs.ArtistOrBuilder getArtistsOrBuilder() {
-      return getArtists();
+    public int getArtistsCount() {
+      return artists_.size();
+    }
+    /**
+     * <code>repeated .protobuf.Artist artists = 3;</code>
+     */
+    public protobuf.FestivalProtobufs.Artist getArtists(int index) {
+      return artists_.get(index);
+    }
+    /**
+     * <code>repeated .protobuf.Artist artists = 3;</code>
+     */
+    public protobuf.FestivalProtobufs.ArtistOrBuilder getArtistsOrBuilder(
+        int index) {
+      return artists_.get(index);
     }
 
     public static final int SHOWS_FIELD_NUMBER = 4;
-    private protobuf.FestivalProtobufs.Show shows_;
+    private java.util.List<protobuf.FestivalProtobufs.Show> shows_;
     /**
-     * <code>.protobuf.Show shows = 4;</code>
+     * <code>repeated .protobuf.Show shows = 4;</code>
      */
-    public boolean hasShows() {
-      return shows_ != null;
+    public java.util.List<protobuf.FestivalProtobufs.Show> getShowsList() {
+      return shows_;
     }
     /**
-     * <code>.protobuf.Show shows = 4;</code>
+     * <code>repeated .protobuf.Show shows = 4;</code>
      */
-    public protobuf.FestivalProtobufs.Show getShows() {
-      return shows_ == null ? protobuf.FestivalProtobufs.Show.getDefaultInstance() : shows_;
+    public java.util.List<? extends protobuf.FestivalProtobufs.ShowOrBuilder> 
+        getShowsOrBuilderList() {
+      return shows_;
     }
     /**
-     * <code>.protobuf.Show shows = 4;</code>
+     * <code>repeated .protobuf.Show shows = 4;</code>
      */
-    public protobuf.FestivalProtobufs.ShowOrBuilder getShowsOrBuilder() {
-      return getShows();
+    public int getShowsCount() {
+      return shows_.size();
+    }
+    /**
+     * <code>repeated .protobuf.Show shows = 4;</code>
+     */
+    public protobuf.FestivalProtobufs.Show getShows(int index) {
+      return shows_.get(index);
+    }
+    /**
+     * <code>repeated .protobuf.Show shows = 4;</code>
+     */
+    public protobuf.FestivalProtobufs.ShowOrBuilder getShowsOrBuilder(
+        int index) {
+      return shows_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4838,11 +4889,11 @@ public final class FestivalProtobufs {
       if (!getErrorBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, error_);
       }
-      if (artists_ != null) {
-        output.writeMessage(3, getArtists());
+      for (int i = 0; i < artists_.size(); i++) {
+        output.writeMessage(3, artists_.get(i));
       }
-      if (shows_ != null) {
-        output.writeMessage(4, getShows());
+      for (int i = 0; i < shows_.size(); i++) {
+        output.writeMessage(4, shows_.get(i));
       }
     }
 
@@ -4858,13 +4909,13 @@ public final class FestivalProtobufs {
       if (!getErrorBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, error_);
       }
-      if (artists_ != null) {
+      for (int i = 0; i < artists_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getArtists());
+          .computeMessageSize(3, artists_.get(i));
       }
-      if (shows_ != null) {
+      for (int i = 0; i < shows_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getShows());
+          .computeMessageSize(4, shows_.get(i));
       }
       memoizedSize = size;
       return size;
@@ -4885,16 +4936,10 @@ public final class FestivalProtobufs {
       result = result && type_ == other.type_;
       result = result && getError()
           .equals(other.getError());
-      result = result && (hasArtists() == other.hasArtists());
-      if (hasArtists()) {
-        result = result && getArtists()
-            .equals(other.getArtists());
-      }
-      result = result && (hasShows() == other.hasShows());
-      if (hasShows()) {
-        result = result && getShows()
-            .equals(other.getShows());
-      }
+      result = result && getArtistsList()
+          .equals(other.getArtistsList());
+      result = result && getShowsList()
+          .equals(other.getShowsList());
       return result;
     }
 
@@ -4909,13 +4954,13 @@ public final class FestivalProtobufs {
       hash = (53 * hash) + type_;
       hash = (37 * hash) + ERROR_FIELD_NUMBER;
       hash = (53 * hash) + getError().hashCode();
-      if (hasArtists()) {
+      if (getArtistsCount() > 0) {
         hash = (37 * hash) + ARTISTS_FIELD_NUMBER;
-        hash = (53 * hash) + getArtists().hashCode();
+        hash = (53 * hash) + getArtistsList().hashCode();
       }
-      if (hasShows()) {
+      if (getShowsCount() > 0) {
         hash = (37 * hash) + SHOWS_FIELD_NUMBER;
-        hash = (53 * hash) + getShows().hashCode();
+        hash = (53 * hash) + getShowsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -5031,6 +5076,8 @@ public final class FestivalProtobufs {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getArtistsFieldBuilder();
+          getShowsFieldBuilder();
         }
       }
       public Builder clear() {
@@ -5040,16 +5087,16 @@ public final class FestivalProtobufs {
         error_ = "";
 
         if (artistsBuilder_ == null) {
-          artists_ = null;
+          artists_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
-          artists_ = null;
-          artistsBuilder_ = null;
+          artistsBuilder_.clear();
         }
         if (showsBuilder_ == null) {
-          shows_ = null;
+          shows_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
-          shows_ = null;
-          showsBuilder_ = null;
+          showsBuilder_.clear();
         }
         return this;
       }
@@ -5073,18 +5120,29 @@ public final class FestivalProtobufs {
 
       public protobuf.FestivalProtobufs.FestivalResponse buildPartial() {
         protobuf.FestivalProtobufs.FestivalResponse result = new protobuf.FestivalProtobufs.FestivalResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.type_ = type_;
         result.error_ = error_;
         if (artistsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            artists_ = java.util.Collections.unmodifiableList(artists_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
           result.artists_ = artists_;
         } else {
           result.artists_ = artistsBuilder_.build();
         }
         if (showsBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            shows_ = java.util.Collections.unmodifiableList(shows_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
           result.shows_ = shows_;
         } else {
           result.shows_ = showsBuilder_.build();
         }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -5133,11 +5191,57 @@ public final class FestivalProtobufs {
           error_ = other.error_;
           onChanged();
         }
-        if (other.hasArtists()) {
-          mergeArtists(other.getArtists());
+        if (artistsBuilder_ == null) {
+          if (!other.artists_.isEmpty()) {
+            if (artists_.isEmpty()) {
+              artists_ = other.artists_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureArtistsIsMutable();
+              artists_.addAll(other.artists_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.artists_.isEmpty()) {
+            if (artistsBuilder_.isEmpty()) {
+              artistsBuilder_.dispose();
+              artistsBuilder_ = null;
+              artists_ = other.artists_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              artistsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getArtistsFieldBuilder() : null;
+            } else {
+              artistsBuilder_.addAllMessages(other.artists_);
+            }
+          }
         }
-        if (other.hasShows()) {
-          mergeShows(other.getShows());
+        if (showsBuilder_ == null) {
+          if (!other.shows_.isEmpty()) {
+            if (shows_.isEmpty()) {
+              shows_ = other.shows_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureShowsIsMutable();
+              shows_.addAll(other.shows_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.shows_.isEmpty()) {
+            if (showsBuilder_.isEmpty()) {
+              showsBuilder_.dispose();
+              showsBuilder_ = null;
+              shows_ = other.shows_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              showsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getShowsFieldBuilder() : null;
+            } else {
+              showsBuilder_.addAllMessages(other.shows_);
+            }
+          }
         }
         onChanged();
         return this;
@@ -5164,6 +5268,7 @@ public final class FestivalProtobufs {
         }
         return this;
       }
+      private int bitField0_;
 
       private int type_ = 0;
       /**
@@ -5278,116 +5383,239 @@ public final class FestivalProtobufs {
         return this;
       }
 
-      private protobuf.FestivalProtobufs.Artist artists_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          protobuf.FestivalProtobufs.Artist, protobuf.FestivalProtobufs.Artist.Builder, protobuf.FestivalProtobufs.ArtistOrBuilder> artistsBuilder_;
-      /**
-       * <code>.protobuf.Artist artists = 3;</code>
-       */
-      public boolean hasArtists() {
-        return artistsBuilder_ != null || artists_ != null;
+      private java.util.List<protobuf.FestivalProtobufs.Artist> artists_ =
+        java.util.Collections.emptyList();
+      private void ensureArtistsIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          artists_ = new java.util.ArrayList<protobuf.FestivalProtobufs.Artist>(artists_);
+          bitField0_ |= 0x00000004;
+         }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          protobuf.FestivalProtobufs.Artist, protobuf.FestivalProtobufs.Artist.Builder, protobuf.FestivalProtobufs.ArtistOrBuilder> artistsBuilder_;
+
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
-      public protobuf.FestivalProtobufs.Artist getArtists() {
+      public java.util.List<protobuf.FestivalProtobufs.Artist> getArtistsList() {
         if (artistsBuilder_ == null) {
-          return artists_ == null ? protobuf.FestivalProtobufs.Artist.getDefaultInstance() : artists_;
+          return java.util.Collections.unmodifiableList(artists_);
         } else {
-          return artistsBuilder_.getMessage();
+          return artistsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
-      public Builder setArtists(protobuf.FestivalProtobufs.Artist value) {
+      public int getArtistsCount() {
+        if (artistsBuilder_ == null) {
+          return artists_.size();
+        } else {
+          return artistsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public protobuf.FestivalProtobufs.Artist getArtists(int index) {
+        if (artistsBuilder_ == null) {
+          return artists_.get(index);
+        } else {
+          return artistsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public Builder setArtists(
+          int index, protobuf.FestivalProtobufs.Artist value) {
         if (artistsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          artists_ = value;
+          ensureArtistsIsMutable();
+          artists_.set(index, value);
           onChanged();
         } else {
-          artistsBuilder_.setMessage(value);
+          artistsBuilder_.setMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
       public Builder setArtists(
+          int index, protobuf.FestivalProtobufs.Artist.Builder builderForValue) {
+        if (artistsBuilder_ == null) {
+          ensureArtistsIsMutable();
+          artists_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          artistsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public Builder addArtists(protobuf.FestivalProtobufs.Artist value) {
+        if (artistsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureArtistsIsMutable();
+          artists_.add(value);
+          onChanged();
+        } else {
+          artistsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public Builder addArtists(
+          int index, protobuf.FestivalProtobufs.Artist value) {
+        if (artistsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureArtistsIsMutable();
+          artists_.add(index, value);
+          onChanged();
+        } else {
+          artistsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public Builder addArtists(
           protobuf.FestivalProtobufs.Artist.Builder builderForValue) {
         if (artistsBuilder_ == null) {
-          artists_ = builderForValue.build();
+          ensureArtistsIsMutable();
+          artists_.add(builderForValue.build());
           onChanged();
         } else {
-          artistsBuilder_.setMessage(builderForValue.build());
+          artistsBuilder_.addMessage(builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
-      public Builder mergeArtists(protobuf.FestivalProtobufs.Artist value) {
+      public Builder addArtists(
+          int index, protobuf.FestivalProtobufs.Artist.Builder builderForValue) {
         if (artistsBuilder_ == null) {
-          if (artists_ != null) {
-            artists_ =
-              protobuf.FestivalProtobufs.Artist.newBuilder(artists_).mergeFrom(value).buildPartial();
-          } else {
-            artists_ = value;
-          }
+          ensureArtistsIsMutable();
+          artists_.add(index, builderForValue.build());
           onChanged();
         } else {
-          artistsBuilder_.mergeFrom(value);
+          artistsBuilder_.addMessage(index, builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public Builder addAllArtists(
+          java.lang.Iterable<? extends protobuf.FestivalProtobufs.Artist> values) {
+        if (artistsBuilder_ == null) {
+          ensureArtistsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, artists_);
+          onChanged();
+        } else {
+          artistsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
       public Builder clearArtists() {
         if (artistsBuilder_ == null) {
-          artists_ = null;
+          artists_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
-          artists_ = null;
-          artistsBuilder_ = null;
+          artistsBuilder_.clear();
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
-      public protobuf.FestivalProtobufs.Artist.Builder getArtistsBuilder() {
-        
-        onChanged();
-        return getArtistsFieldBuilder().getBuilder();
+      public Builder removeArtists(int index) {
+        if (artistsBuilder_ == null) {
+          ensureArtistsIsMutable();
+          artists_.remove(index);
+          onChanged();
+        } else {
+          artistsBuilder_.remove(index);
+        }
+        return this;
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
-      public protobuf.FestivalProtobufs.ArtistOrBuilder getArtistsOrBuilder() {
-        if (artistsBuilder_ != null) {
-          return artistsBuilder_.getMessageOrBuilder();
-        } else {
-          return artists_ == null ?
-              protobuf.FestivalProtobufs.Artist.getDefaultInstance() : artists_;
+      public protobuf.FestivalProtobufs.Artist.Builder getArtistsBuilder(
+          int index) {
+        return getArtistsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public protobuf.FestivalProtobufs.ArtistOrBuilder getArtistsOrBuilder(
+          int index) {
+        if (artistsBuilder_ == null) {
+          return artists_.get(index);  } else {
+          return artistsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>.protobuf.Artist artists = 3;</code>
+       * <code>repeated .protobuf.Artist artists = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      public java.util.List<? extends protobuf.FestivalProtobufs.ArtistOrBuilder> 
+           getArtistsOrBuilderList() {
+        if (artistsBuilder_ != null) {
+          return artistsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(artists_);
+        }
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public protobuf.FestivalProtobufs.Artist.Builder addArtistsBuilder() {
+        return getArtistsFieldBuilder().addBuilder(
+            protobuf.FestivalProtobufs.Artist.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public protobuf.FestivalProtobufs.Artist.Builder addArtistsBuilder(
+          int index) {
+        return getArtistsFieldBuilder().addBuilder(
+            index, protobuf.FestivalProtobufs.Artist.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protobuf.Artist artists = 3;</code>
+       */
+      public java.util.List<protobuf.FestivalProtobufs.Artist.Builder> 
+           getArtistsBuilderList() {
+        return getArtistsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
           protobuf.FestivalProtobufs.Artist, protobuf.FestivalProtobufs.Artist.Builder, protobuf.FestivalProtobufs.ArtistOrBuilder> 
           getArtistsFieldBuilder() {
         if (artistsBuilder_ == null) {
-          artistsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          artistsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               protobuf.FestivalProtobufs.Artist, protobuf.FestivalProtobufs.Artist.Builder, protobuf.FestivalProtobufs.ArtistOrBuilder>(
-                  getArtists(),
+                  artists_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
                   isClean());
           artists_ = null;
@@ -5395,116 +5623,239 @@ public final class FestivalProtobufs {
         return artistsBuilder_;
       }
 
-      private protobuf.FestivalProtobufs.Show shows_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          protobuf.FestivalProtobufs.Show, protobuf.FestivalProtobufs.Show.Builder, protobuf.FestivalProtobufs.ShowOrBuilder> showsBuilder_;
-      /**
-       * <code>.protobuf.Show shows = 4;</code>
-       */
-      public boolean hasShows() {
-        return showsBuilder_ != null || shows_ != null;
+      private java.util.List<protobuf.FestivalProtobufs.Show> shows_ =
+        java.util.Collections.emptyList();
+      private void ensureShowsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          shows_ = new java.util.ArrayList<protobuf.FestivalProtobufs.Show>(shows_);
+          bitField0_ |= 0x00000008;
+         }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          protobuf.FestivalProtobufs.Show, protobuf.FestivalProtobufs.Show.Builder, protobuf.FestivalProtobufs.ShowOrBuilder> showsBuilder_;
+
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
-      public protobuf.FestivalProtobufs.Show getShows() {
+      public java.util.List<protobuf.FestivalProtobufs.Show> getShowsList() {
         if (showsBuilder_ == null) {
-          return shows_ == null ? protobuf.FestivalProtobufs.Show.getDefaultInstance() : shows_;
+          return java.util.Collections.unmodifiableList(shows_);
         } else {
-          return showsBuilder_.getMessage();
+          return showsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
-      public Builder setShows(protobuf.FestivalProtobufs.Show value) {
+      public int getShowsCount() {
+        if (showsBuilder_ == null) {
+          return shows_.size();
+        } else {
+          return showsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public protobuf.FestivalProtobufs.Show getShows(int index) {
+        if (showsBuilder_ == null) {
+          return shows_.get(index);
+        } else {
+          return showsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public Builder setShows(
+          int index, protobuf.FestivalProtobufs.Show value) {
         if (showsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          shows_ = value;
+          ensureShowsIsMutable();
+          shows_.set(index, value);
           onChanged();
         } else {
-          showsBuilder_.setMessage(value);
+          showsBuilder_.setMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
       public Builder setShows(
+          int index, protobuf.FestivalProtobufs.Show.Builder builderForValue) {
+        if (showsBuilder_ == null) {
+          ensureShowsIsMutable();
+          shows_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          showsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public Builder addShows(protobuf.FestivalProtobufs.Show value) {
+        if (showsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureShowsIsMutable();
+          shows_.add(value);
+          onChanged();
+        } else {
+          showsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public Builder addShows(
+          int index, protobuf.FestivalProtobufs.Show value) {
+        if (showsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureShowsIsMutable();
+          shows_.add(index, value);
+          onChanged();
+        } else {
+          showsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public Builder addShows(
           protobuf.FestivalProtobufs.Show.Builder builderForValue) {
         if (showsBuilder_ == null) {
-          shows_ = builderForValue.build();
+          ensureShowsIsMutable();
+          shows_.add(builderForValue.build());
           onChanged();
         } else {
-          showsBuilder_.setMessage(builderForValue.build());
+          showsBuilder_.addMessage(builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
-      public Builder mergeShows(protobuf.FestivalProtobufs.Show value) {
+      public Builder addShows(
+          int index, protobuf.FestivalProtobufs.Show.Builder builderForValue) {
         if (showsBuilder_ == null) {
-          if (shows_ != null) {
-            shows_ =
-              protobuf.FestivalProtobufs.Show.newBuilder(shows_).mergeFrom(value).buildPartial();
-          } else {
-            shows_ = value;
-          }
+          ensureShowsIsMutable();
+          shows_.add(index, builderForValue.build());
           onChanged();
         } else {
-          showsBuilder_.mergeFrom(value);
+          showsBuilder_.addMessage(index, builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public Builder addAllShows(
+          java.lang.Iterable<? extends protobuf.FestivalProtobufs.Show> values) {
+        if (showsBuilder_ == null) {
+          ensureShowsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, shows_);
+          onChanged();
+        } else {
+          showsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
       public Builder clearShows() {
         if (showsBuilder_ == null) {
-          shows_ = null;
+          shows_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
-          shows_ = null;
-          showsBuilder_ = null;
+          showsBuilder_.clear();
         }
-
         return this;
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
-      public protobuf.FestivalProtobufs.Show.Builder getShowsBuilder() {
-        
-        onChanged();
-        return getShowsFieldBuilder().getBuilder();
+      public Builder removeShows(int index) {
+        if (showsBuilder_ == null) {
+          ensureShowsIsMutable();
+          shows_.remove(index);
+          onChanged();
+        } else {
+          showsBuilder_.remove(index);
+        }
+        return this;
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
-      public protobuf.FestivalProtobufs.ShowOrBuilder getShowsOrBuilder() {
-        if (showsBuilder_ != null) {
-          return showsBuilder_.getMessageOrBuilder();
-        } else {
-          return shows_ == null ?
-              protobuf.FestivalProtobufs.Show.getDefaultInstance() : shows_;
+      public protobuf.FestivalProtobufs.Show.Builder getShowsBuilder(
+          int index) {
+        return getShowsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public protobuf.FestivalProtobufs.ShowOrBuilder getShowsOrBuilder(
+          int index) {
+        if (showsBuilder_ == null) {
+          return shows_.get(index);  } else {
+          return showsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>.protobuf.Show shows = 4;</code>
+       * <code>repeated .protobuf.Show shows = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      public java.util.List<? extends protobuf.FestivalProtobufs.ShowOrBuilder> 
+           getShowsOrBuilderList() {
+        if (showsBuilder_ != null) {
+          return showsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(shows_);
+        }
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public protobuf.FestivalProtobufs.Show.Builder addShowsBuilder() {
+        return getShowsFieldBuilder().addBuilder(
+            protobuf.FestivalProtobufs.Show.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public protobuf.FestivalProtobufs.Show.Builder addShowsBuilder(
+          int index) {
+        return getShowsFieldBuilder().addBuilder(
+            index, protobuf.FestivalProtobufs.Show.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protobuf.Show shows = 4;</code>
+       */
+      public java.util.List<protobuf.FestivalProtobufs.Show.Builder> 
+           getShowsBuilderList() {
+        return getShowsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
           protobuf.FestivalProtobufs.Show, protobuf.FestivalProtobufs.Show.Builder, protobuf.FestivalProtobufs.ShowOrBuilder> 
           getShowsFieldBuilder() {
         if (showsBuilder_ == null) {
-          showsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          showsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               protobuf.FestivalProtobufs.Show, protobuf.FestivalProtobufs.Show.Builder, protobuf.FestivalProtobufs.ShowOrBuilder>(
-                  getShows(),
+                  shows_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
                   isClean());
           shows_ = null;
@@ -5618,7 +5969,7 @@ public final class FestivalProtobufs {
       "ForArtist\020\005\022\016\n\nBuyTickets\020\006\"\313\001\n\020Festival" +
       "Response\022-\n\004type\030\001 \001(\0162\037.protobuf.Festiv" +
       "alResponse.Type\022\r\n\005error\030\002 \001(\t\022!\n\007artist" +
-      "s\030\003 \001(\0132\020.protobuf.Artist\022\035\n\005shows\030\004 \001(\013",
+      "s\030\003 \003(\0132\020.protobuf.Artist\022\035\n\005shows\030\004 \003(\013",
       "2\016.protobuf.Show\"7\n\004Type\022\013\n\007Unknown\020\000\022\006\n" +
       "\002Ok\020\001\022\t\n\005Error\020\002\022\017\n\013ShowUpdated\020\003B\035\n\010pro" +
       "tobufB\021FestivalProtobufsb\006proto3"

@@ -2,6 +2,7 @@ package protobuf;
 
 import AppServices.IFestivalClient;
 import AppServices.IFestivalServer;
+import Domain.Artist;
 import Domain.Show;
 import Domain.User;
 import Validation.Exceptions.ServiceException;
@@ -11,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by Sebi on 25-Apr-17.
@@ -95,6 +97,36 @@ public class ProtoFestivalWorker implements Runnable, IFestivalClient {
                 connected = false;
                 return ProtoUtils.createOKResponse();
             } catch (ServiceException e){
+                return ProtoUtils.createErrorResponse(e.getMessage());
+            }
+        }
+
+        if (request.getType() == FestivalProtobufs.FestivalRequest.Type.GetArtists){
+            System.out.println("Get artists request");
+            try {
+                List<Artist> artistList = server.getArtists();
+                return ProtoUtils.createGetArtistsResponse(artistList);
+            } catch (ServiceException e){
+                return ProtoUtils.createErrorResponse(e.getMessage());
+            }
+        }
+
+        if (request.getType() == FestivalProtobufs.FestivalRequest.Type.GetShowsForArtist){
+            System.out.println("Get shows for artist request");
+            try {
+                List<Show> showList = server.getShowsForArtist(request.getIdArtist());
+                return ProtoUtils.createGetShowsForArtistResponse(showList);
+            } catch (ServiceException e) {
+                return ProtoUtils.createErrorResponse(e.getMessage());
+            }
+        }
+
+        if (request.getType() == FestivalProtobufs.FestivalRequest.Type.GetShowsForDate){
+            System.out.println("Get shows for date request");
+            try {
+                List<Show> showList = server.getShowsForDate(request.getDate());
+                return ProtoUtils.createGetShowsForDateResponse(showList);
+            } catch (ServiceException e) {
                 return ProtoUtils.createErrorResponse(e.getMessage());
             }
         }

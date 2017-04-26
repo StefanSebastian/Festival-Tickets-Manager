@@ -124,17 +124,32 @@ public class ProtoFestivalProxy implements IFestivalServer {
 
     @Override
     public List<Artist> getArtists() throws ServiceException {
-        return new ArrayList<>();
+        sendRequest(ProtoUtils.createGetArtistsRequest());
+        FestivalProtobufs.FestivalResponse response = readResponse();
+        if (response.getType() == FestivalProtobufs.FestivalResponse.Type.Error){
+            throw new ServiceException(response.getError());
+        }
+        return ProtoUtils.getArtists(response);
     }
 
     @Override
     public List<Show> getShowsForArtist(Integer idArtist) throws ServiceException {
-        return new ArrayList<>();
+        sendRequest(ProtoUtils.createGetShowsForArtistRequest(idArtist));
+        FestivalProtobufs.FestivalResponse response = readResponse();
+        if (response.getType() == FestivalProtobufs.FestivalResponse.Type.Error){
+            throw new ServiceException(response.getError());
+        }
+        return ProtoUtils.getShows(response);
     }
 
     @Override
     public List<Show> getShowsForDate(String date) throws ServiceException {
-        return new ArrayList<>();
+        sendRequest(ProtoUtils.createGetShowsForDateRequest(date));
+        FestivalProtobufs.FestivalResponse response = readResponse();
+        if (response.getType() == FestivalProtobufs.FestivalResponse.Type.Error){
+            throw new ServiceException(response.getError());
+        }
+        return ProtoUtils.getShows(response);
     }
 
     @Override
