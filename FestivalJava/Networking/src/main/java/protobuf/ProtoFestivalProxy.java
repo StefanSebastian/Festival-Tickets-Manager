@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -75,7 +76,9 @@ public class ProtoFestivalProxy implements IFestivalServer {
                     FestivalProtobufs.FestivalResponse response =
                             FestivalProtobufs.FestivalResponse.parseDelimitedFrom(inputStream);
                     if (isUpdate(response.getType())){
-
+                        System.out.println("Update received");
+                        handleUpdate(response);
+                        System.out.println("Update handled");
                     } else {
                         try {
                             qresponses.put(response);
@@ -83,7 +86,7 @@ public class ProtoFestivalProxy implements IFestivalServer {
                             e.printStackTrace();
                         }
                     }
-                } catch (IOException e){
+                } catch (IOException | NullPointerException e){
                     System.out.println("Client reader stopped");
                     finished = true;
                 }
@@ -96,6 +99,17 @@ public class ProtoFestivalProxy implements IFestivalServer {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private void handleUpdate(FestivalProtobufs.FestivalResponse response){
+        if (response.getType() == FestivalProtobufs.FestivalResponse.Type.ShowUpdated) {
+            try{
+                Show updatedShow = ProtoUtils.getShow(response.getShows(0));
+                client.showUpdated(updatedShow);
+            } catch (ServiceException | RemoteException e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -154,7 +168,12 @@ public class ProtoFestivalProxy implements IFestivalServer {
 
     @Override
     public void buyTicketsForShow(Integer idShow, String clientName, Integer numberOfTickets, String username) throws ServiceException, ValidatorException {
-
+        sendRequest(ProtoUtils.createBuyTicketsRequest(idShow,
+                clientName, numberOfTickets, username));
+        FestivalProtobufs.FestivalResponse response = readResponse();
+        if (response.getType() == FestivalProtobufs.FestivalResponse.Type.Error){
+            throw  new ServiceException(response.getError());
+        }
     }
 
     @Override

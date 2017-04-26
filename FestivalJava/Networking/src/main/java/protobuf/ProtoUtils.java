@@ -175,4 +175,31 @@ public class ProtoUtils {
         }
         return showList;
     }
+
+    public static FestivalProtobufs.Show getProtoFromShow(Show show){
+        FestivalProtobufs.Show showDto = FestivalProtobufs.Show
+                .newBuilder()
+                .setId(show.getIdShow())
+                .setDate(show.getDate())
+                .setLocation(show.getLocation())
+                .setTicketsAvailable(show.getTicketsAvailable())
+                .setTicketsSold(show.getTicketsSold())
+                .setArtist(getProtoFromArtist(show.getArtist()))
+                .build();
+        return showDto;
+    }
+
+    // ------------------ Tickets ------------------
+    public static FestivalProtobufs.FestivalRequest createBuyTicketsRequest(int idShow, String clientName, int nrTickets, String username){
+        FestivalProtobufs.FestivalRequest request =
+                FestivalProtobufs.FestivalRequest
+                        .newBuilder()
+                        .setType(FestivalProtobufs.FestivalRequest.Type.BuyTickets)
+                        .setIdShow(idShow)
+                        .setClientName(clientName)
+                        .setNrOfTickets(nrTickets)
+                        .setUsername(username)
+                        .build();
+        return request;
+    }
 }

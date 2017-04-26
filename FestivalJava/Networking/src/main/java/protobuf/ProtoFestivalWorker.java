@@ -6,6 +6,7 @@ import Domain.Artist;
 import Domain.Show;
 import Domain.User;
 import Validation.Exceptions.ServiceException;
+import Validation.Exceptions.ValidatorException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +41,17 @@ public class ProtoFestivalWorker implements Runnable, IFestivalClient {
 
     @Override
     public void showUpdated(Show show) throws ServiceException, RemoteException {
+        System.out.println("Sending update response");
+        FestivalProtobufs.FestivalResponse.Builder response =
+                FestivalProtobufs.FestivalResponse.newBuilder()
+                .setType(FestivalProtobufs.FestivalResponse.Type.ShowUpdated);
+        response.addShows(ProtoUtils.getProtoFromShow(show));
 
+        try {
+            sendResponse(response.build());
+        } catch (IOException e){
+            System.out.println("Error notifying users");
+        }
     }
 
     @Override
@@ -127,6 +138,19 @@ public class ProtoFestivalWorker implements Runnable, IFestivalClient {
                 List<Show> showList = server.getShowsForDate(request.getDate());
                 return ProtoUtils.createGetShowsForDateResponse(showList);
             } catch (ServiceException e) {
+                return ProtoUtils.createErrorResponse(e.getMessage());
+            }
+        }
+
+        if (request.getType() == FestivalProtobufs.FestivalRequest.Type.BuyTickets){
+            System.out.println("Buy tickets for show request");
+            try {
+                server.buyTicketsForShow(request.getIdShow(),
+                        request.getClientName(),
+                        request.getNrOfTickets(),
+                        request.getUsername());
+                return ProtoUtils.createOKResponse();
+            } catch (ServiceException | ValidatorException e) {
                 return ProtoUtils.createErrorResponse(e.getMessage());
             }
         }

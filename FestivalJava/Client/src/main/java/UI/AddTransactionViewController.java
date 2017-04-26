@@ -1,6 +1,8 @@
 package UI;
 
 import Controller.ClientController;
+import Domain.Artist;
+import Domain.Show;
 import Domain.ShowArtist;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
@@ -87,7 +89,13 @@ public class AddTransactionViewController {
                     clientController.getCurrentUser().getUsername());
 
             //notify the other windows
-            clientController.localDataChanged();
+            clientController.showUpdated(new Show(selectedShow.getIdShow(),
+                    selectedShow.getLocation(),
+                    selectedShow.getDate(),
+                    selectedShow.getTicketsAvailable() - tickets,
+                    selectedShow.getTicketsSold() + tickets,
+                    new Artist(selectedShow.getIdArtist(), selectedShow.getArtistName())
+                    ));
 
             //successful transaction
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

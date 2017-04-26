@@ -1,10 +1,10 @@
 package Controller;
 
+import AppServices.IFestivalClient;
+import AppServices.IFestivalServer;
 import Domain.Artist;
 import Domain.Show;
 import Domain.User;
-import AppServices.IFestivalClient;
-import AppServices.IFestivalServer;
 import ObserverPattern.AbstractObservable;
 import ObserverPattern.Observable;
 import ObserverPattern.Observer;
@@ -12,9 +12,6 @@ import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.ValidatorException;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,7 +19,7 @@ import java.util.List;
  * Created by Sebi on 28-Mar-17.
  * Client controller, communicates with server, serves the UI
  */
-public class ClientController implements IFestivalClient, Serializable, Observable<Show> {
+public class ClientController extends AbstractObservable<Show> implements IFestivalClient {
     //server
     private IFestivalServer server;
 
@@ -32,7 +29,7 @@ public class ClientController implements IFestivalClient, Serializable, Observab
     /*
     Constructor - gets reference to server
      */
-    public ClientController(IFestivalServer server) throws RemoteException{
+    public ClientController(IFestivalServer server){
         this.server = server;
     }
 
@@ -62,15 +59,7 @@ public class ClientController implements IFestivalClient, Serializable, Observab
      */
     @Override
     public void showUpdated(Show show) throws ServiceException {
-        notifyObservers();
-    }
-
-    /*
-    Notification from one of the windows that data has changed
-    updates the subscribed windows
-     */
-    public void localDataChanged(){
-        notifyObservers();
+        notifyPushObservers(show);
     }
 
     /*
@@ -111,23 +100,4 @@ public class ClientController implements IFestivalClient, Serializable, Observab
         return this.user;
     }
 
-
-    List<Observer<Show>> observers = new LinkedList<>();
-
-    @Override
-    public void addObserver(Observer<Show> o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void removeObserver(Observer<Show> o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer<Show> o : observers){
-            o.update();
-        }
-    }
 }

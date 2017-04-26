@@ -8,4 +8,9 @@ public interface Observer<E> {
     Updates observer
      */
     void update();
+
+    /*
+    Updates push observer
+     */
+    void pushUpdate(E e);
 }

@@ -104,8 +104,10 @@ public class FestivalServer implements IFestivalServer {
         for (String username : loggedUsers){
             executorService.execute(() -> {
                 try {
-                    IFestivalClient client = loggedClients.get(username);
-                    client.showUpdated(show);
+                    if (!username.equals(buyer)){
+                        IFestivalClient client = loggedClients.get(username);
+                        client.showUpdated(show);
+                    }
                 } catch (ServiceException | RemoteException e) {
                     System.err.println("Error notifying user");
                 }
