@@ -1,0 +1,72 @@
+syntax="proto3";
+package protobuf;
+
+option java_package = "protobuf";
+option java_outer_classname = "FestivalProtobufs";
+
+
+message User {
+    string id = 1;
+    string password = 2;
+}
+
+message Artist {
+    int32 id = 1;
+    string name = 2;
+}
+
+message Show {
+    int32 id = 1;
+    string location = 2;
+    string date = 3;
+    int32 ticketsAvailable = 4;
+    int32 ticketsSold = 5;
+    Artist artist = 6;
+}
+
+message Transaction {
+    int32 id = 1;
+    string clientName = 2;
+    int32 numberOfTickets = 3;
+    Show show = 4;
+}
+
+message FestivalRequest {
+    enum Type {
+        Unknown = 0;
+        Login = 1;
+        Logout = 2;
+        GetArtists = 3;
+        GetShowsForDate = 4;
+        GetShowsForArtist = 5;
+        BuyTickets = 6;
+    }
+
+    Type type = 1;
+
+    int32 idArtist = 2;
+
+    string date = 3;
+
+    User user = 4;
+
+    int32 idShow = 5;
+    string clientName = 6;
+    int32 nrOfTickets = 7;
+    string username = 8;
+}
+
+message FestivalResponse {
+    enum Type {
+        Unknown = 0;
+        Ok = 1;
+        Error = 2;
+        ShowUpdated = 3;
+    }
+
+    Type type = 1;
+
+    string error = 2;
+    Artist artists = 3;
+    Show shows = 4;
+}

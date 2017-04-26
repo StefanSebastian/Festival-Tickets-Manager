@@ -11,8 +11,12 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Model/Model.iml" filepath="$PROJECT_DIR$/.idea/modules/Model/Model.iml" group="Model" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Model/Model_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Model/Model_main.iml" group="Model" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Model/Model_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Model/Model_test.iml" group="Model" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Networking/Networking.iml" filepath="$PROJECT_DIR$/.idea/modules/Networking/Networking.iml" group="Networking" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Networking/Networking_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Networking/Networking_main.iml" group="Networking" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Networking/Networking_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Networking/Networking_test.iml" group="Networking" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Protobuf/Protobuf.iml" filepath="$PROJECT_DIR$/.idea/modules/Protobuf/Protobuf.iml" group="Protobuf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Protobuf/Protobuf_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Protobuf/Protobuf_main.iml" group="Protobuf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Protobuf/Protobuf_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Protobuf/Protobuf_test.iml" group="Protobuf" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository.iml" group="Repository" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository_main.iml" group="Repository" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository_test.iml" group="Repository" />

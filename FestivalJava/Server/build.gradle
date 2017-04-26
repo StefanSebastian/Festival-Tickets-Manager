@@ -14,11 +14,12 @@ dependencies {
     compile project (':Model')
     compile project (':Repository')
     compile project (':Services')
+    compile project (':Networking')
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'org.springframework:spring-context:4.3.7.RELEASE'
 }
 
-mainClassName = 'StartRpcServer'
+mainClassName = 'StartProtobufServer'
 
 jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Domain.TransactionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-03-28T12:58:07" hostname="DESKTOP-D3166J2" time="0.003">
+<testsuite name="Domain.TransactionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-04-26T14:50:05" hostname="DESKTOP-D3166J2" time="0.004">
   <properties/>
-  <testcase name="getNumberOfTickets" classname="Domain.TransactionTest" time="0.001"/>
+  <testcase name="getNumberOfTickets" classname="Domain.TransactionTest" time="0.002"/>
   <testcase name="setIdTransaction" classname="Domain.TransactionTest" time="0.0"/>
   <testcase name="getClientName" classname="Domain.TransactionTest" time="0.0"/>
-  <testcase name="setNumberOfTickets" classname="Domain.TransactionTest" time="0.001"/>
+  <testcase name="setNumberOfTickets" classname="Domain.TransactionTest" time="0.0"/>
   <testcase name="setClientName" classname="Domain.TransactionTest" time="0.0"/>
   <testcase name="getIdTransaction" classname="Domain.TransactionTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

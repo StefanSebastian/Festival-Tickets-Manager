@@ -1,6 +1,9 @@
 Manifest-Version: 1.0
 Class-Path: Model-1.0-SNAPSHOT.jar Repository-1.0-SNAPSHOT.jar Service
- s-1.0-SNAPSHOT.jar Networking-1.0-SNAPSHOT.jar mysql-connector-java-5
- .1.6.jar
-Main-Class: StartRpcClient
+ s-1.0-SNAPSHOT.jar Utils-1.0-SNAPSHOT.jar Networking-1.0-SNAPSHOT.jar
+  spring-context-4.3.7.RELEASE.jar mysql-connector-java-5.1.6.jar Prot
+ obuf-1.0-SNAPSHOT.jar spring-aop-4.3.7.RELEASE.jar spring-beans-4.3.7
+ .RELEASE.jar spring-core-4.3.7.RELEASE.jar spring-expression-4.3.7.RE
+ LEASE.jar protobuf-java-3.2.0.jar commons-logging-1.2.jar
+Main-Class: StartProtobufClient
 

@@ -1,0 +1,47 @@
+group 'Festival'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.1'
+    }
+}
+
+protobuf {
+// Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.2.0'
+    }
+
+    generateProtoTasks.generatedFilesBaseDir = 'src'
+
+    generateProtoTasks {
+        // all() returns the collection of all protoc tasks
+        all().each { task ->
+            // Here you can configure the task
+        }
+    }
+}
+
+repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.google.protobuf:protobuf-java:3.2.0'
+}

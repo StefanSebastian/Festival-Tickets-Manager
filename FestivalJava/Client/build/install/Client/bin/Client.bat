@@ -69,10 +69,10 @@ set CMD_LINE_ARGS=%$
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\Client-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Model-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Repository-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Services-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Networking-1.0-SNAPSHOT.jar;%APP_HOME%\lib\mysql-connector-java-5.1.6.jar
+set CLASSPATH=%APP_HOME%\lib\Client-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Model-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Repository-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Services-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Utils-1.0-SNAPSHOT.jar;%APP_HOME%\lib\Networking-1.0-SNAPSHOT.jar;%APP_HOME%\lib\spring-context-4.3.7.RELEASE.jar;%APP_HOME%\lib\mysql-connector-java-5.1.6.jar;%APP_HOME%\lib\Protobuf-1.0-SNAPSHOT.jar;%APP_HOME%\lib\spring-aop-4.3.7.RELEASE.jar;%APP_HOME%\lib\spring-beans-4.3.7.RELEASE.jar;%APP_HOME%\lib\spring-core-4.3.7.RELEASE.jar;%APP_HOME%\lib\spring-expression-4.3.7.RELEASE.jar;%APP_HOME%\lib\protobuf-java-3.2.0.jar;%APP_HOME%\lib\commons-logging-1.2.jar
 
 @rem Execute Client
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CLIENT_OPTS%  -classpath "%CLASSPATH%" StartRpcClient %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CLIENT_OPTS%  -classpath "%CLASSPATH%" StartProtobufClient %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell

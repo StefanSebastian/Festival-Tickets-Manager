@@ -64,7 +64,7 @@ case "`uname`" in
     ;;
 esac
 
-CLASSPATH=$APP_HOME/lib/Server-1.0-SNAPSHOT.jar:$APP_HOME/lib/Model-1.0-SNAPSHOT.jar:$APP_HOME/lib/Repository-1.0-SNAPSHOT.jar:$APP_HOME/lib/Services-1.0-SNAPSHOT.jar:$APP_HOME/lib/Networking-1.0-SNAPSHOT.jar:$APP_HOME/lib/mysql-connector-java-5.1.6.jar
+CLASSPATH=$APP_HOME/lib/Server-1.0-SNAPSHOT.jar:$APP_HOME/lib/Model-1.0-SNAPSHOT.jar:$APP_HOME/lib/Repository-1.0-SNAPSHOT.jar:$APP_HOME/lib/Services-1.0-SNAPSHOT.jar:$APP_HOME/lib/Networking-1.0-SNAPSHOT.jar:$APP_HOME/lib/spring-context-4.3.7.RELEASE.jar:$APP_HOME/lib/mysql-connector-java-5.1.6.jar:$APP_HOME/lib/Protobuf-1.0-SNAPSHOT.jar:$APP_HOME/lib/spring-aop-4.3.7.RELEASE.jar:$APP_HOME/lib/spring-beans-4.3.7.RELEASE.jar:$APP_HOME/lib/spring-core-4.3.7.RELEASE.jar:$APP_HOME/lib/spring-expression-4.3.7.RELEASE.jar:$APP_HOME/lib/protobuf-java-3.2.0.jar:$APP_HOME/lib/commons-logging-1.2.jar
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
@@ -161,4 +161,4 @@ function splitJvmOpts() {
 eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $SERVER_OPTS
 
 
-exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" StartRpcServer "$@"
+exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" StartProtobufServer "$@"

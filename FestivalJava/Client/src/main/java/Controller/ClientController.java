@@ -22,7 +22,7 @@ import java.util.List;
  * Created by Sebi on 28-Mar-17.
  * Client controller, communicates with server, serves the UI
  */
-public class ClientController extends UnicastRemoteObject implements IFestivalClient, Serializable, Observable<Show> {
+public class ClientController implements IFestivalClient, Serializable, Observable<Show> {
     //server
     private IFestivalServer server;
 

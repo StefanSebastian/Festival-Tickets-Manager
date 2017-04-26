@@ -6,4 +6,6 @@ include 'Server'
 include 'Client'
 include 'Networking'
 include 'Utils'
+include 'Networking'
+include 'Protobuf'
 

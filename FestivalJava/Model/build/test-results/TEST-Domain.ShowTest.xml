@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Domain.ShowTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-03-28T12:58:07" hostname="DESKTOP-D3166J2" time="0.009">
+<testsuite name="Domain.ShowTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-04-26T14:50:04" hostname="DESKTOP-D3166J2" time="0.009">
   <properties/>
   <testcase name="setTicketsSold" classname="Domain.ShowTest" time="0.001"/>
   <testcase name="setLocation" classname="Domain.ShowTest" time="0.0"/>
@@ -10,9 +10,9 @@
   <testcase name="setIdShow" classname="Domain.ShowTest" time="0.0"/>
   <testcase name="getIdShow" classname="Domain.ShowTest" time="0.0"/>
   <testcase name="setIdArtist" classname="Domain.ShowTest" time="0.0"/>
-  <testcase name="getIdArtist" classname="Domain.ShowTest" time="0.002"/>
+  <testcase name="getIdArtist" classname="Domain.ShowTest" time="0.0"/>
   <testcase name="getTicketsAvailable" classname="Domain.ShowTest" time="0.0"/>
-  <testcase name="setDate" classname="Domain.ShowTest" time="0.001"/>
+  <testcase name="setDate" classname="Domain.ShowTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
