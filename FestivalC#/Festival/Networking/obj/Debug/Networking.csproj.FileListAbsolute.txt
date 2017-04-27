@@ -12,3 +12,6 @@ E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\
 E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Networking\bin\Debug\MySql.Data.xml
 E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Networking\obj\Debug\Networking.dll
 E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Networking\obj\Debug\Networking.pdb
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Networking\bin\Debug\Google.Protobuf.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Networking\bin\Debug\protobuf-net.dll
+E:\Info\anu2\mpp\Laborator\Project\Festival-Tickets-Manager\FestivalC#\Festival\Networking\bin\Debug\Google.Protobuf.xml

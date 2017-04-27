@@ -1,4 +1,5 @@
 ﻿using Festival.Service.AppServices;
+using Networking.protobuff;
 using Networking.rpcprotocol;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,8 @@ namespace Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IFestivalServer server = new FestivalServerRpcProxy("127.0.0.1", 55555);
+            //IFestivalServer server = new FestivalServerRpcProxy("127.0.0.1", 55555);
+            IFestivalServer server = new ProtoFestivalProxy("127.0.0.1", 55556);
             ClientController ctrl = new ClientController(server);
             LoginWindow login = new LoginWindow(ctrl);
             Application.Run(login);
