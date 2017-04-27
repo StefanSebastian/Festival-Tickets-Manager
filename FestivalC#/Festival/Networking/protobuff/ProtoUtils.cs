@@ -108,5 +108,16 @@ namespace Networking.protobuff
 
             return shows;
         }
+
+        public static Protobuf.FestivalRequest createGetTicketsRequest(int idShow, String clientName, int nrTickets, String username)
+        {
+            Protobuf.FestivalRequest request = new Protobuf.FestivalRequest();
+            request.Type = Protobuf.FestivalRequest.Types.Type.BuyTickets;
+            request.IdShow = idShow;
+            request.ClientName = clientName;
+            request.NrOfTickets = nrTickets;
+            request.Username = username;
+            return request;
+        }
     }
 }

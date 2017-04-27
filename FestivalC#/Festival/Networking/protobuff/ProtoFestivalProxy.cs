@@ -147,7 +147,7 @@ namespace Networking.protobuff
 
         private void handleUpdate(Protobuf.FestivalResponse response)
         {
-           
+            client.showUpdated(ProtoUtils.getShowFromProto(response.Shows.ElementAt(0)));
         }
 
         public List<Artist> getArtists()
@@ -185,7 +185,12 @@ namespace Networking.protobuff
 
         public void buyTicketsForShow(int idShow, string clientName, int numberOfTickets, string username)
         {
-            throw new NotImplementedException();
+            sendRequest(ProtoUtils.createGetTicketsRequest(idShow, clientName, numberOfTickets, username));
+            Protobuf.FestivalResponse response = readResponse();
+            if (response.Type == Protobuf.FestivalResponse.Types.Type.Error)
+            {
+                throw new ServiceException(response.Error);
+            }
         }
 
         public void login(User user, IFestivalClient client)

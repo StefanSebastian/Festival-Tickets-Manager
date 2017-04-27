@@ -260,10 +260,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProtoFestivalProxy.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProtoFestivalProxy.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Networking/src/main/java/protobuf/ProtoFestivalProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1853">
+            <state relative-caret-position="-1241">
               <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -272,11 +272,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProtoUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProtoUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Networking/src/main/java/protobuf/ProtoUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2471">
-              <caret line="188" column="23" selection-start-line="188" selection-start-column="23" selection-end-line="188" selection-end-column="23" />
+            <state relative-caret-position="312">
+              <caret line="202" column="10" selection-start-line="202" selection-start-column="10" selection-end-line="202" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -3349,7 +3349,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3661,16 +3661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Networking/src/main/java/protobuf/ProtoFestivalProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1853">
-          <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Protobuf/src/main/proto/FestivalProtocol.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -3689,8 +3679,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Networking/src/main/java/protobuf/ProtoUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2471">
-          <caret line="188" column="23" selection-start-line="188" selection-start-column="23" selection-end-line="188" selection-end-column="23" />
+        <state relative-caret-position="312">
+          <caret line="202" column="10" selection-start-line="202" selection-start-column="10" selection-end-line="202" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Networking/src/main/java/protobuf/ProtoFestivalProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1241">
+          <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
