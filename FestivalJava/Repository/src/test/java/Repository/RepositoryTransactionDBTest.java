@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.Properties;
 
 import static org.junit.Assert.assertTrue;
@@ -53,7 +54,7 @@ public class RepositoryTransactionDBTest {
     public void save() throws Exception {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
-        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        Show show = new Show(1, "loc", new Date(), 12, 0, artist);
         repoShow.save(show);
         repoTrans.save(new Transaction(1, "nume", 2, show));
 
@@ -65,7 +66,7 @@ public class RepositoryTransactionDBTest {
     public void delete() throws Exception {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
-        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        Show show = new Show(1, "loc", new Date(), 12, 0, artist);
         repoShow.save(show);
 
         repoTrans.save(new Transaction(1, "nume", 2, show));
@@ -82,7 +83,7 @@ public class RepositoryTransactionDBTest {
     public void update() throws Exception {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
-        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        Show show = new Show(1, "loc", new Date(), 12, 0, artist);
         repoShow.save(show);
         repoTrans.save(new Transaction(1, "nume", 2, show));
 
@@ -94,7 +95,7 @@ public class RepositoryTransactionDBTest {
     public void getById() throws Exception {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
-        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        Show show = new Show(1, "loc", new Date(), 12, 0, artist);
         repoShow.save(show);
         repoTrans.save(new Transaction(1, "nume", 2, show));
 
@@ -106,7 +107,7 @@ public class RepositoryTransactionDBTest {
     public void getAll() throws Exception {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
-        Show show = new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist);
+        Show show = new Show(1, "loc", new Date(), 12, 0, artist);
         repoShow.save(show);
 
         assertTrue(repoTrans.getAll().size() == 0);

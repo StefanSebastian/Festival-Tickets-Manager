@@ -36,7 +36,7 @@ public class StartProtobufServer {
     public static void main(String[] args) {
         Properties serverProperties = new Properties();
         try{
-            serverProperties.load(StartRpcServer.class.getResourceAsStream("/server.properties"));
+            serverProperties.load(StartProtobufServer.class.getResourceAsStream("/server.properties"));
         } catch (IOException e) {
             System.err.println("Can't find the properties file");
             return;

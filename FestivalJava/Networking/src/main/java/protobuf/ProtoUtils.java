@@ -4,7 +4,11 @@ import Domain.Artist;
 import Domain.Show;
 import Domain.User;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -116,10 +120,11 @@ public class ProtoUtils {
                 FestivalProtobufs.FestivalResponse.newBuilder().setType(FestivalProtobufs.FestivalResponse.Type.Ok);
 
         for (Show show : shows){
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             FestivalProtobufs.Show showDto = FestivalProtobufs.Show.newBuilder()
                     .setId(show.getIdShow())
                     .setArtist(getProtoFromArtist(show.getArtist()))
-                    .setDate(show.getDate())
+                    .setDate(df.format(show.getDate()))
                     .setLocation(show.getLocation())
                     .setTicketsAvailable(show.getTicketsAvailable())
                     .setTicketsSold(show.getTicketsSold())
@@ -145,10 +150,11 @@ public class ProtoUtils {
                 FestivalProtobufs.FestivalResponse.newBuilder().setType(FestivalProtobufs.FestivalResponse.Type.Ok);
 
         for (Show show : shows){
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             FestivalProtobufs.Show showDto = FestivalProtobufs.Show.newBuilder()
                     .setId(show.getIdShow())
                     .setArtist(getProtoFromArtist(show.getArtist()))
-                    .setDate(show.getDate())
+                    .setDate(df.format(show.getDate()))
                     .setLocation(show.getLocation())
                     .setTicketsAvailable(show.getTicketsAvailable())
                     .setTicketsSold(show.getTicketsSold())
@@ -160,9 +166,16 @@ public class ProtoUtils {
     }
 
     public static  Show getShow(FestivalProtobufs.Show show){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date showDate = null;
+        try {
+            showDate = df.parse(show.getDate());
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
         return new Show(show.getId(),
                 show.getLocation(),
-                show.getDate(),
+                showDate,
                 show.getTicketsAvailable(),
                 show.getTicketsSold(),
                 getArtist(show.getArtist()));
@@ -177,10 +190,11 @@ public class ProtoUtils {
     }
 
     public static FestivalProtobufs.Show getProtoFromShow(Show show){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         FestivalProtobufs.Show showDto = FestivalProtobufs.Show
                 .newBuilder()
                 .setId(show.getIdShow())
-                .setDate(show.getDate())
+                .setDate(df.format(show.getDate()))
                 .setLocation(show.getLocation())
                 .setTicketsAvailable(show.getTicketsAvailable())
                 .setTicketsSold(show.getTicketsSold())

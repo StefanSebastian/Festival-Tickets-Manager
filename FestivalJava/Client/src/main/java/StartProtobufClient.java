@@ -23,7 +23,7 @@ public class StartProtobufClient extends Application {
         IFestivalServer server = new ProtoFestivalProxy("localhost", 55556);
         ClientController clientController = new ClientController(server);
 
-        FXMLLoader loader = new FXMLLoader(StartRpcClient.class.getResource("UI/LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(StartProtobufClient.class.getResource("UI/LoginView.fxml"));
         AnchorPane loginPane = loader.load();
         LoginViewController controller = loader.getController();
         controller.initialize(clientController, primaryStage);

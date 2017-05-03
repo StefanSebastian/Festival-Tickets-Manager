@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Sebi on 29-Mar-17.
@@ -8,12 +9,12 @@ import java.io.Serializable;
 public class ShowDTO implements Serializable {
     private Integer id;
     private String location;
-    private String date;
+    private Date date;
     private Integer ticketsAvailable;
     private Integer ticketsSold;
     private ArtistDTO artist;
 
-    public ShowDTO(Integer id, String location, String date,
+    public ShowDTO(Integer id, String location, Date date,
                    Integer ticketsAvailable, Integer ticketsSold,
                    ArtistDTO artist){
         this.id = id;
@@ -40,11 +41,11 @@ public class ShowDTO implements Serializable {
         this.location = location;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

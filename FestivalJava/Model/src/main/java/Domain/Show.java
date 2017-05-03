@@ -1,6 +1,7 @@
 package Domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Sebi on 09-Mar-17.
@@ -13,7 +14,7 @@ public class Show implements Serializable{
     private String location;
 
     //date and time
-    private String date;
+    private Date date;
 
     //how many tickets are available
     private Integer ticketsAvailable;
@@ -25,7 +26,7 @@ public class Show implements Serializable{
     private Artist artist;
 
     //Constructor
-    public Show(Integer idShow, String location, String date, Integer ticketsAvailable, Integer ticketsSold, Artist artist){
+    public Show(Integer idShow, String location, Date date, Integer ticketsAvailable, Integer ticketsSold, Artist artist){
         this.idShow = idShow;
         this.location = location;
         this.date = date;
@@ -51,11 +52,11 @@ public class Show implements Serializable{
         this.location = location;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

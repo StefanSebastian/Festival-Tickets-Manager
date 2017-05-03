@@ -1,9 +1,14 @@
 Manifest-Version: 1.0
 Class-Path: Model-1.0-SNAPSHOT.jar Repository-1.0-SNAPSHOT.jar Service
  s-1.0-SNAPSHOT.jar Utils-1.0-SNAPSHOT.jar Networking-1.0-SNAPSHOT.jar
-  spring-context-4.3.7.RELEASE.jar mysql-connector-java-5.1.6.jar Prot
- obuf-1.0-SNAPSHOT.jar spring-aop-4.3.7.RELEASE.jar spring-beans-4.3.7
- .RELEASE.jar spring-core-4.3.7.RELEASE.jar spring-expression-4.3.7.RE
- LEASE.jar protobuf-java-3.2.0.jar commons-logging-1.2.jar
+  spring-context-4.3.7.RELEASE.jar hibernate-gradle-plugin-5.2.10.Fina
+ l.jar mysql-connector-java-5.1.6.jar Protobuf-1.0-SNAPSHOT.jar spring
+ -aop-4.3.7.RELEASE.jar spring-beans-4.3.7.RELEASE.jar spring-core-4.3
+ .7.RELEASE.jar spring-expression-4.3.7.RELEASE.jar jboss-logging-3.3.
+ 0.Final.jar hibernate-core-5.2.10.Final.jar hibernate-jpa-2.1-api-1.0
+ .0.Final.jar javassist-3.20.0-GA.jar byte-buddy-1.6.6.jar protobuf-ja
+ va-3.2.0.jar commons-logging-1.2.jar antlr-2.7.7.jar jboss-transactio
+ n-api_1.2_spec-1.0.1.Final.jar jandex-2.0.3.Final.jar classmate-1.3.0
+ .jar dom4j-1.6.1.jar hibernate-commons-annotations-5.0.1.Final.jar
 Main-Class: StartProtobufClient
 

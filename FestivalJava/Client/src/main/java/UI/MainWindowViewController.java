@@ -7,7 +7,9 @@ import Domain.ShowArtist;
 import ObserverPattern.Observer;
 import Validation.Exceptions.ServiceException;
 import Validation.Exceptions.UIException;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -25,9 +27,12 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,13 +73,15 @@ public class MainWindowViewController implements Observer<Show> {
 
         //init tables
         locationColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("location"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Show, String>("date"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Show, Date>("date"));
         ticketsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Show, Integer>("ticketsAvailable"));
         ticketsSoldColumn.setCellValueFactory(new PropertyValueFactory<Show, Integer>("ticketsSold"));
+        //date settings
+        dateColumn.setCellFactory(getDateNoColorCellFactory());
 
         searchTableArtistColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, String>("artistName"));
         searchTableLocationColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, String>("location"));
-        searchTableDateColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, String>("date"));
+        searchTableDateColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, Date>("date"));
         searchTableTicketsAvailableColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, Integer>("ticketsAvailable"));
         searchTableTicketsSoldColumn.setCellValueFactory(new PropertyValueFactory<ShowArtist, Integer>("ticketsSold"));
 
@@ -110,7 +117,7 @@ public class MainWindowViewController implements Observer<Show> {
     @FXML
     private TableColumn<Show, String> locationColumn;
     @FXML
-    private TableColumn<Show, String> dateColumn;
+    private TableColumn<Show, Date> dateColumn;
     @FXML
     private TableColumn<Show, Integer> ticketsAvailableColumn;
     @FXML
@@ -121,7 +128,7 @@ public class MainWindowViewController implements Observer<Show> {
     @FXML
     private TableColumn<ShowArtist, String> searchTableLocationColumn;
     @FXML
-    private TableColumn<ShowArtist, String> searchTableDateColumn;
+    private TableColumn<ShowArtist, Date> searchTableDateColumn;
     @FXML
     private TableColumn<ShowArtist, Integer> searchTableTicketsAvailableColumn;
     @FXML
@@ -294,13 +301,14 @@ public class MainWindowViewController implements Observer<Show> {
     Cell factory, used to color the date cell with red when the value of ticketsAvailable is 0
     Also adds the cell clicked event - when a cell in search table is clicked the transaction
     window is opened
+     Also formats date value
      */
-    private Callback<TableColumn<ShowArtist, String>,
-            TableCell<ShowArtist, String>> getDateCellFactory(){
+    private Callback<TableColumn<ShowArtist, Date>,
+            TableCell<ShowArtist, Date>> getDateCellFactory(){
         return column -> {
-            TableCell<ShowArtist, String> cell = new TableCell<ShowArtist, String>(){
+            TableCell<ShowArtist, Date> cell = new TableCell<ShowArtist, Date>(){
                 @Override
-                protected void updateItem(String item, boolean empty) {
+                protected void updateItem(Date item, boolean empty) {
                     super.updateItem(item, empty);
 
                     if (item == null || empty) { //If the cell is empty
@@ -326,6 +334,9 @@ public class MainWindowViewController implements Observer<Show> {
                         setStyle("-fx-background-color: #F9F9F9");
                     }
 
+                    //formats date value
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    setText(df.format(item));
                 }
             };
 
@@ -389,6 +400,33 @@ public class MainWindowViewController implements Observer<Show> {
                 }
             });
 
+            return cell;
+        };
+    }
+
+    /*
+   Cell factory formats date value
+    */
+    private Callback<TableColumn<Show, Date>,
+            TableCell<Show, Date>> getDateNoColorCellFactory(){
+        return column -> {
+            TableCell<Show, Date> cell = new TableCell<Show, Date>(){
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setTextFill(null);
+                        setStyle("");
+                        return;
+                    }
+
+                    //formats date value
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    setText(df.format(item));
+                }
+            };
             return cell;
         };
     }

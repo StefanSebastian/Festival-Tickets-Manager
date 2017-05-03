@@ -13,9 +13,6 @@ public class ValidatorShow implements IValidator<Show> {
         if (show.getLocation().length() == 0){
             errors += "Location must not be null";
         }
-        if (show.getDate().length() == 0){
-            errors += "Date must not be null";
-        }
         if (show.getTicketsAvailable() < 0){
             errors += "Availbale tickets must be a positive number";
         }

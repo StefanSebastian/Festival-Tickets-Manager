@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.Properties;
 
 import static org.junit.Assert.assertTrue;
@@ -45,7 +46,7 @@ public class RepositoryShowDBTest {
     public void save() throws Exception {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
+        repoShow.save(new Show(1, "loc", new Date(), 12, 0, artist));
 
         assertTrue(repoShow.getById(1).getArtist().getIdArtist() == 1);
         assertTrue(repoShow.getById(1).getLocation().equals("loc"));
@@ -57,7 +58,7 @@ public class RepositoryShowDBTest {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
 
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
+        repoShow.save(new Show(1, "loc", new Date(), 12, 0, artist));
 
         assertTrue(repoShow.getAll().size() == 1);
         repoShow.delete(1);
@@ -69,9 +70,9 @@ public class RepositoryShowDBTest {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
 
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
+        repoShow.save(new Show(1, "loc", new Date(), 12, 0, artist));
 
-        repoShow.update(1, new Show(1, "locul", "2016-03-03 21:00", 22, 0, artist));
+        repoShow.update(1, new Show(1, "locul", new Date(), 22, 0, artist));
         assertTrue(repoShow.getById(1).getLocation().equals("locul"));
 
     }
@@ -81,7 +82,7 @@ public class RepositoryShowDBTest {
         Artist artist = new Artist(1, "name");
         repoArtist.save(artist);
 
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
+        repoShow.save(new Show(1, "loc", new Date(), 12, 0, artist));
 
         assertTrue(repoShow.getById(1).getLocation().equals("loc"));
         assertTrue(repoShow.getById(2) == null);
@@ -95,8 +96,8 @@ public class RepositoryShowDBTest {
 
 
         assertTrue(repoShow.getAll().size() == 0);
-        repoShow.save(new Show(1, "loc", "2016-03-03 20:00", 12, 0, artist));
-        repoShow.save(new Show(2, "loc", "2016-03-03 21:00", 12, 0, artist));
+        repoShow.save(new Show(1, "loc", new Date(), 12, 0, artist));
+        repoShow.save(new Show(2, "loc", new Date(), 12, 0, artist));
         assertTrue(repoShow.getAll().size() == 2);
 
     }

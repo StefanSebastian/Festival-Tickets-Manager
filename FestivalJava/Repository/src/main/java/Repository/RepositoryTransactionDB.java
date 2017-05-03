@@ -87,7 +87,7 @@ public class RepositoryTransactionDB implements ITransactionRepository {
                     Integer numberOfTickets = resultSet.getInt("numberOfTickets");
                     Integer idShow = resultSet.getInt("idShow");
                     String location = resultSet.getString("location");
-                    String date = resultSet.getString("date");
+                    java.util.Date date = resultSet.getDate("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
                     Integer idArtist = resultSet.getInt("idArtist");
@@ -121,7 +121,7 @@ public class RepositoryTransactionDB implements ITransactionRepository {
                     Integer numberOfTickets = resultSet.getInt("numberOfTickets");
                     Integer idShow = resultSet.getInt("idShow");
                     String location = resultSet.getString("location");
-                    String date = resultSet.getString("date");
+                    java.util.Date date = resultSet.getDate("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
                     Integer idArtist = resultSet.getInt("idArtist");

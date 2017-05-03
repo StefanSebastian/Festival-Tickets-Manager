@@ -6,6 +6,7 @@ import Domain.Transaction;
 import Domain.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class DTOUtils {
     public static Show getShowFromDTO(ShowDTO showDTO){
         Integer id = showDTO.getId();
         String location = showDTO.getLocation();
-        String date = showDTO.getDate();
+        Date date = showDTO.getDate();
         Integer ticketsAvailable = showDTO.getTicketsAvailable();
         Integer ticketsSold = showDTO.getTicketsSold();
         Artist artist = getArtistFromDTO(showDTO.getArtist());
@@ -52,7 +53,7 @@ public class DTOUtils {
     public static ShowDTO getShowDTO(Show show){
         Integer id = show.getIdShow();
         String location = show.getLocation();
-        String date = show.getDate();
+        Date date = show.getDate();
         Integer ticketsAvailable = show.getTicketsAvailable();
         Integer ticketsSold = show.getTicketsSold();
         ArtistDTO artist = getArtistDTO(show.getArtist());

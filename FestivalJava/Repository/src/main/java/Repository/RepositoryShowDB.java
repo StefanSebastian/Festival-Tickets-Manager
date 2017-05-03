@@ -4,13 +4,9 @@ import Domain.Artist;
 import Domain.Show;
 import Repository.Interfaces.IShowRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * Created by Sebi on 09-Mar-17.
@@ -30,7 +26,7 @@ public class RepositoryShowDB implements IShowRepository {
         try(PreparedStatement statement = con.prepareStatement("INSERT INTO shows values(?, ?, ?, ?, ?, ?)")){
             statement.setInt(1, show.getIdShow());
             statement.setString(2, show.getLocation());
-            statement.setString(3, show.getDate());
+            statement.setDate(3, new Date(show.getDate().getTime()));
             statement.setInt(4, show.getTicketsAvailable());
             statement.setInt(5, show.getTicketsSold());
             statement.setInt(6, show.getArtist().getIdArtist());
@@ -61,7 +57,7 @@ public class RepositoryShowDB implements IShowRepository {
                             "idArtist = ? WHERE idShow = ?")){
             statement.setInt(1, show.getIdShow());
             statement.setString(2, show.getLocation());
-            statement.setString(3, show.getDate());
+            statement.setDate(3, new Date(show.getDate().getTime()));
             statement.setInt(4, show.getTicketsAvailable());
             statement.setInt(5, show.getTicketsSold());
             statement.setInt(6, show.getArtist().getIdArtist());
@@ -84,7 +80,7 @@ public class RepositoryShowDB implements IShowRepository {
                 if (resultSet.next()){
                     Integer idShow = resultSet.getInt("idShow");
                     String location = resultSet.getString("location");
-                    String date = resultSet.getString("date");
+                    java.util.Date date = resultSet.getDate("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
                     Integer idArtist = resultSet.getInt("idArtist");
@@ -111,7 +107,7 @@ public class RepositoryShowDB implements IShowRepository {
                 while (resultSet.next()) {
                     Integer idShow = resultSet.getInt("idShow");
                     String location = resultSet.getString("location");
-                    String date = resultSet.getString("date");
+                    java.util.Date date = resultSet.getDate("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
                     Integer idArtist = resultSet.getInt("idArtist");
@@ -141,7 +137,7 @@ public class RepositoryShowDB implements IShowRepository {
                 while (resultSet.next()) {
                     Integer idShow = resultSet.getInt("idShow");
                     String location = resultSet.getString("location");
-                    String date = resultSet.getString("date");
+                    java.util.Date date = resultSet.getDate("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
                     Integer idArt = resultSet.getInt("idArtist");
@@ -170,13 +166,13 @@ public class RepositoryShowDB implements IShowRepository {
                 while (resultSet.next()) {
                     Integer idShow = resultSet.getInt("idShow");
                     String location = resultSet.getString("location");
-                    String dateShow = resultSet.getString("date");
+                    java.util.Date dateShow = resultSet.getDate("date");
                     Integer ticketsAvailable = resultSet.getInt("ticketsAvailable");
                     Integer ticketsSold = resultSet.getInt("ticketsSold");
                     Integer idArt = resultSet.getInt("idArtist");
                     String nameArtist = resultSet.getString("name");
                     Artist artist = new Artist(idArt, nameArtist);
-                    shows.add(new Show(idShow, location, date, ticketsAvailable, ticketsSold, artist));
+                    shows.add(new Show(idShow, location, dateShow, ticketsAvailable, ticketsSold, artist));
                 }
             }
         } catch (SQLException e) {

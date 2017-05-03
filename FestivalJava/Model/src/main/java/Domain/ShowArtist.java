@@ -1,5 +1,7 @@
 package Domain;
 
+import java.util.Date;
+
 /**
  * Created by Sebi on 19-Mar-17.
  * Auxiliary class used for displaying data about shows and artist in UI tables
@@ -8,7 +10,7 @@ public class ShowArtist {
     //info about show
     private Integer idShow;
     private String location;
-    private String date;
+    private Date date;
     private Integer ticketsAvailable;
     private Integer ticketsSold;
 
@@ -17,7 +19,7 @@ public class ShowArtist {
     private String artistName;
 
     //constructor
-    public ShowArtist(Integer idShow, String location, String date, Integer ticketsAvailable,
+    public ShowArtist(Integer idShow, String location, Date date, Integer ticketsAvailable,
                       Integer ticketsSold, Integer idArtist, String artistName){
         this.idShow = idShow;
         this.location = location;
@@ -45,11 +47,11 @@ public class ShowArtist {
         this.location = location;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
