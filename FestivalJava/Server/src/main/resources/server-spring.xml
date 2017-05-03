@@ -18,19 +18,19 @@
 
    <bean id="validatorUser" class="Validation.ValidatorUser"/>
 
-    <bean id="repoArtist" class="Repository.RepositoryArtistDB">
+    <bean id="repoArtist" class="Repository.JDBC.RepositoryArtistDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="repoShow" class="Repository.RepositoryShowDB">
+    <bean id="repoShow" class="Repository.JDBC.RepositoryShowDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="repoTransaction" class="Repository.RepositoryTransactionDB">
+    <bean id="repoTransaction" class="Repository.JDBC.RepositoryTransactionDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="repoUser" class="Repository.RepositoryUserDB">
+    <bean id="repoUser" class="Repository.JDBC.RepositoryUserDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 

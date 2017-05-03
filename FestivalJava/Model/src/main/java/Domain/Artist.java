@@ -12,6 +12,8 @@ public class Artist implements Serializable{
     //name
     private String name;
 
+    public Artist(){}
+
     //Constructor
     public Artist(Integer idArtist, String name){
         this.idArtist = idArtist;

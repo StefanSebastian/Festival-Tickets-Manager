@@ -18,6 +18,8 @@ public class Transaction implements Serializable {
     //show for which the tickets were bought
     private Show show;
 
+    public Transaction(){}
+
     //Constructor
     public Transaction(Integer idTransaction, String clientName, Integer numberOfTickets, Show show){
         this.idTransaction = idTransaction;

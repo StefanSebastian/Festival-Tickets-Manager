@@ -2,6 +2,8 @@ package Repository;
 
 import Domain.Artist;
 import Domain.Show;
+import Repository.JDBC.RepositoryArtistDB;
+import Repository.JDBC.RepositoryShowDB;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

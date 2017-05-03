@@ -3,13 +3,11 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="Artist" table="artists">
+    <class name="Domain.User" table="users">
 
-        <id name="idArtist" type = "int" column="idArtist">
-            <generator class="increment"/>
-        </id>
+        <id name="username" column="username"/>
 
-        <property name="name" column="name"/>
+        <property name="password" column="password"/>
 
     </class>
 </hibernate-mapping>

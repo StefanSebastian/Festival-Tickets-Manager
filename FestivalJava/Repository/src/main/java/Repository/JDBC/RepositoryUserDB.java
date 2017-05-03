@@ -1,4 +1,4 @@
-package Repository;
+package Repository.JDBC;
 
 import Domain.User;
 import Repository.Interfaces.IUserRepository;

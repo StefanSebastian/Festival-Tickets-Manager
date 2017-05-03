@@ -25,6 +25,8 @@ public class Show implements Serializable{
     //artist taking part in the show
     private Artist artist;
 
+    public Show(){}
+
     //Constructor
     public Show(Integer idShow, String location, Date date, Integer ticketsAvailable, Integer ticketsSold, Artist artist){
         this.idShow = idShow;

@@ -1,4 +1,4 @@
-package Repository;
+package Repository.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

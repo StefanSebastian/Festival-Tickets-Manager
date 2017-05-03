@@ -12,6 +12,8 @@ public class User implements Serializable{
     //password
     private String password;
 
+    public User(){}
+
     //Constructor
     public User(String username, String password){
         this.username = username;
