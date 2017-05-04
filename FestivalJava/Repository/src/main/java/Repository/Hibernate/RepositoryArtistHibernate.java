@@ -2,7 +2,10 @@ package Repository.Hibernate;
 
 import Domain.Artist;
 import Repository.Interfaces.IArtistRepository;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +40,23 @@ public class RepositoryArtistHibernate implements IArtistRepository {
 
     @Override
     public List<Artist> getAll() {
-        return null;
+        List<Artist> artists = null;
+
+        org.hibernate.Transaction transaction = null;
+        try (Session session = hibernateUtils.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String queryH = "FROM Artist";
+            Query query = session.createQuery(queryH);
+            artists = query.list();
+
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+
+        return artists;
     }
 }

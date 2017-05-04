@@ -45,22 +45,32 @@ public class RepositoryUserHibernate implements IUserRepository {
 
     @Override
     public User getUserForLogin(String username, String password) {
+        User user = null;
+
         Session session = hibernateUtils.getSessionFactory().openSession();
-        org.hibernate.Transaction transaction = session.beginTransaction();
+        org.hibernate.Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
 
-        String queryDef = "FROM User U WHERE U.username = :username AND U.password = :password";
-        Query query = session.createQuery(queryDef);
-        query.setParameter("username", username);
-        query.setParameter("password", password);
-        List<User> results = query.list();
+            String queryDef = "FROM User U WHERE U.username = :username AND U.password = :password";
+            Query query = session.createQuery(queryDef);
+            query.setParameter("username", username);
+            query.setParameter("password", password);
+            List<User> results = query.list();
 
-        transaction.commit();
-        session.close();
+            if (results.size() == 1){
+                user = results.get(0);
+            }
 
-        if (results.size() == 1){
-            return results.get(0);
+            transaction.commit();
+        } catch (RuntimeException ex){
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
         }
 
-        return null;
+        return user;
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Repository.RepositoryArtistDBTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-05-03T18:43:36" hostname="DESKTOP-D3166J2" time="1.648">
+<testsuite name="Repository.RepositoryArtistDBTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-05-04T14:32:33" hostname="DESKTOP-D3166J2" time="1.218">
   <properties/>
-  <testcase name="delete" classname="Repository.RepositoryArtistDBTest" time="0.864"/>
-  <testcase name="getAll" classname="Repository.RepositoryArtistDBTest" time="0.273"/>
-  <testcase name="update" classname="Repository.RepositoryArtistDBTest" time="0.31"/>
-  <testcase name="getById" classname="Repository.RepositoryArtistDBTest" time="0.088"/>
-  <testcase name="save" classname="Repository.RepositoryArtistDBTest" time="0.111"/>
+  <testcase name="delete" classname="Repository.RepositoryArtistDBTest" time="0.506"/>
+  <testcase name="getAll" classname="Repository.RepositoryArtistDBTest" time="0.376"/>
+  <testcase name="update" classname="Repository.RepositoryArtistDBTest" time="0.16"/>
+  <testcase name="getById" classname="Repository.RepositoryArtistDBTest" time="0.082"/>
+  <testcase name="save" classname="Repository.RepositoryArtistDBTest" time="0.078"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

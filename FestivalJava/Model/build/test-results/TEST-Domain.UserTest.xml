@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Domain.UserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-05-03T18:43:34" hostname="DESKTOP-D3166J2" time="0.002">
+<testsuite name="Domain.UserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-05-04T14:32:31" hostname="DESKTOP-D3166J2" time="0.0">
   <properties/>
-  <testcase name="setPassword" classname="Domain.UserTest" time="0.001"/>
+  <testcase name="setPassword" classname="Domain.UserTest" time="0.0"/>
   <testcase name="getPassword" classname="Domain.UserTest" time="0.0"/>
   <testcase name="setIdUser" classname="Domain.UserTest" time="0.0"/>
   <testcase name="getIdUser" classname="Domain.UserTest" time="0.0"/>

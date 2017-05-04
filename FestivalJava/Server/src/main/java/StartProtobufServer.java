@@ -7,6 +7,9 @@ import ModelServices.ServiceArtist;
 import ModelServices.ServiceShow;
 import ModelServices.ServiceTransaction;
 import ModelServices.ServiceUser;
+import Repository.Hibernate.RepositoryArtistHibernate;
+import Repository.Hibernate.RepositoryShowHibernate;
+import Repository.Hibernate.RepositoryTransactionHibernate;
 import Repository.Hibernate.RepositoryUserHibernate;
 import Repository.Interfaces.IArtistRepository;
 import Repository.Interfaces.IShowRepository;
@@ -45,9 +48,12 @@ public class StartProtobufServer {
 
         IUserRepository userRepository = new RepositoryUserHibernate();
         //IUserRepository userRepository = new RepositoryUserDB(serverProperties);
-        IArtistRepository artistRepository = new RepositoryArtistDB(serverProperties);
-        IShowRepository showRepository = new RepositoryShowDB(serverProperties);
-        ITransactionRepository transactionRepository = new RepositoryTransactionDB(serverProperties);
+        IArtistRepository artistRepository = new RepositoryArtistHibernate();
+        //IArtistRepository artistRepository = new RepositoryArtistDB(serverProperties);
+        IShowRepository showRepository = new RepositoryShowHibernate();
+        //IShowRepository showRepository = new RepositoryShowDB(serverProperties);
+        ITransactionRepository transactionRepository = new RepositoryTransactionHibernate();
+        //ITransactionRepository transactionRepository = new RepositoryTransactionDB(serverProperties);
         IServiceUser serviceUser = new ServiceUser(userRepository, new ValidatorUser());
         IServiceArtist serviceArtist = new ServiceArtist(artistRepository, new ValidatorArtist());
         IServiceShow serviceShow = new ServiceShow(showRepository, new ValidatorShow());

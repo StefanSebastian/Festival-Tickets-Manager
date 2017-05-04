@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Domain.ShowTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-05-03T18:43:34" hostname="DESKTOP-D3166J2" time="0.003">
+<testsuite name="Domain.ShowTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-05-04T14:32:31" hostname="DESKTOP-D3166J2" time="0.0">
   <properties/>
-  <testcase name="setTicketsSold" classname="Domain.ShowTest" time="0.001"/>
+  <testcase name="setTicketsSold" classname="Domain.ShowTest" time="0.0"/>
   <testcase name="setLocation" classname="Domain.ShowTest" time="0.0"/>
   <testcase name="getLocation" classname="Domain.ShowTest" time="0.0"/>
   <testcase name="setTicketsAvailable" classname="Domain.ShowTest" time="0.0"/>
