@@ -1,4 +1,4 @@
-import AppServices.IFestivalServer;
+import festival.AppServices.IFestivalServer;
 import Controller.ClientController;
 import UI.LoginViewController;
 import javafx.application.Application;

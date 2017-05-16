@@ -10,46 +10,46 @@
 
    <util:properties id="serverProperties" location="classpath:server.properties" />
 
-   <bean id="validatorArtist" class="Validation.ValidatorArtist"/>
+   <bean id="validatorArtist" class="festival.Validation.ValidatorArtist"/>
 
-   <bean id="validatorShow" class="Validation.ValidatorShow"/>
+   <bean id="validatorShow" class="festival.Validation.ValidatorShow"/>
 
-   <bean id="validatorTransaction" class="Validation.ValidatorTransaction"/>
+   <bean id="validatorTransaction" class="festival.Validation.ValidatorTransaction"/>
 
-   <bean id="validatorUser" class="Validation.ValidatorUser"/>
+   <bean id="validatorUser" class="festival.Validation.ValidatorUser"/>
 
-    <bean id="repoArtist" class="Repository.JDBC.RepositoryArtistDB">
+    <bean id="repoArtist" class="festival.JDBC.RepositoryArtistDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="repoShow" class="Repository.JDBC.RepositoryShowDB">
+    <bean id="repoShow" class="festival.JDBC.RepositoryShowDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="repoTransaction" class="Repository.JDBC.RepositoryTransactionDB">
+    <bean id="repoTransaction" class="festival.JDBC.RepositoryTransactionDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="repoUser" class="Repository.JDBC.RepositoryUserDB">
+    <bean id="repoUser" class="festival.JDBC.RepositoryUserDB">
         <constructor-arg ref="serverProperties" />
     </bean>
 
-    <bean id="serviceArtist" class="ModelServices.ServiceArtist">
+    <bean id="serviceArtist" class="festival.ModelServices.ServiceArtist">
         <constructor-arg ref="repoArtist" />
         <constructor-arg ref="validatorArtist"/>
     </bean>
 
-    <bean id="serviceShow" class="ModelServices.ServiceShow">
+    <bean id="serviceShow" class="festival.ModelServices.ServiceShow">
         <constructor-arg ref="repoShow" />
         <constructor-arg ref="validatorShow"/>
     </bean>
 
-    <bean id="serviceTransaction" class="ModelServices.ServiceTransaction">
+    <bean id="serviceTransaction" class="festival.ModelServices.ServiceTransaction">
         <constructor-arg ref="repoTransaction" />
         <constructor-arg ref="validatorTransaction"/>
     </bean>
 
-    <bean id="serviceUser" class="ModelServices.ServiceUser">
+    <bean id="serviceUser" class="festival.ModelServices.ServiceUser">
         <constructor-arg ref="repoUser" />
         <constructor-arg ref="validatorUser"/>
     </bean>
@@ -64,7 +64,7 @@
     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
         <property name="serviceName" value="Festival"/>
         <property name="service" ref="festivalServer"/>
-        <property name="serviceInterface" value="AppServices.IFestivalServer"/>
+        <property name="serviceInterface" value="festival.AppServices.IFestivalServer"/>
         <property name="servicePort" value="1099"/>
     </bean>
 

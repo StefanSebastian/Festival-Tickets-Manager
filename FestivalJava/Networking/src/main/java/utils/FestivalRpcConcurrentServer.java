@@ -1,6 +1,6 @@
 package utils;
 
-import AppServices.IFestivalServer;
+import festival.AppServices.IFestivalServer;
 import rpcprotocol.FestivalClientRpcWorker;
 
 import java.net.Socket;

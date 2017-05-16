@@ -1,6 +1,6 @@
 package utils;
 
-import AppServices.IFestivalServer;
+import festival.AppServices.IFestivalServer;
 import protobuf.ProtoFestivalWorker;
 
 import java.net.Socket;

@@ -1,11 +1,11 @@
 package Repository;
 
-import Domain.Artist;
-import Domain.Show;
-import Domain.Transaction;
-import Repository.JDBC.RepositoryArtistDB;
-import Repository.JDBC.RepositoryShowDB;
-import Repository.JDBC.RepositoryTransactionDB;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.Transaction;
+import festival.JDBC.RepositoryArtistDB;
+import festival.JDBC.RepositoryShowDB;
+import festival.JDBC.RepositoryTransactionDB;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

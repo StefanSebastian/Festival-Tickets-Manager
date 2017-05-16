@@ -1,7 +1,7 @@
 package Repository;
 
-import Domain.Artist;
-import Repository.JDBC.RepositoryArtistDB;
+import festival.Domain.Artist;
+import festival.JDBC.RepositoryArtistDB;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

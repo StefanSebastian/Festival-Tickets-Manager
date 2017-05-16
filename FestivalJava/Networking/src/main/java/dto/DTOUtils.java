@@ -1,9 +1,9 @@
 package dto;
 
-import Domain.Artist;
-import Domain.Show;
-import Domain.Transaction;
-import Domain.User;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.Transaction;
+import festival.Domain.User;
 
 import java.util.ArrayList;
 import java.util.Date;

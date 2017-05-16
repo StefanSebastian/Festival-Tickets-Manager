@@ -8,4 +8,5 @@ include 'Networking'
 include 'Utils'
 include 'Networking'
 include 'Protobuf'
+include 'RestServices'
 

@@ -1,12 +1,12 @@
 package rpcprotocol;
 
-import AppServices.IFestivalClient;
-import AppServices.IFestivalServer;
-import Domain.Artist;
-import Domain.Show;
-import Domain.User;
-import Validation.Exceptions.ServiceException;
-import Validation.Exceptions.ValidatorException;
+import festival.AppServices.IFestivalClient;
+import festival.AppServices.IFestivalServer;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.User;
+import festival.Validation.Exceptions.ServiceException;
+import festival.Validation.Exceptions.ValidatorException;
 import dto.*;
 
 import java.io.IOException;

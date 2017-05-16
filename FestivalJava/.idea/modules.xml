@@ -20,6 +20,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository.iml" group="Repository" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository_main.iml" group="Repository" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository_test.iml" group="Repository" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestServices/RestServices.iml" filepath="$PROJECT_DIR$/.idea/modules/RestServices/RestServices.iml" group="RestServices" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestServices/RestServices_main.iml" filepath="$PROJECT_DIR$/.idea/modules/RestServices/RestServices_main.iml" group="RestServices" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestServices/RestServices_test.iml" filepath="$PROJECT_DIR$/.idea/modules/RestServices/RestServices_test.iml" group="RestServices" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/Server.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/Server.iml" group="Server" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/Server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/Server_main.iml" group="Server" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/Server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/Server_test.iml" group="Server" />

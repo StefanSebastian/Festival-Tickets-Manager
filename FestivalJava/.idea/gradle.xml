@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/Networking" />
             <option value="$PROJECT_DIR$/Protobuf" />
             <option value="$PROJECT_DIR$/Repository" />
+            <option value="$PROJECT_DIR$/RestServices" />
             <option value="$PROJECT_DIR$/Server" />
             <option value="$PROJECT_DIR$/Services" />
             <option value="$PROJECT_DIR$/Utils" />

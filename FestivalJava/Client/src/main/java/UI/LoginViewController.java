@@ -1,7 +1,7 @@
 package UI;
 
 import Controller.ClientController;
-import Validation.Exceptions.ServiceException;
+import festival.Validation.Exceptions.ServiceException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

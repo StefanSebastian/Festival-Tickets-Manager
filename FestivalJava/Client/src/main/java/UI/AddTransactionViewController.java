@@ -1,15 +1,14 @@
 package UI;
 
 import Controller.ClientController;
-import Domain.Artist;
-import Domain.Show;
-import Domain.ShowArtist;
-import Validation.Exceptions.ServiceException;
-import Validation.Exceptions.ValidatorException;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.ShowArtist;
+import festival.Validation.Exceptions.ServiceException;
+import festival.Validation.Exceptions.ValidatorException;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**

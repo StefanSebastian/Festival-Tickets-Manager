@@ -1,18 +1,14 @@
 package Controller;
 
-import AppServices.IFestivalClient;
-import AppServices.IFestivalServer;
-import Domain.Artist;
-import Domain.Show;
-import Domain.User;
+import festival.AppServices.IFestivalClient;
+import festival.AppServices.IFestivalServer;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.User;
 import ObserverPattern.AbstractObservable;
-import ObserverPattern.Observable;
-import ObserverPattern.Observer;
-import Validation.Exceptions.ServiceException;
-import Validation.Exceptions.ValidatorException;
+import festival.Validation.Exceptions.ServiceException;
+import festival.Validation.Exceptions.ValidatorException;
 
-import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

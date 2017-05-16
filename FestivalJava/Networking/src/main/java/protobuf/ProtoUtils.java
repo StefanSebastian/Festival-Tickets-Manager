@@ -1,8 +1,8 @@
 package protobuf;
 
-import Domain.Artist;
-import Domain.Show;
-import Domain.User;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.User;
 
 import java.text.DateFormat;
 import java.text.ParseException;

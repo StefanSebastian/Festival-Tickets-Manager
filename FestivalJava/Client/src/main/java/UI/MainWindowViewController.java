@@ -1,15 +1,13 @@
 package UI;
 
 import Controller.*;
-import Domain.Artist;
-import Domain.Show;
-import Domain.ShowArtist;
+import festival.Domain.Artist;
+import festival.Domain.Show;
+import festival.Domain.ShowArtist;
 import ObserverPattern.Observer;
-import Validation.Exceptions.ServiceException;
-import Validation.Exceptions.UIException;
-import javafx.beans.property.SimpleStringProperty;
+import festival.Validation.Exceptions.ServiceException;
+import festival.Validation.Exceptions.UIException;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -20,7 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
