@@ -9,4 +9,5 @@ include 'Utils'
 include 'Networking'
 include 'Protobuf'
 include 'RestServices'
+include 'RestClient'
 

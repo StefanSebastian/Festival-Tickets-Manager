@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository.iml" group="Repository" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository_main.iml" group="Repository" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Repository/Repository_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Repository/Repository_test.iml" group="Repository" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestClient/RestClient.iml" filepath="$PROJECT_DIR$/.idea/modules/RestClient/RestClient.iml" group="RestClient" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestServices/RestServices.iml" filepath="$PROJECT_DIR$/.idea/modules/RestServices/RestServices.iml" group="RestServices" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestServices/RestServices_main.iml" filepath="$PROJECT_DIR$/.idea/modules/RestServices/RestServices_main.iml" group="RestServices" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestServices/RestServices_test.iml" filepath="$PROJECT_DIR$/.idea/modules/RestServices/RestServices_test.iml" group="RestServices" />
